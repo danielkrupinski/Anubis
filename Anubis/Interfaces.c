@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <Windows.h>
 
@@ -18,7 +17,7 @@ static void* find(const char* module, const char* name)
         return foundInterface;
     else {
         char buf[100];
-        sprintf(buf, "Failed to find %s in %s!", name, module);
+        sprintf_s(buf, sizeof(buf), "Failed to find %s in %s!", name, module);
         MessageBox(NULL, buf, "Error", MB_OK | MB_ICONERROR);
         exit(EXIT_FAILURE);
     }
