@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c" />
+    <ClCompile Include="Interfaces.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interfaces.h" />
