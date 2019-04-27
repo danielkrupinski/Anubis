@@ -44,6 +44,6 @@ static void* findPattern(const char* module, const char* pattern, size_t offset)
 
 void initializeMemory(void)
 {
-    memory.clientMode = **((void***)(((char*)*interfaces.client)[10] + 5));
+    memory.clientMode = **((void***)(((*((uintptr_t**)interfaces.client))[10]) + 5));
     memory.loadSky = findPattern("engine", "\x55\x8B\xEC\x81\xEC????\x56\x57\x8B\xF9\xC7\x45", 0);
 }
