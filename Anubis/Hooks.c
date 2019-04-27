@@ -1,6 +1,7 @@
 #include <Windows.h>
 
 #include "Hooks.h"
+#include "Memory.h"
 
 Hooks hooks;
 
@@ -25,5 +26,5 @@ static void hookVmt(void* const base, VmtHook* vmtHook)
 
 void initializeHooks(void)
 {
-
+    hookVmt(memory.clientMode, &hooks.clientMode);
 }
