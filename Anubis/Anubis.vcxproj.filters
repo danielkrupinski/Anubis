@@ -33,6 +33,9 @@
     <ClCompile Include="Hooks.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Memory.c">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
