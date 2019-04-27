@@ -8,7 +8,7 @@ Interfaces interfaces;
 
 static void* find(const char* module, const char* name)
 {
-    void**(*createInterface)(const char*, int*) = (void*(*)(const char*, int*))GetProcAddress(GetModuleHandle(module), "CreateInterface");
+    void**(*createInterface)(const char*, int*) = (void**(*)(const char*, int*))GetProcAddress(GetModuleHandle(module), "CreateInterface");
     void** foundInterface = 0;
 
     if (createInterface)
