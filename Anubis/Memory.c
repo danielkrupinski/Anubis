@@ -18,13 +18,14 @@ static void* findPattern(const char* module, const char* pattern, size_t offset)
 
         for (char* c = begin; c != end; c++) {
             bool matched = true;
-            char* it = c;
+            const char* it = c;
+            const char* patternIt = pattern;
 
             if (*(c + strlen(pattern) - 1) != pattern[strlen(pattern) - 1])
                 continue;
 
-            for (; *pattern; pattern++) {
-                if (*pattern != '?' && *it != *pattern) {
+            for (; *patternIt; patternIt++) {
+                if (*patternIt != '?' && *it != *patternIt) {
                     matched = false;
                     break;
                 }
