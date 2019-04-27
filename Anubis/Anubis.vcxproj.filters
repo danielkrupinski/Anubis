@@ -29,11 +29,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Interfaces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SDK\GameUI.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

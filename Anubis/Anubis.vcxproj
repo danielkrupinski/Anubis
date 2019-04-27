@@ -162,7 +162,7 @@
     <ClCompile Include="SDK\GameUI.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Interfaces.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="SDK\GameUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
