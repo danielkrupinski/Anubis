@@ -24,6 +24,9 @@
     <ClCompile Include="Interfaces.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\GameUI.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Interfaces.h">
