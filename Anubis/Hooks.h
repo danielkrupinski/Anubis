@@ -9,4 +9,10 @@ typedef struct {
     size_t length;
 } VmtHook;
 
+typedef struct {
+    VmtHook clientMode;
+} Hooks;
+
 void initializeHooks(void);
+
+extern Hooks hooks;
