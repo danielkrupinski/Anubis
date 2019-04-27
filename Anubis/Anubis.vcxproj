@@ -172,6 +172,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.c" />
     <ClCompile Include="Interfaces.c" />
+    <ClCompile Include="SDK\Engine.c" />
     <ClCompile Include="SDK\GameUI.c" />
   </ItemGroup>
   <ItemGroup>

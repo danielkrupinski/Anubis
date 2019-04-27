@@ -27,6 +27,9 @@
     <ClCompile Include="SDK\GameUI.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\Engine.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
@@ -36,7 +39,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SDK\Engine.h">
-      <Filter>Header Files</Filter>
+      <Filter>SDK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
