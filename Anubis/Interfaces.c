@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <Windows.h>
 
-#include "interfaces.h"
+#include "Interfaces.h"
 #include "SDK/GameUI.h"
 
 Interfaces interfaces;
