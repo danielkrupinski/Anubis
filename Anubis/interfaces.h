@@ -2,6 +2,7 @@
 
 typedef struct Interfaces {
     void** client;
+    void** engine;
     void** gameUI;
 } Interfaces;
 
