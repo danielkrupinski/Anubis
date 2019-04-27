@@ -41,5 +41,8 @@
     <ClInclude Include="SDK\Engine.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Hooks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
