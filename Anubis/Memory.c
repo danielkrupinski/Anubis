@@ -43,5 +43,5 @@ static void* findPattern(const char* module, const char* pattern, size_t offset)
 
 void initializeMemory(void)
 {
-
+    memory.loadSky = findPattern("engine", "\x55\x8B\xEC\x81\xEC????\x56\x57\x8B\xF9\xC7\x45", 0);
 }
