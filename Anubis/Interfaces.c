@@ -24,7 +24,7 @@ static void* find(const char* module, const char* name)
     }
 }
 
-void initializeInterfaces()
+void initializeInterfaces(void)
 {
     interfaces.client = find("client_panorama", "VClient018");
     interfaces.engine = find("engine", "VEngineClient014");

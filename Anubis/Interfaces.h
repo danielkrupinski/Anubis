@@ -7,6 +7,6 @@ typedef struct Interfaces {
     void** gameUI;
 } Interfaces;
 
-void initializeInterfaces();
+void initializeInterfaces(void);
 
 extern Interfaces interfaces;
