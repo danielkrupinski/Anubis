@@ -179,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="Interfaces.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="SDK\Engine.h" />
     <ClInclude Include="SDK\GameUI.h" />
   </ItemGroup>

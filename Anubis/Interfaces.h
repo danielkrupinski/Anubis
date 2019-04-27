@@ -1,6 +1,6 @@
 #pragma once
 
-typedef struct Interfaces {
+typedef struct {
     void** client;
     void** engine;
     void** entityList;
