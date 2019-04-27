@@ -4,8 +4,8 @@
 
 typedef struct {
     void* base;
-    void* oldVmt;
-    void* newVmt;
+    uintptr_t* oldVmt;
+    uintptr_t* newVmt;
     size_t length;
 } VmtHook;
 
