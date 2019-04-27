@@ -1,8 +1,8 @@
 #pragma once
 
 typedef struct Interfaces {
-    void* client;
-    void* gameUI;
+    void** client;
+    void** gameUI;
 } Interfaces;
 
 void initializeInterfaces();
