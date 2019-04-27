@@ -30,6 +30,9 @@
     <ClCompile Include="SDK\Engine.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="Hooks.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
