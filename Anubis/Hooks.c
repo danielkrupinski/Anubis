@@ -13,6 +13,16 @@ static size_t calculateLength(uintptr_t* vmt)
     return length;
 }
 
+static void hookVmt(void* const base, VmtHook* vmtHook)
+{
+    vmtHook->base = base;
+    vmtHook->oldVmt = *((uintptr_t * *)base);
+    vmtHook->length = calculateLength(vmtHook->oldVmt) + 1;
+    vmtHook->newVmt = malloc(vmtHook->length * sizeof(uintptr_t));
+    memcpy(vmtHook->newVmt, vmtHook->oldVmt - 1, vmtHook->length * sizeof(uintptr_t));
+    *((uintptr_t * *)base) = vmtHook->newVmt + 1;
+}
+
 void initializeHooks(void)
 {
 
