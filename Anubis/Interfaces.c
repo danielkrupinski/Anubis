@@ -2,6 +2,7 @@
 #include <Windows.h>
 
 #include "interfaces.h"
+#include "SDK/GameUI.h"
 
 Interfaces interfaces;
 
@@ -27,4 +28,6 @@ void initializeInterfaces()
 {
     interfaces.client = find("client_panorama", "VClient018");
     interfaces.gameUI = find("client_panorama", "GameUI011");
+
+    GameUI_messageBox("Huge success!", "Anubis has been succesfully loaded.");
 }
