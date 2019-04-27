@@ -26,4 +26,5 @@ static void* find(const char* module, const char* name)
 void initializeInterfaces()
 {
     interfaces.client = find("client_panorama", "VClient018");
+    interfaces.gameUI = find("client_panorama", "GameUI011");
 }
