@@ -2,6 +2,8 @@
 
 #include <stdbool.h>
 
+#include "Vector.h"
+
 typedef struct {
     enum {
         IN_ATTACK = 1 << 0,
@@ -13,8 +15,8 @@ typedef struct {
     int pad;
     int command_number;
     int tick_count;
-    //Vector viewangles;
-    //Vector aimdirection;
+    Vector viewangles;
+    Vector aimdirection;
     float forwardmove;
     float sidemove;
     float upmove;
