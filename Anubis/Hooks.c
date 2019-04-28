@@ -34,8 +34,12 @@ static void hookMethod(VmtHook* vmtHook, size_t index, void* function)
 
 static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
 {
-    __asm mov ecx, memory.clientMode
-    return ((bool(__stdcall*)(float, UserCmd*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
+    bool result = ((bool(__stdcall*)(float, UserCmd*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
+    
+    if (!cmd->command_number)
+        return result;
+
+    return false;
 }
 
 void initializeHooks(void)
