@@ -56,5 +56,8 @@
     <ClInclude Include="SDK\UserCmd.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\Vector.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

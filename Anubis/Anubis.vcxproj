@@ -186,6 +186,7 @@
     <ClInclude Include="SDK\Engine.h" />
     <ClInclude Include="SDK\GameUI.h" />
     <ClInclude Include="SDK\UserCmd.h" />
+    <ClInclude Include="SDK\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
