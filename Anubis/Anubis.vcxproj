@@ -177,6 +177,7 @@
     <ClCompile Include="Interfaces.c" />
     <ClCompile Include="Memory.c" />
     <ClCompile Include="SDK\Engine.c" />
+    <ClCompile Include="SDK\EntityList.c" />
     <ClCompile Include="SDK\GameUI.c" />
   </ItemGroup>
   <ItemGroup>
