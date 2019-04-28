@@ -3,6 +3,7 @@
 
 #include "Hooks.h"
 #include "Memory.h"
+#include "SDK/UserCmd.h"
 
 Hooks hooks;
 
@@ -31,10 +32,10 @@ static void hookMethod(VmtHook* vmtHook, size_t index, void* function)
         vmtHook->newVmt[index + 1] = (uintptr_t)function;
 }
 
-static bool __stdcall hookedCreateMove(float inputSampleTime, void* cmd)
+static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
 {
     __asm mov ecx, memory.clientMode
-    return ((bool(__stdcall*)(float, void*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
+    return ((bool(__stdcall*)(float, UserCmd*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
 }
 
 void initializeHooks(void)
