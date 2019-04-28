@@ -4,14 +4,15 @@
 
 #include "Vector.h"
 
+enum UserCmdButtons {
+    IN_ATTACK = 1 << 0,
+    IN_JUMP = 1 << 1,
+    IN_ATTACK2 = 1 << 11,
+    IN_SCORE = 1 << 16,
+    IN_BULLRUSH = 1 << 22
+};
+
 typedef struct {
-    enum {
-        IN_ATTACK = 1 << 0,
-        IN_JUMP = 1 << 1,
-        IN_ATTACK2 = 1 << 11,
-        IN_SCORE = 1 << 16,
-        IN_BULLRUSH = 1 << 22
-    };
     int pad;
     int command_number;
     int tick_count;
