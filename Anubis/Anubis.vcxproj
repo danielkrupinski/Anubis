@@ -181,6 +181,7 @@
     <ClCompile Include="SDK\GameUI.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Hacks\Misc.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="Interfaces.h" />
     <ClInclude Include="Memory.h" />

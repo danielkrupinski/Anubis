@@ -16,6 +16,9 @@
     <Filter Include="SDK">
       <UniqueIdentifier>{4af2c0a8-6194-4424-beb3-6641e5edcead}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hacks">
+      <UniqueIdentifier>{0ddfdfd4-7f9b-4e31-84db-367cc4518a39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="SDK\EntityList.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Hacks\Misc.h">
+      <Filter>Hacks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
