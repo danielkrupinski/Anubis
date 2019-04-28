@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <Windows.h>
 
 #include "Hooks.h"
@@ -17,14 +18,27 @@ static size_t calculateLength(uintptr_t* vmt)
 static void hookVmt(void* const base, VmtHook* vmtHook)
 {
     vmtHook->base = base;
-    vmtHook->oldVmt = *((uintptr_t * *)base);
+    vmtHook->oldVmt = *((uintptr_t**)base);
     vmtHook->length = calculateLength(vmtHook->oldVmt) + 1;
     vmtHook->newVmt = malloc(vmtHook->length * sizeof(uintptr_t));
     memcpy(vmtHook->newVmt, vmtHook->oldVmt - 1, vmtHook->length * sizeof(uintptr_t));
-    *((uintptr_t * *)base) = vmtHook->newVmt + 1;
+    *((uintptr_t**)base) = vmtHook->newVmt + 1;
+}
+
+static void hookMethod(VmtHook* vmtHook, size_t index, void* function)
+{
+    if (index < vmtHook->length)
+        vmtHook->newVmt[index + 1] = (uintptr_t)function;
+}
+
+static bool __stdcall hookedCreateMove(float inputSampleTime, void* cmd)
+{
+    __asm mov ecx, memory.clientMode
+    return ((bool(__stdcall*)(float, void*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
 }
 
 void initializeHooks(void)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
+    hookMethod(&hooks.clientMode, 24, hookedCreateMove);
 }
