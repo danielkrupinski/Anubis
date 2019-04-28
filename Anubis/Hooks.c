@@ -3,6 +3,8 @@
 
 #include "Hooks.h"
 #include "Memory.h"
+#include "SDK/Engine.h"
+#include "SDK/EntityList.h"
 #include "SDK/UserCmd.h"
 
 Hooks hooks;
@@ -38,6 +40,10 @@ static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
     
     if (!cmd->command_number)
         return result;
+
+    void* localPlayer = EntityList_getEntity(Engine_getLocalPlayer());
+    if (!(*((int*)((char*)localPlayer + 0x104)) & 1))
+        cmd->buttons &= ~IN_JUMP;
 
     return false;
 }
