@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <Windows.h>
 
+#include "Hacks/Misc.h"
 #include "Hooks.h"
 #include "Memory.h"
 #include "SDK/Engine.h"
@@ -41,9 +42,7 @@ static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
     if (!cmd->command_number)
         return result;
 
-    void* localPlayer = EntityList_getEntity(Engine_getLocalPlayer());
-    if (!(*((int*)((char*)localPlayer + 0x104)) & 1))
-        cmd->buttons &= ~IN_JUMP;
+    Misc_bunnyhop(cmd);
 
     return false;
 }
