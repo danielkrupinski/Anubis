@@ -74,5 +74,8 @@
     <ClInclude Include="Hacks\Misc.h">
       <Filter>Hacks</Filter>
     </ClInclude>
+    <ClInclude Include="Netvars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
