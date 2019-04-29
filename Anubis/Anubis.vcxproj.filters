@@ -45,6 +45,9 @@
     <ClCompile Include="Hacks\Misc.c">
       <Filter>Hacks</Filter>
     </ClCompile>
+    <ClCompile Include="Netvars.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
