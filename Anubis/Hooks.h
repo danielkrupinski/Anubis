@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <Windows.h>
 
 typedef struct {
     void* base;
@@ -10,6 +11,7 @@ typedef struct {
 } VmtHook;
 
 typedef struct {
+    WNDPROC originalWndProc;
     VmtHook clientMode;
 } Hooks;
 

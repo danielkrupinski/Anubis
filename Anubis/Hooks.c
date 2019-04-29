@@ -10,6 +10,11 @@
 
 Hooks hooks;
 
+static LRESULT __stdcall hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    return CallWindowProc(hooks.originalWndProc, window, msg, wParam, lParam);
+}
+
 static size_t calculateLength(uintptr_t* vmt)
 {
     size_t length = 0;
@@ -51,4 +56,7 @@ void initializeHooks(void)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, hookedCreateMove);
+
+    HWND window = FindWindowA("Valve001", NULL);
+    hooks.originalWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hookedWndProc);
 }
