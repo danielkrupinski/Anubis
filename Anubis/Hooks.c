@@ -53,6 +53,7 @@ static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
     if (!cmd->command_number)
         return result;
 
+    Misc_autostrafe(cmd);
     Misc_bunnyhop(cmd);
 
     return false;
