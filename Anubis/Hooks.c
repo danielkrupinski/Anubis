@@ -1,3 +1,4 @@
+#include <d3d9.h>
 #include <stdbool.h>
 #include <Windows.h>
 
@@ -13,6 +14,11 @@ Hooks hooks;
 static LRESULT __stdcall hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     return CallWindowProc(hooks.originalWndProc, window, msg, wParam, lParam);
+}
+
+static HRESULT __stdcall hookedPresent(IDirect3DDevice9* device, const RECT* src, const RECT* dest, HWND windowOverride, const RGNDATA* dirtyRegion)
+{
+    return hooks.originalPresent(device, src, dest, windowOverride, dirtyRegion);
 }
 
 static size_t calculateLength(uintptr_t* vmt)
