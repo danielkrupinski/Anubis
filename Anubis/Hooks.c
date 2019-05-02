@@ -65,4 +65,7 @@ void initializeHooks(void)
 
     HWND window = FindWindowA("Valve001", NULL);
     hooks.originalWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hookedWndProc);
+
+    hooks.originalPresent = **memory.present;
+    **memory.present = hookedPresent;
 }
