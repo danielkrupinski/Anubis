@@ -80,5 +80,11 @@
     <ClInclude Include="Netvars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="nuklear.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nuklear_d3d9.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
