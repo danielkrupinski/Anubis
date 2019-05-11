@@ -89,5 +89,8 @@
     <ClInclude Include="nuklear\nuklear_d3d9.h">
       <Filter>nuklear</Filter>
     </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
