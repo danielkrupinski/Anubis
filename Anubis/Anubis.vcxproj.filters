@@ -19,6 +19,9 @@
     <Filter Include="Hacks">
       <UniqueIdentifier>{0ddfdfd4-7f9b-4e31-84db-367cc4518a39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="nuklear">
+      <UniqueIdentifier>{534e777e-1e54-4c9a-9eb1-2f42975885c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c">
@@ -80,11 +83,11 @@
     <ClInclude Include="Netvars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="nuklear.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="nuklear\nuklear.h">
+      <Filter>nuklear</Filter>
     </ClInclude>
-    <ClInclude Include="nuklear_d3d9.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="nuklear\nuklear_d3d9.h">
+      <Filter>nuklear</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
