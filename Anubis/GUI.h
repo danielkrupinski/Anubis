@@ -10,4 +10,5 @@ void GUI_render(void);
 
 struct nk_context;
 extern struct nk_context* ctx;
-// nk_d3d9_handle_event(window, msg, wParam, lParam)
+
+extern bool isGuiOpen;
