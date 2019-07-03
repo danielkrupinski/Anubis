@@ -11,7 +11,7 @@ bool isGuiOpen = false;
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
+bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
     if (GetAsyncKeyState(VK_INSERT) & 1) {
         isGuiOpen = !isGuiOpen;
@@ -21,7 +21,7 @@ bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
     return false;
 }
 
-void GUI_init(IDirect3DDevice9* device)
+void GUI_init(IDirect3DDevice9* device) noexcept
 {
     ImGui::CreateContext();
     ImGui_ImplWin32_Init(FindWindowA("Valve001", NULL));
@@ -46,11 +46,26 @@ void GUI_init(IDirect3DDevice9* device)
 
 }
 
-void GUI_render()
+static struct {
+    bool misc{ false };
+} window;
+
+static void renderMenuBar() noexcept
+{
+    if (ImGui::BeginMainMenuBar()) {
+        ImGui::MenuItem("Misc", nullptr, &window.misc);
+        ImGui::EndMainMenuBar();
+    }
+}
+
+
+void GUI_render() noexcept
 {
     ImGui_ImplDX9_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
+
+    renderMenuBar();
 
     ImGui::Begin("Test");
     ImGui::Text("example");
