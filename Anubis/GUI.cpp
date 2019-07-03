@@ -1,6 +1,6 @@
 #include <d3d9.h>
 #include <Windows.h>
-
+#include "imgui/imgui.h"
 #include "GUI.h"
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
@@ -18,7 +18,7 @@ struct nk_context* ctx;
 
 bool isGuiOpen = false;
 
-bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
+extern "C" bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (GetAsyncKeyState(VK_INSERT) & 1) {
         isGuiOpen = !isGuiOpen;
@@ -28,7 +28,7 @@ bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
     return false;
 }
 
-void GUI_init(struct IDirect3DDevice9* device)
+extern "C" void GUI_init(struct IDirect3DDevice9* device)
 {
     ctx = nk_d3d9_init(device, 1280, 720);
     struct nk_font_atlas* atlas;
@@ -36,7 +36,7 @@ void GUI_init(struct IDirect3DDevice9* device)
     nk_d3d9_font_stash_end();
 }
 
-void GUI_render(void)
+extern "C" void GUI_render(void)
 {
     if (isGuiOpen) {
         nk_input_end(ctx);

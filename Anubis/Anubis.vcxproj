@@ -175,7 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c" />
-    <ClCompile Include="GUI.c" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Hacks\Misc.c" />
     <ClCompile Include="Hooks.c" />
     <ClCompile Include="imgui\imgui.cpp" />
