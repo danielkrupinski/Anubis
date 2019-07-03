@@ -59,7 +59,7 @@ static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
 {
     bool result = ((bool(__stdcall*)(float, UserCmd*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
     
-    if (!cmd->command_number)
+    if (!cmd->commandNumber)
         return result;
 
     Misc_autostrafe(cmd);
