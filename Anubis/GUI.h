@@ -1,23 +1,19 @@
 #pragma once
 
+#include <d3d9.h>
 #include <stdbool.h>
-
-struct IDirect3DDevice9;
 
 #ifdef __cplusplus  
 extern "C"
 {
     bool GUI_handleInput(HWND, UINT, WPARAM, LPARAM);
-    void GUI_init(struct IDirect3DDevice9*);
-    void GUI_render(void);
+    void GUI_init(IDirect3DDevice9*);
+    void GUI_render();
+    extern bool isGuiOpen;
 }
 #else
     bool GUI_handleInput(HWND, UINT, WPARAM, LPARAM);
-    void GUI_init(struct IDirect3DDevice9*);
+    void GUI_init(IDirect3DDevice9*);
     void GUI_render(void);
+    extern bool isGuiOpen;
 #endif
-
-struct nk_context;
-extern struct nk_context* ctx;
-
-extern bool isGuiOpen;
