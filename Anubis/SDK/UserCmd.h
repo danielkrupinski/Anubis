@@ -14,8 +14,8 @@ enum UserCmdButtons {
 
 typedef struct {
     int pad;
-    int command_number;
-    int tick_count;
+    int commandNumber;
+    int tickCount;
     Vector viewangles;
     Vector aimdirection;
     float forwardmove;
@@ -25,7 +25,7 @@ typedef struct {
     char impulse;
     int weaponselect;
     int weaponsubtype;
-    int random_seed;
+    int randomSeed;
     short mousedx;
     short mousedy;
     bool hasbeenpredicted;
