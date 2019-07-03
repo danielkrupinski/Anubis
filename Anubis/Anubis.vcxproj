@@ -206,8 +206,6 @@
     <ClInclude Include="Interfaces.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Netvars.h" />
-    <ClInclude Include="nuklear\nuklear.h" />
-    <ClInclude Include="nuklear\nuklear_d3d9.h" />
     <ClInclude Include="SDK\Engine.h" />
     <ClInclude Include="SDK\EntityList.h" />
     <ClInclude Include="SDK\GameUI.h" />
