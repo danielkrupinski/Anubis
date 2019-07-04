@@ -30,11 +30,12 @@ static HRESULT __stdcall hookedPresent(IDirect3DDevice9* device, const RECT* src
     if (isGuiOpen) {
         IDirect3DDevice9_SetRenderState(device, D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE);
         IDirect3DVertexDeclaration9* vertexDeclaration;
+        IDirect3DDevice9_GetVertexDeclaration(device, &vertexDeclaration);
 
         GUI_render();
 
         IDirect3DDevice9_SetVertexDeclaration(device, vertexDeclaration);
-        IDirect3D9_Release(vertexDeclaration);
+        IDirect3DVertexDeclaration9_Release(vertexDeclaration);
     }
     return hooks.originalPresent(device, src, dest, windowOverride, dirtyRegion);
 }
