@@ -58,6 +58,19 @@ static void renderMenuBar() noexcept
     }
 }
 
+static constexpr auto windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize
+| ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
+
+static void renderMiscWindow() noexcept
+{
+    if (window.misc) {
+        ImGui::SetNextWindowSize({ 0.0f, 0.0f });
+        ImGui::Begin("Misc", &window.misc, windowFlags);
+
+
+        ImGui::End();
+    }
+}
 
 void GUI_render() noexcept
 {
@@ -66,10 +79,7 @@ void GUI_render() noexcept
     ImGui::NewFrame();
 
     renderMenuBar();
-
-    ImGui::Begin("Test");
-    ImGui::Text("example");
-    ImGui::End();
+    renderMiscWindow();
 
     ImGui::EndFrame();
     ImGui::Render();
