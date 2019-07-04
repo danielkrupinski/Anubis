@@ -9,4 +9,8 @@ typedef struct Config {
     } misc;
 } Config;
 
+#ifdef __cplusplus
+extern "C" Config config;
+#else
 extern Config config;
+#endif
