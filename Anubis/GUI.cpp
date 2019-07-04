@@ -5,6 +5,7 @@
 #include "imgui/imgui_impl_win32.h"
 #include "imgui/imgui_impl_dx9.h"
 
+#include "Config.h"
 #include "GUI.h"
 
 bool isGuiOpen = false;
@@ -66,8 +67,8 @@ static void renderMiscWindow() noexcept
     if (window.misc) {
         ImGui::SetNextWindowSize({ 0.0f, 0.0f });
         ImGui::Begin("Misc", &window.misc, windowFlags);
-
-
+        ImGui::Checkbox("Bunnyhop", &config.misc.bunnyhop);
+        ImGui::Checkbox("Autostrafe", &config.misc.autostrafe);
         ImGui::End();
     }
 }
