@@ -30,6 +30,7 @@ void initializeInterfaces(void)
     interfaces.engine = find("engine", "VEngineClient014");
     interfaces.entityList = find("client_panorama", "VClientEntityList003");
     interfaces.gameUI = find("client_panorama", "GameUI011");
+    interfaces.surface = find("vguimatsurface", "VGUI_Surface031");
 
     GameUI_messageBox("Huge success!", "Anubis has been succesfully loaded.");
 }

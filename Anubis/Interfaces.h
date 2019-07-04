@@ -7,6 +7,7 @@ typedef struct {
     uintptr_t** engine;
     uintptr_t** entityList;
     uintptr_t** gameUI;
+    uintptr_t** surface;
 } Interfaces;
 
 void initializeInterfaces(void);
