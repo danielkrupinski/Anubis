@@ -1,10 +1,12 @@
 #pragma once
 
+#include <stdint.h>
+
 typedef struct {
-    void** client;
-    void** engine;
-    void** entityList;
-    void** gameUI;
+    uintptr_t** client;
+    uintptr_t** engine;
+    uintptr_t** entityList;
+    uintptr_t** gameUI;
 } Interfaces;
 
 void initializeInterfaces(void);
