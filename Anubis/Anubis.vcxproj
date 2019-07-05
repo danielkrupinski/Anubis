@@ -191,6 +191,7 @@
     <ClCompile Include="SDK\Engine.c" />
     <ClCompile Include="SDK\EntityList.c" />
     <ClCompile Include="SDK\GameUI.c" />
+    <ClCompile Include="SDK\Surface.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />

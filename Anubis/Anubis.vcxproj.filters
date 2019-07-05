@@ -75,6 +75,9 @@
     <ClCompile Include="Config.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\Surface.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
