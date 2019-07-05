@@ -15,6 +15,7 @@ typedef struct {
     HRESULT(__stdcall* originalPresent)(IDirect3DDevice9*, const RECT*, const RECT*, HWND, const RGNDATA*);
     WNDPROC originalWndProc;
     VmtHook clientMode;
+    VmtHook surface;
 } Hooks;
 
 void initializeHooks(void);

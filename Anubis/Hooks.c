@@ -4,9 +4,11 @@
 
 #include "Hacks/Misc.h"
 #include "Hooks.h"
+#include "Interfaces.h"
 #include "Memory.h"
 #include "SDK/Engine.h"
 #include "SDK/EntityList.h"
+#include "SDK/Surface.h"
 #include "SDK/UserCmd.h"
 #include "GUI.h"
 
@@ -78,10 +80,23 @@ static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
     return false;
 }
 
+static void __stdcall lockCursor(void)
+{
+    if (isGuiOpen) {
+        Surface_unlockCursor();
+        return;
+    }
+    __asm mov ecx, interfaces.surface
+    ((void(__stdcall*)(void))hooks.surface.oldVmt[67])();
+}
+
 void initializeHooks(void)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, hookedCreateMove);
+
+    hookVmt(interfaces.surface, &hooks.surface);
+    hookMethod(&hooks.surface, 67, lockCursor);
 
     HWND window = FindWindowA("Valve001", NULL);
     hooks.originalWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hookedWndProc);
