@@ -2,15 +2,17 @@
 #include <stdbool.h>
 #include <Windows.h>
 
+#include "GUI.h"
 #include "Hacks/Misc.h"
 #include "Hooks.h"
 #include "Interfaces.h"
 #include "Memory.h"
+
 #include "SDK/Engine.h"
 #include "SDK/EntityList.h"
 #include "SDK/Surface.h"
 #include "SDK/UserCmd.h"
-#include "GUI.h"
+#include "SDK/Utils.h"
 
 Hooks hooks;
 
@@ -69,7 +71,8 @@ static void hookMethod(VmtHook* vmtHook, size_t index, void* function)
 
 static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
 {
-    bool result = ((bool(__stdcall*)(float, UserCmd*))hooks.clientMode.oldVmt[24])(inputSampleTime, cmd);
+    bool result;
+    CALL_ORIGINAL_RETURN_TO_VARIABLE(bool(__fastcall*)(void*, void*, float, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, result, inputSampleTime, cmd);
     
     if (!cmd->commandNumber)
         return result;
@@ -86,8 +89,7 @@ static void __stdcall lockCursor(void)
         Surface_unlockCursor();
         return;
     }
-    __asm mov ecx, interfaces.surface
-    ((void(__stdcall*)(void))hooks.surface.oldVmt[67])();
+    CALL_ORIGINAL(void(__fastcall*)(void*, void*), interfaces.surface, hooks.surface.oldVmt, 67);
 }
 
 void initializeHooks(void)

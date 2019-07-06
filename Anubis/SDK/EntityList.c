@@ -1,9 +1,8 @@
 #include "EntityList.h"
 #include "../Interfaces.h"
+#include "Utils.h"
 
 void* EntityList_getEntity(int index)
 {
-    typedef void*(__stdcall *getEntity)(int);
-    __asm mov ecx, interfaces.engine
-    return ((getEntity)interfaces.entityList[0][3])(index);
+    CALL_VIRTUAL_METHOD_RETURN(void* (__fastcall*)(void*, void*, int), interfaces.entityList, 3, index);
 }

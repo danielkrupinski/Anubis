@@ -1,9 +1,8 @@
 #include "../Interfaces.h"
 #include "Surface.h"
+#include "Utils.h"
 
 void Surface_unlockCursor(void)
 {
-    typedef void(__stdcall* unlockCursor)();
-    __asm mov ecx, interfaces.surface
-    ((unlockCursor)interfaces.surface[0][66])();
+    CALL_VIRTUAL_METHOD(void(__fastcall*)(void*, void*), interfaces.surface, 66);
 }
