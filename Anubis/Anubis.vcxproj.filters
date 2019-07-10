@@ -22,6 +22,9 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{5ce6b9d5-851d-4618-a847-cd0b1de850dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cJSON">
+      <UniqueIdentifier>{2606249a-b90d-4a5a-bb2e-10081d24744d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="SDK\Surface.c">
       <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="cJSON\cJSON.c">
+      <Filter>cJSON</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="SDK\Utils.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="cJSON\cJSON.h">
+      <Filter>cJSON</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
