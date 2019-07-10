@@ -1,12 +1,16 @@
 #pragma once
 
 #include <stdbool.h>
+#include <Windows.h>
 
 typedef struct Config {
     struct {
         bool bunnyhop;
         bool autostrafe;
     } misc;
+
+    size_t count;
+    LPSTR* names;
 } Config;
 
 #ifdef __cplusplus

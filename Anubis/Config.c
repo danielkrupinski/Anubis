@@ -13,8 +13,32 @@ void Config_init(LPCWSTR name)
     PWSTR pathToDocuments;
     if (SUCCEEDED(SHGetKnownFolderPath(&FOLDERID_Documents, 0, NULL, &pathToDocuments))) {
         swprintf(path, MAX_PATH, L"%s/%s/", pathToDocuments, name);
-        if (!PathFileExistsW(path))
+        if (PathFileExistsW(path)) {
+            StrCatW(path, L"*");
+            WIN32_FIND_DATAW foundData;
+            HANDLE found = FindFirstFileW(path, &foundData);
+
+            if (found != INVALID_HANDLE_VALUE) {
+                do {
+                    if (!(foundData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) { 
+                        size_t fileNameLength = wcslen(foundData.cFileName) + 1;
+                        config.count++;
+
+                        void* newAlloc = realloc(config.names, config.count * sizeof(LPSTR));
+                        if (newAlloc)
+                            config.names = newAlloc;
+                        
+                        newAlloc = malloc(fileNameLength);
+                        if (newAlloc)
+                            config.names[config.count - 1] = newAlloc;
+                       sprintf(config.names[config.count - 1], "%ws", foundData.cFileName);
+                    }
+                } while (FindNextFileW(found, &foundData));
+            }
+            path[wcslen(path) - 1] = L'\0';
+        } else {
             CreateDirectoryW(path, NULL);
+        }
         CoTaskMemFree(pathToDocuments);
     }
 }
