@@ -15,6 +15,7 @@ extern "C"
 #endif
 
 extern Config config;
+void Config_init(LPCWSTR);
 void Config_save(void);
 
 #ifdef __cplusplus
