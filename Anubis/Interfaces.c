@@ -25,7 +25,7 @@ static uintptr_t** find(const wchar_t* module, const char* name)
     }
 }
 
-void initializeInterfaces(void)
+void Interfaces_init(void)
 {
     interfaces.client = find(L"client_panorama", "VClient018");
     interfaces.engine = find(L"engine", "VEngineClient014");

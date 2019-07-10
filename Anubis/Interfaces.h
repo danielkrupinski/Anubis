@@ -10,6 +10,6 @@ typedef struct {
     uintptr_t** surface;
 } Interfaces;
 
-void initializeInterfaces(void);
+void Interfaces_init(void);
 
 extern Interfaces interfaces;
