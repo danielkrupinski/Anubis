@@ -9,6 +9,6 @@ typedef struct {
     void*** reset;
 } Memory;
 
-void initializeMemory(void);
+void Memory_init(void);
 
 extern Memory memory;
