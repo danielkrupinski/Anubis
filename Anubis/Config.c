@@ -55,6 +55,21 @@ void Config_add(PSTR name)
     sprintf(config.names[config.count - 1], "%s", name);
 }
 
+void Config_rename(size_t id, PCSTR newName)
+{
+    if (strlen(newName) > strlen(config.names[id])) {
+        void* newAlloc = realloc(config.names[id], strlen(config.names[id]) + 1);
+        if (newAlloc)
+            config.names[id] = newAlloc;
+    }
+    CHAR fileName[MAX_PATH], newFileName[MAX_PATH];
+    sprintf(fileName, "%s%s", path, config.names[id]);
+    sprintf(newFileName, "%s%s", path, newName);
+
+    if (MoveFileA(fileName, newFileName))
+        strcpy(config.names[id], newName);
+}
+
 void Config_save(void)
 {
     cJSON* json = cJSON_CreateObject();
