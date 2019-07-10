@@ -10,7 +10,7 @@ typedef struct Config {
     } misc;
 
     size_t count;
-    LPSTR* names;
+    PSTR* names;
 } Config;
 
 #ifdef __cplusplus
@@ -19,7 +19,8 @@ extern "C"
 #endif
 
 extern Config config;
-void Config_init(LPCWSTR);
+void Config_init(PCWSTR);
+void Config_add(PSTR);
 void Config_save(void);
 
 #ifdef __cplusplus

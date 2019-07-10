@@ -43,6 +43,18 @@ void Config_init(LPCWSTR name)
     }
 }
 
+void Config_add(PSTR name)
+{
+    config.count++;
+    void* newAlloc = realloc(config.names, config.count * sizeof(LPSTR));
+    if (newAlloc)
+        config.names = newAlloc;
+    newAlloc = malloc(strlen(name) + 1);
+    if (newAlloc)
+        config.names[config.count - 1] = newAlloc;
+    sprintf(config.names[config.count - 1], "%s", name);
+}
+
 void Config_save(void)
 {
     cJSON* json = cJSON_CreateObject();
