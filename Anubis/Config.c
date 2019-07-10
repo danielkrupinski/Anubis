@@ -43,7 +43,7 @@ void Config_init(PCSTR name)
     }
 }
 
-void Config_add(PSTR name)
+void Config_add(PCSTR name)
 {
     config.count++;
     void* newAlloc = realloc(config.names, config.count * sizeof(PSTR));
@@ -52,7 +52,7 @@ void Config_add(PSTR name)
     newAlloc = malloc(strlen(name) + 1);
     if (newAlloc)
         config.names[config.count - 1] = newAlloc;
-    sprintf(config.names[config.count - 1], "%s", name);
+    strcpy(config.names[config.count - 1], name);
 }
 
 void Config_rename(size_t id, PCSTR newName)

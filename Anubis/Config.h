@@ -20,7 +20,7 @@ extern "C"
 
 extern Config config;
 void Config_init(PCSTR);
-void Config_add(PSTR);
+void Config_add(PCSTR);
 void Config_rename(size_t, PCSTR);
 void Config_save(void);
 
