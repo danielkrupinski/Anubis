@@ -12,7 +12,7 @@ bool isGuiOpen = false;
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
+bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (GetAsyncKeyState(VK_INSERT) & 1) {
         isGuiOpen = !isGuiOpen;
@@ -22,7 +22,7 @@ bool GUI_handleInput(HWND window, UINT msg, WPARAM wParam, LPARAM lParam) noexce
     return false;
 }
 
-void GUI_init(IDirect3DDevice9* device) noexcept
+void GUI_init(IDirect3DDevice9* device)
 {
     ImGui::CreateContext();
     ImGui_ImplWin32_Init(FindWindowA("Valve001", NULL));
@@ -67,13 +67,15 @@ static void renderMiscWindow() noexcept
     if (window.misc) {
         ImGui::SetNextWindowSize({ 0.0f, 0.0f });
         ImGui::Begin("Misc", &window.misc, windowFlags);
+        ImGui::Checkbox("Auto strafe", &config.misc.autostrafe);
         ImGui::Checkbox("Bunnyhop", &config.misc.bunnyhop);
-        ImGui::Checkbox("Autostrafe", &config.misc.autostrafe);
+        if (ImGui::Button("Save config"))
+            Config_save();
         ImGui::End();
     }
 }
 
-void GUI_render() noexcept
+void GUI_render()
 {
     ImGui_ImplDX9_NewFrame();
     ImGui_ImplWin32_NewFrame();
