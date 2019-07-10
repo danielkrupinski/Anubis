@@ -10,7 +10,13 @@ typedef struct Config {
 } Config;
 
 #ifdef __cplusplus
-extern "C" Config config;
-#else
+extern "C"
+{
+#endif
+
 extern Config config;
+void Config_save(void);
+
+#ifdef __cplusplus
+}
 #endif
