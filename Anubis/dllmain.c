@@ -13,7 +13,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
         Config_init(L"Anubis");
         Interfaces_init();
         Memory_init();
-        initializeHooks();
+        Hooks_init();
     }
     return TRUE;
 }

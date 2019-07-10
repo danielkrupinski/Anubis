@@ -92,7 +92,7 @@ static void __stdcall lockCursor(void)
     CALL_ORIGINAL(void(__fastcall*)(void*, void*), interfaces.surface, hooks.surface.oldVmt, 67);
 }
 
-void initializeHooks(void)
+void Hooks_init(void)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, hookedCreateMove);

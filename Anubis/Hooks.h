@@ -18,6 +18,6 @@ typedef struct {
     VmtHook surface;
 } Hooks;
 
-void initializeHooks(void);
+void Hooks_init(void);
 
 extern Hooks hooks;
