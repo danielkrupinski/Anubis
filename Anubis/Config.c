@@ -6,38 +6,38 @@
 
 Config config;
 
-static WCHAR path[MAX_PATH];
+static CHAR path[MAX_PATH];
 
-void Config_init(LPCWSTR name)
+void Config_init(PCSTR name)
 {
     PWSTR pathToDocuments;
     if (SUCCEEDED(SHGetKnownFolderPath(&FOLDERID_Documents, 0, NULL, &pathToDocuments))) {
-        swprintf(path, MAX_PATH, L"%s/%s/", pathToDocuments, name);
-        if (PathFileExistsW(path)) {
-            StrCatW(path, L"*");
-            WIN32_FIND_DATAW foundData;
-            HANDLE found = FindFirstFileW(path, &foundData);
+        sprintf(path, "%ws/%s/", pathToDocuments, name);
+        if (PathFileExistsA(path)) {
+            strcat(path, "*");
+            WIN32_FIND_DATA foundData;
+            HANDLE found = FindFirstFileA(path, &foundData);
 
             if (found != INVALID_HANDLE_VALUE) {
                 do {
                     if (!(foundData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) { 
-                        size_t fileNameLength = wcslen(foundData.cFileName) + 1;
+                        size_t fileNameLength = strlen(foundData.cFileName) + 1;
                         config.count++;
 
-                        void* newAlloc = realloc(config.names, config.count * sizeof(LPSTR));
+                        void* newAlloc = realloc(config.names, config.count * sizeof(PSTR));
                         if (newAlloc)
                             config.names = newAlloc;
                         
                         newAlloc = malloc(fileNameLength);
                         if (newAlloc)
                             config.names[config.count - 1] = newAlloc;
-                       sprintf(config.names[config.count - 1], "%ws", foundData.cFileName);
+                        strcpy(config.names[config.count - 1], foundData.cFileName);
                     }
-                } while (FindNextFileW(found, &foundData));
+                } while (FindNextFileA(found, &foundData));
             }
-            path[wcslen(path) - 1] = L'\0';
+            path[strlen(path) - 1] = '\0';
         } else {
-            CreateDirectoryW(path, NULL);
+            CreateDirectoryA(path, NULL);
         }
         CoTaskMemFree(pathToDocuments);
     }
@@ -46,7 +46,7 @@ void Config_init(LPCWSTR name)
 void Config_add(PSTR name)
 {
     config.count++;
-    void* newAlloc = realloc(config.names, config.count * sizeof(LPSTR));
+    void* newAlloc = realloc(config.names, config.count * sizeof(PSTR));
     if (newAlloc)
         config.names = newAlloc;
     newAlloc = malloc(strlen(name) + 1);
@@ -65,13 +65,13 @@ void Config_save(void)
     cJSON_AddBoolToObject(miscJson, "Bunny hop", config.misc.bunnyhop);
     cJSON_AddItemToObject(json, "Misc", miscJson);
 
-    WCHAR filename[MAX_PATH];
-    swprintf(filename, MAX_PATH, L"%s%s", path, L"config.json");
+    CHAR filename[MAX_PATH];
+    sprintf(filename, "%s%s", path, "config.json");
 
-    if (!PathFileExistsW(path))
-        CreateDirectoryW(path, NULL);
+    if (!PathFileExistsA(path))
+        CreateDirectoryA(path, NULL);
 
-    FILE* out = _wfopen(filename, L"w");
+    FILE* out = fopen(filename, "w");
 
     if (out) {
         fprintf(out, cJSON_Print(json));

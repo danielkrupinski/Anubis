@@ -19,7 +19,7 @@ extern "C"
 #endif
 
 extern Config config;
-void Config_init(PCWSTR);
+void Config_init(PCSTR);
 void Config_add(PSTR);
 void Config_save(void);
 
