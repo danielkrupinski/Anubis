@@ -1,5 +1,6 @@
 #include <Windows.h>
 
+#include "Config.h"
 #include "Hooks.h"
 #include "Interfaces.h"
 #include "Memory.h"
@@ -9,10 +10,10 @@ BOOL APIENTRY DllMain(HMODULE hModule,
                       LPVOID lpReserved)
 {
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
+        Config_init(L"Anubis");
         initializeInterfaces();
         initializeMemory();
         initializeHooks();
     }
     return TRUE;
 }
-
