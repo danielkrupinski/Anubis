@@ -118,3 +118,9 @@ void Config_save(UINT id)
 
     cJSON_Delete(json);
 }
+
+VOID Config_reset(VOID)
+{
+    config.misc.autostrafe = false;
+    config.misc.bunnyhop = false;
+}
