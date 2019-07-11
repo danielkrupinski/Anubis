@@ -63,10 +63,10 @@ void Config_rename(size_t id, PCSTR newName)
 
 VOID Config_load(UINT id)
 {
-    CHAR filename[MAX_PATH];
-    sprintf(filename, "%s%s", path, config.names[id]);
+    CHAR fileName[MAX_PATH];
+    sprintf(fileName, "%s%s", path, config.names[id]);
 
-    FILE* in = fopen(filename, "r");
+    FILE* in = fopen(fileName, "r");
 
     if (!in)
         return;
@@ -105,13 +105,13 @@ void Config_save(UINT id)
     cJSON_AddBoolToObject(miscJson, "Bunny hop", config.misc.bunnyhop);
     cJSON_AddItemToObject(json, "Misc", miscJson);
 
-    CHAR filename[MAX_PATH];
-    sprintf(filename, "%s%s", path, config.names[id]);
+    CHAR fileName[MAX_PATH];
+    sprintf(fileName, "%s%s", path, config.names[id]);
 
     if (!PathFileExistsA(path))
         CreateDirectoryA(path, NULL);
 
-    FILE* out = fopen(filename, "w");
+    FILE* out = fopen(fileName, "w");
 
     if (out) {
         fprintf(out, cJSON_Print(json));
@@ -125,4 +125,18 @@ VOID Config_reset(VOID)
 {
     config.misc.autostrafe = false;
     config.misc.bunnyhop = false;
+}
+
+VOID Config_remove(UINT id)
+{
+    CHAR fileName[MAX_PATH];
+    sprintf(fileName, "%s%s", path, config.names[id]);
+    if (!DeleteFileA(fileName))
+        return;
+
+    free(config.names[id]);
+    config.count--;
+
+    for (int i = id; i < config.count; i++)
+        config.names[i] = config.names[i + 1];
 }

@@ -25,6 +25,7 @@ void Config_rename(size_t, PCSTR);
 VOID Config_load(UINT);
 void Config_save(UINT);
 VOID Config_reset(VOID);
+VOID Config_remove(UINT);
 
 #ifdef __cplusplus
 }
