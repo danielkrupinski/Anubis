@@ -44,17 +44,18 @@ void GUI_init(IDirect3DDevice9* device)
     char buffer[MAX_PATH];
     if (GetWindowsDirectoryA(buffer, MAX_PATH))
         io.Fonts->AddFontFromFileTTF(strcat(buffer, "/Fonts/Tahoma.ttf"), 16.0f, nullptr, ranges);
-
 }
 
 static struct {
     bool misc{ false };
+    bool config{ false };
 } window;
 
 static void renderMenuBar() noexcept
 {
     if (ImGui::BeginMainMenuBar()) {
         ImGui::MenuItem("Misc", nullptr, &window.misc);
+        ImGui::MenuItem("Config", nullptr, &window.config);
         ImGui::EndMainMenuBar();
     }
 }
@@ -69,8 +70,61 @@ static void renderMiscWindow() noexcept
         ImGui::Begin("Misc", &window.misc, windowFlags);
         ImGui::Checkbox("Auto strafe", &config.misc.autostrafe);
         ImGui::Checkbox("Bunnyhop", &config.misc.bunnyhop);
-        if (ImGui::Button("Save config"))
-            Config_save();
+       // if (ImGui::Button("Save config"))
+        //    Config_save();
+        ImGui::End();
+    }
+}
+
+static void renderConfigWindow() noexcept
+{
+    if (window.config) {
+        ImGui::SetNextWindowSize({ 290.0f, 190.0f });
+        ImGui::Begin("Config", &window.config, windowFlags);
+
+        ImGui::Columns(2, nullptr, false);
+        ImGui::SetColumnOffset(1, 170.0f);
+
+        ImGui::PushItemWidth(160.0f);
+
+        static int currentConfig = -1;
+
+        if (static_cast<size_t>(currentConfig) >= config.count)
+            currentConfig = -1;
+
+        static char buffer[16];
+
+        if (ImGui::ListBox("", &currentConfig, [](void* data, int idx, const char** out_text) {
+            *out_text = static_cast<const char**>(data)[idx];
+            return true;
+        }, config.names, config.count, 5) && currentConfig != -1)
+            strcpy(buffer, config.names[currentConfig]);
+
+        ImGui::PushID(0);
+        if (ImGui::InputText("", buffer, IM_ARRAYSIZE(buffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (currentConfig != -1)
+                Config_rename(currentConfig, buffer);
+        }
+        ImGui::PopID();
+        ImGui::NextColumn();
+
+        ImGui::PushItemWidth(100.0f);
+
+        if (ImGui::Button("Create config", { 100.0f, 25.0f }))
+            Config_add(buffer);
+
+        if (ImGui::Button("Reset config", { 100.0f, 25.0f }))
+            Config_reset();
+
+        if (currentConfig != -1) {
+            if (ImGui::Button("Load selected", { 100.0f, 25.0f })) {
+                Config_load(currentConfig);
+            }
+            if (ImGui::Button("Save selected", { 100.0f, 25.0f }))
+                Config_save(currentConfig);
+            if (ImGui::Button("Delete selected", { 100.0f, 25.0f }))
+                Config_remove(currentConfig);
+        }
         ImGui::End();
     }
 }
@@ -83,6 +137,7 @@ void GUI_render()
 
     renderMenuBar();
     renderMiscWindow();
+    renderConfigWindow();
 
     ImGui::EndFrame();
     ImGui::Render();
