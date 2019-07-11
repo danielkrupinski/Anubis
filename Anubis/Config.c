@@ -59,7 +59,7 @@ void Config_rename(size_t id, PCSTR newName)
         strcpy(config.names[id], newName);
 }
 
-void Config_save(void)
+void Config_save(UINT id)
 {
     cJSON* json = cJSON_CreateObject();
 
@@ -70,7 +70,7 @@ void Config_save(void)
     cJSON_AddItemToObject(json, "Misc", miscJson);
 
     CHAR filename[MAX_PATH];
-    sprintf(filename, "%s%s", path, "config.json");
+    sprintf(filename, "%s%s", path, config.names[id]);
 
     if (!PathFileExistsA(path))
         CreateDirectoryA(path, NULL);
