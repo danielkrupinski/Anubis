@@ -8,7 +8,7 @@ Config config;
 
 static CHAR path[MAX_PATH];
 
-void Config_init(PCSTR name)
+VOID Config_init(PCSTR name)
 {
     Config_reset();
 
@@ -34,10 +34,10 @@ void Config_init(PCSTR name)
     }
 }
 
-void Config_add(PCSTR name)
+VOID Config_add(PCSTR name)
 {
     config.count++;
-    void* newAlloc = realloc(config.names, config.count * sizeof(PSTR));
+    LPVOID newAlloc = realloc(config.names, config.count * sizeof(PSTR));
     if (newAlloc)
         config.names = newAlloc;
     newAlloc = malloc(strlen(name) + 1);
@@ -46,10 +46,10 @@ void Config_add(PCSTR name)
     strcpy(config.names[config.count - 1], name);
 }
 
-void Config_rename(size_t id, PCSTR newName)
+VOID Config_rename(size_t id, PCSTR newName)
 {
     if (strlen(newName) > strlen(config.names[id])) {
-        void* newAlloc = realloc(config.names[id], strlen(config.names[id]) + 1);
+        LPVOID newAlloc = realloc(config.names[id], strlen(config.names[id]) + 1);
         if (newAlloc)
             config.names[id] = newAlloc;
     }
@@ -95,7 +95,7 @@ VOID Config_load(UINT id)
     cJSON_Delete(json);
 }
 
-void Config_save(UINT id)
+VOID Config_save(UINT id)
 {
     cJSON* json = cJSON_CreateObject();
 

@@ -19,11 +19,11 @@ extern "C"
 #endif
 
 extern Config config;
-void Config_init(PCSTR);
-void Config_add(PCSTR);
-void Config_rename(size_t, PCSTR);
+VOID Config_init(PCSTR);
+VOID Config_add(PCSTR);
+VOID Config_rename(size_t, PCSTR);
 VOID Config_load(UINT);
-void Config_save(UINT);
+VOID Config_save(UINT);
 VOID Config_reset(VOID);
 VOID Config_remove(UINT);
 
