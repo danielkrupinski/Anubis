@@ -10,6 +10,8 @@ static CHAR path[MAX_PATH];
 
 void Config_init(PCSTR name)
 {
+    Config_reset();
+
     PWSTR pathToDocuments;
     if (SUCCEEDED(SHGetKnownFolderPath(&FOLDERID_Documents, 0, NULL, &pathToDocuments))) {
         sprintf(path, "%ws/%s/", pathToDocuments, name);
