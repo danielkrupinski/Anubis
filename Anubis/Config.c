@@ -20,19 +20,8 @@ void Config_init(PCSTR name)
 
             if (found != INVALID_HANDLE_VALUE) {
                 do {
-                    if (!(foundData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) { 
-                        size_t fileNameLength = strlen(foundData.cFileName) + 1;
-                        config.count++;
-
-                        void* newAlloc = realloc(config.names, config.count * sizeof(PSTR));
-                        if (newAlloc)
-                            config.names = newAlloc;
-                        
-                        newAlloc = malloc(fileNameLength);
-                        if (newAlloc)
-                            config.names[config.count - 1] = newAlloc;
-                        strcpy(config.names[config.count - 1], foundData.cFileName);
-                    }
+                    if (!(foundData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+                        Config_add(foundData.cFileName);
                 } while (FindNextFileA(found, &foundData));
             }
             path[strlen(path) - 1] = '\0';
