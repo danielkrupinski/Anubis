@@ -22,6 +22,7 @@ extern Config config;
 void Config_init(PCSTR);
 void Config_add(PCSTR);
 void Config_rename(size_t, PCSTR);
+VOID Config_load(UINT);
 void Config_save(UINT);
 
 #ifdef __cplusplus

@@ -59,6 +59,40 @@ void Config_rename(size_t id, PCSTR newName)
         strcpy(config.names[id], newName);
 }
 
+VOID Config_load(UINT id)
+{
+    CHAR filename[MAX_PATH];
+    sprintf(filename, "%s%s", path, config.names[id]);
+
+    FILE* in = fopen(filename, "r");
+
+    if (!in)
+        return;
+
+    fseek(in, 0L, SEEK_END);
+    LONG size = ftell(in);
+    rewind(in);
+
+    PSTR buffer = calloc(size + 1, sizeof(CHAR));
+    size_t read = 0;
+    if (buffer) read = fread(buffer, sizeof(CHAR), size, in);
+    fclose(in);
+    if (!read) return;
+
+    cJSON* json = cJSON_Parse(buffer);
+    if (json) {
+        cJSON* miscJson  = cJSON_GetObjectItem(json, "Misc");
+
+        cJSON* autoStrafe = cJSON_GetObjectItem(miscJson, "Auto strafe");
+        if (cJSON_IsBool(autoStrafe)) config.misc.autostrafe = cJSON_IsTrue(autoStrafe);
+        cJSON* bunnyHop = cJSON_GetObjectItem(miscJson, "Bunny hop");
+        if (cJSON_IsBool(bunnyHop)) config.misc.bunnyhop = cJSON_IsTrue(bunnyHop);
+
+    }
+
+    cJSON_Delete(json);
+}
+
 void Config_save(UINT id)
 {
     cJSON* json = cJSON_CreateObject();
