@@ -1,6 +1,7 @@
 #include <d3d9.h>
 #include <stdbool.h>
 #include <Windows.h>
+#include <intrin.h>
 
 #include "GUI.h"
 #include "Hacks/Misc.h"
@@ -76,6 +77,8 @@ static bool __stdcall hookedCreateMove(FLOAT inputSampleTime, UserCmd* cmd)
     
     if (!cmd->commandNumber)
         return result;
+
+    bool* sendPacket = (bool*)(*((PUINT_PTR)_AddressOfReturnAddress() - 1) - 0x1C);
 
     Misc_autostrafe(cmd);
     Misc_bunnyhop(cmd);
