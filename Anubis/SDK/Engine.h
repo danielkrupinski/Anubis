@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <Windows.h>
 
-int Engine_getLocalPlayer(void);
-bool Engine_isInGame(void);
+INT Engine_getLocalPlayer(VOID);
+bool Engine_isInGame(VOID);

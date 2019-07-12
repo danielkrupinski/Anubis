@@ -2,12 +2,12 @@
 #include "../Interfaces.h"
 #include "Utils.h"
 
-int Engine_getLocalPlayer(void)
+INT Engine_getLocalPlayer(VOID)
 {
-    CALL_VIRTUAL_METHOD_RETURN(int(__fastcall*)(void*, void*), interfaces.engine, 12);
+    CALL_VIRTUAL_METHOD_RETURN(INT(__fastcall*)(PVOID, PVOID), interfaces.engine, 12);
 }
 
-bool Engine_isInGame(void)
+bool Engine_isInGame(VOID)
 {
-    CALL_VIRTUAL_METHOD_RETURN(bool(__fastcall*)(void*, void*), interfaces.engine, 26);
+    CALL_VIRTUAL_METHOD_RETURN(bool(__fastcall*)(PVOID, PVOID), interfaces.engine, 26);
 }
