@@ -4,7 +4,7 @@
 #include "../Interfaces.h"
 #include "Utils.h"
 
-void GameUI_messageBox(const char* title, const char* text)
+VOID GameUI_messageBox(PCSTR title, PCSTR text)
 {
-    CALL_VIRTUAL_METHOD(void(__fastcall*)(void*, void*, const char*, const char*, bool, bool, const char*, const char*, const char*, const char*, void*), interfaces.gameUI, 20, title, text, true, false, 0, 0, 0, 0, 0);
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, PCSTR, PCSTR, bool, bool, PCSTR, PCSTR, PCSTR, PCSTR, PVOID), interfaces.gameUI, 20, title, text, true, false, NULL, NULL, NULL, NULL, NULL);
 }

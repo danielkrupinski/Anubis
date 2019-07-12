@@ -1,3 +1,5 @@
 #pragma once
 
-void GameUI_messageBox(const char*, const char*);
+#include <Windows.h>
+
+VOID GameUI_messageBox(PCSTR, PCSTR);
