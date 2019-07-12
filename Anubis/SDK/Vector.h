@@ -5,3 +5,5 @@
 typedef struct {
     FLOAT x, y, z;
 } Vector;
+
+VOID Angles_normalize(Vector*);

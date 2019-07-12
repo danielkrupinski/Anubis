@@ -84,6 +84,9 @@
     <ClCompile Include="cJSON\cJSON.c">
       <Filter>cJSON</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\Vector.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">

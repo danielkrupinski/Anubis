@@ -195,6 +195,7 @@
     <ClCompile Include="SDK\EntityList.c" />
     <ClCompile Include="SDK\GameUI.c" />
     <ClCompile Include="SDK\Surface.c" />
+    <ClCompile Include="SDK\Vector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cJSON\cJSON.h" />
