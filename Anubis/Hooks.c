@@ -82,6 +82,10 @@ static bool __stdcall hookedCreateMove(FLOAT inputSampleTime, UserCmd* cmd)
 
     Angles_normalize(&cmd->viewangles);
 
+    cmd->viewangles.x = min(89.0f, max(cmd->viewangles.x, -89.0f));
+    cmd->viewangles.y = min(180.0f, max(cmd->viewangles.y, -180.0f));
+    cmd->viewangles.z = 0.0f;
+
     return false;
 }
 
