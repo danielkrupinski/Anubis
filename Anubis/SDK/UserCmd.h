@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <Windows.h>
 
 #include "Vector.h"
 
@@ -13,20 +14,20 @@ enum UserCmdButtons {
 };
 
 typedef struct {
-    int pad;
-    int commandNumber;
-    int tickCount;
+    INT pad;
+    INT commandNumber;
+    INT tickCount;
     Vector viewangles;
     Vector aimdirection;
-    float forwardmove;
-    float sidemove;
-    float upmove;
-    int buttons;
-    char impulse;
-    int weaponselect;
-    int weaponsubtype;
-    int randomSeed;
-    short mousedx;
-    short mousedy;
+    FLOAT forwardmove;
+    FLOAT sidemove;
+    FLOAT upmove;
+    INT buttons;
+    BYTE impulse;
+    INT weaponselect;
+    INT weaponsubtype;
+    INT randomSeed;
+    SHORT mousedx;
+    SHORT mousedy;
     bool hasbeenpredicted;
 } UserCmd;
