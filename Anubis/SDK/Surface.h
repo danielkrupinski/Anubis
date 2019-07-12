@@ -1,3 +1,5 @@
 #pragma once
 
-void Surface_unlockCursor(void);
+#include <Windows.h>
+
+VOID Surface_unlockCursor(VOID);

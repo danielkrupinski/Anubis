@@ -2,7 +2,7 @@
 #include "Surface.h"
 #include "Utils.h"
 
-void Surface_unlockCursor(void)
+VOID Surface_unlockCursor(VOID)
 {
-    CALL_VIRTUAL_METHOD(void(__fastcall*)(void*, void*), interfaces.surface, 66);
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID), interfaces.surface, 66);
 }
