@@ -80,6 +80,8 @@ static bool __stdcall hookedCreateMove(FLOAT inputSampleTime, UserCmd* cmd)
     Misc_autostrafe(cmd);
     Misc_bunnyhop(cmd);
 
+    Angles_normalize(&cmd->viewangles);
+
     return false;
 }
 
