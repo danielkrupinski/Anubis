@@ -1,3 +1,5 @@
 #pragma once
 
-void* EntityList_getEntity(int);
+#include <Windows.h>
+
+PVOID EntityList_getEntity(INT);

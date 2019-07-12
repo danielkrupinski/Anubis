@@ -2,7 +2,7 @@
 #include "../Interfaces.h"
 #include "Utils.h"
 
-void* EntityList_getEntity(int index)
+PVOID EntityList_getEntity(INT index)
 {
-    CALL_VIRTUAL_METHOD_RETURN(void* (__fastcall*)(void*, void*, int), interfaces.entityList, 3, index);
+    CALL_VIRTUAL_METHOD_RETURN(PVOID(__fastcall*)(PVOID, PVOID, INT), interfaces.entityList, 3, index);
 }
