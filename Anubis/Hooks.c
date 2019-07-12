@@ -16,14 +16,14 @@
 
 Hooks hooks;
 
-static LRESULT __stdcall hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
+static LRESULT WINAPI hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (GUI_handleInput(window, msg, wParam, lParam))
         return true;
     return CallWindowProc(hooks.originalWndProc, window, msg, wParam, lParam);
 }
 
-static HRESULT __stdcall hookedPresent(IDirect3DDevice9* device, const RECT* src, const RECT* dest, HWND windowOverride, const RGNDATA* dirtyRegion)
+static HRESULT WINAPI hookedPresent(IDirect3DDevice9* device, const RECT* src, const RECT* dest, HWND windowOverride, const RGNDATA* dirtyRegion)
 {
     static bool init = false;
     if (!init) {
@@ -44,35 +44,35 @@ static HRESULT __stdcall hookedPresent(IDirect3DDevice9* device, const RECT* src
     return hooks.originalPresent(device, src, dest, windowOverride, dirtyRegion);
 }
 
-static size_t calculateLength(uintptr_t* vmt)
+static SIZE_T calculateLength(PUINT_PTR vmt)
 {
-    size_t length = 0;
+    SIZE_T length = 0;
     MEMORY_BASIC_INFORMATION memoryInfo;
-    while (VirtualQuery((LPVOID)vmt[length], &memoryInfo, sizeof(memoryInfo)) && memoryInfo.Protect == PAGE_EXECUTE_READ)
+    while (VirtualQuery((LPCVOID)vmt[length], &memoryInfo, sizeof(memoryInfo)) && memoryInfo.Protect == PAGE_EXECUTE_READ)
         length++;
     return length;
 }
 
-static void hookVmt(void* const base, VmtHook* vmtHook)
+static void hookVmt(LPCVOID base, VmtHook* vmtHook)
 {
     vmtHook->base = base;
-    vmtHook->oldVmt = *((uintptr_t**)base);
+    vmtHook->oldVmt = *((PUINT_PTR*)base);
     vmtHook->length = calculateLength(vmtHook->oldVmt) + 1;
     vmtHook->newVmt = malloc(vmtHook->length * sizeof(uintptr_t));
     memcpy(vmtHook->newVmt, vmtHook->oldVmt - 1, vmtHook->length * sizeof(uintptr_t));
-    *((uintptr_t**)base) = vmtHook->newVmt + 1;
+    *((PUINT_PTR*)base) = vmtHook->newVmt + 1;
 }
 
-static void hookMethod(VmtHook* vmtHook, size_t index, void* function)
+static void hookMethod(VmtHook* vmtHook, SIZE_T index, PVOID function)
 {
     if (index < vmtHook->length)
-        vmtHook->newVmt[index + 1] = (uintptr_t)function;
+        vmtHook->newVmt[index + 1] = (UINT_PTR)function;
 }
 
-static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
+static bool __stdcall hookedCreateMove(FLOAT inputSampleTime, UserCmd* cmd)
 {
     bool result;
-    CALL_ORIGINAL_RETURN_TO_VARIABLE(bool(__fastcall*)(void*, void*, float, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, result, inputSampleTime, cmd);
+    CALL_ORIGINAL_RETURN_TO_VARIABLE(bool(__fastcall*)(PVOID, PVOID, FLOAT, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, result, inputSampleTime, cmd);
     
     if (!cmd->commandNumber)
         return result;
@@ -83,16 +83,16 @@ static bool __stdcall hookedCreateMove(float inputSampleTime, UserCmd* cmd)
     return false;
 }
 
-static void __stdcall lockCursor(void)
+static VOID __stdcall lockCursor(VOID)
 {
     if (isGuiOpen) {
         Surface_unlockCursor();
         return;
     }
-    CALL_ORIGINAL(void(__fastcall*)(void*, void*), interfaces.surface, hooks.surface.oldVmt, 67);
+    CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID), interfaces.surface, hooks.surface.oldVmt, 67);
 }
 
-void Hooks_init(void)
+VOID Hooks_init(VOID)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, hookedCreateMove);

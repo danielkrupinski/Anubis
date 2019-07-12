@@ -1,14 +1,13 @@
 #pragma once
 
 #include <d3d9.h>
-#include <stdint.h>
 #include <Windows.h>
 
 typedef struct {
-    void* base;
-    uintptr_t* oldVmt;
-    uintptr_t* newVmt;
-    size_t length;
+    LPCVOID base;
+    PUINT_PTR oldVmt;
+    PUINT_PTR newVmt;
+    SIZE_T length;
 } VmtHook;
 
 typedef struct {
@@ -18,6 +17,6 @@ typedef struct {
     VmtHook surface;
 } Hooks;
 
-void Hooks_init(void);
+VOID Hooks_init(VOID);
 
 extern Hooks hooks;
