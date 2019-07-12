@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Windows.h>
+
 typedef struct {
-    float x, y, z;
+    FLOAT x, y, z;
 } Vector;
