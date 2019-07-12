@@ -137,6 +137,6 @@ VOID Config_remove(UINT id)
     free(config.names[id]);
     config.count--;
 
-    for (int i = id; i < config.count; i++)
+    for (SIZE_T i = id; i < config.count; i++)
         config.names[i] = config.names[i + 1];
 }
