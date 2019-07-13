@@ -1,14 +1,15 @@
 #pragma once
 
 #include <stdint.h>
+#include <Windows.h>
 
-typedef struct {
-    void** clientMode;
-    void(__fastcall* loadSky)(const char*);
-    void*** present;
-    void*** reset;
+typedef struct Memory {
+    PVOID* clientMode;
+    VOID(__fastcall* loadSky)(PCSTR);
+    PVOID** present;
+    PVOID** reset;
 } Memory;
 
-void Memory_init(void);
+VOID Memory_init(VOID);
 
 extern Memory memory;

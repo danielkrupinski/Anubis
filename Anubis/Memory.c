@@ -9,42 +9,36 @@
 
 Memory memory;
 
-static void* findPattern(const char* module, const char* pattern, size_t offset)
+static void* findPattern(PCSTR module, PCSTR pattern, SIZE_T offset)
 {
     MODULEINFO moduleInfo;
 
     if (GetModuleInformation(GetCurrentProcess(), GetModuleHandleA(module), &moduleInfo, sizeof(moduleInfo))) {
-        char* begin = moduleInfo.lpBaseOfDll;
-        char* end = begin + moduleInfo.SizeOfImage - strlen(pattern) + 1;
+        PCHAR begin = moduleInfo.lpBaseOfDll;
+        PCHAR end = begin + moduleInfo.SizeOfImage;
 
-        for (char* c = begin; c != end; c++) {
+        for (PCHAR c = begin; c != end; c++) {
             bool matched = true;
-            const char* it = c;
-            const char* patternIt = pattern;
 
-            if (*(c + strlen(pattern) - 1) != pattern[strlen(pattern) - 1])
-                continue;
-
-            for (; *patternIt; patternIt++) {
+            for (PCSTR patternIt = pattern, it = c; *patternIt; patternIt++, it++) {
                 if (*patternIt != '?' && *it != *patternIt) {
                     matched = false;
                     break;
                 }
-                it++;
             }
             if (matched)
                 return c + offset;
         }
     }
-    char buf[100];
+    CHAR buf[100];
     sprintf_s(buf, sizeof(buf), "Failed to find pattern in %s!", module);
     MessageBox(NULL, buf, "Error", MB_OK | MB_ICONERROR);
     exit(EXIT_FAILURE);
 }
 
-void Memory_init(void)
+VOID Memory_init(VOID)
 {
-    memory.clientMode = **((void***)(interfaces.client[0][10] + 5));
+    memory.clientMode = **((PVOID**)(interfaces.client[0][10] + 5));
     memory.loadSky = findPattern("engine", "\x55\x8B\xEC\x81\xEC????\x56\x57\x8B\xF9\xC7\x45", 0);
     memory.present = findPattern("gameoverlayrenderer", "\xFF\x15????\x8B\xF8\x85\xDB", 2);
     memory.reset = findPattern("gameoverlayrenderer", "\xC7\x45?????\xFF\x15????\x8B\xF8", 9);
