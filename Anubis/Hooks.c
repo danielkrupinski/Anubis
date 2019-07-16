@@ -121,3 +121,13 @@ VOID Hooks_init(VOID)
     hooks.originalPresent = **memory.present;
     **memory.present = hookedPresent;
 }
+
+VOID Hooks_restore(VOID)
+{
+    restoreVmt(&hooks.clientMode);
+    restoreVmt(&hooks.surface);
+
+    SetWindowLongPtr(FindWindowW(L"Valve001", NULL), GWLP_WNDPROC, (LONG_PTR)hooks.originalWndProc);
+
+    **memory.present = hooks.originalPresent;
+}

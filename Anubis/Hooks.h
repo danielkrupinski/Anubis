@@ -17,6 +17,16 @@ typedef struct {
     VmtHook surface;
 } Hooks;
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 VOID Hooks_init(VOID);
+VOID Hooks_restore(VOID);
 
 extern Hooks hooks;
+
+#ifdef __cplusplus
+}
+#endif
