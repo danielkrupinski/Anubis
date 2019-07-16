@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 
+#include "UtlVector.h"
 #include "Vector.h"
 
 struct GlowObjectDefinition {
@@ -20,4 +21,8 @@ struct GlowObjectDefinition {
     int glowStyle;
     int splitScreenSlot;
     int nextFreeSlot;
+};
+
+struct GlowObjectManager {
+    UtlVector glowObjectDefinitions;
 };
