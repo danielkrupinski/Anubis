@@ -164,5 +164,8 @@
     <ClInclude Include="SDK\GlowObjectDefinition.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Hacks\Glow.h">
+      <Filter>Hacks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
