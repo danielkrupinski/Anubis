@@ -7,6 +7,7 @@
 
 #include "Config.h"
 #include "GUI.h"
+#include "Hooks.h"
 
 bool isGuiOpen = false;
 
@@ -70,8 +71,8 @@ static void renderMiscWindow() noexcept
         ImGui::Begin("Misc", &window.misc, windowFlags);
         ImGui::Checkbox("Auto strafe", &config.misc.autostrafe);
         ImGui::Checkbox("Bunnyhop", &config.misc.bunnyhop);
-       // if (ImGui::Button("Save config"))
-        //    Config_save();
+        if (ImGui::Button("Unhook"))
+            Hooks_restore();
         ImGui::End();
     }
 }
