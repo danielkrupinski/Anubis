@@ -54,7 +54,7 @@ static SIZE_T calculateLength(PUINT_PTR vmt)
     return length;
 }
 
-static void hookVmt(LPCVOID base, VmtHook* vmtHook)
+static void hookVmt(PVOID base, VmtHook* vmtHook)
 {
     vmtHook->base = base;
     vmtHook->oldVmt = *((PUINT_PTR*)base);
@@ -62,6 +62,12 @@ static void hookVmt(LPCVOID base, VmtHook* vmtHook)
     vmtHook->newVmt = malloc(vmtHook->length * sizeof(uintptr_t));
     memcpy(vmtHook->newVmt, vmtHook->oldVmt - 1, vmtHook->length * sizeof(uintptr_t));
     *((PUINT_PTR*)base) = vmtHook->newVmt + 1;
+}
+
+static void restoreVmt(VmtHook* vmtHook)
+{
+    *((PUINT_PTR*)vmtHook->base) = vmtHook->oldVmt;
+    free(vmtHook->newVmt);
 }
 
 static void hookMethod(VmtHook* vmtHook, SIZE_T index, PVOID function)

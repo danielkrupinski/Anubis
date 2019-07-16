@@ -4,7 +4,7 @@
 #include <Windows.h>
 
 typedef struct {
-    LPCVOID base;
+    PVOID base;
     PUINT_PTR oldVmt;
     PUINT_PTR newVmt;
     SIZE_T length;
