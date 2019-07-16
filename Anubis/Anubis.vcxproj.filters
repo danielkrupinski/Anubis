@@ -87,6 +87,9 @@
     <ClCompile Include="SDK\Vector.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="Hacks\Glow.c">
+      <Filter>Hacks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
