@@ -9,20 +9,21 @@ Interfaces interfaces;
 static uintptr_t** find(const wchar_t* module, const char* name)
 {
     typedef uintptr_t** (*CreateInterface)(const char*, int*);
-    CreateInterface createInterface = (CreateInterface)GetProcAddress(GetModuleHandleW(module), "CreateInterface");
-    uintptr_t** foundInterface = 0;
+    HMODULE moduleHandle = GetModuleHandleW(module);
 
-    if (createInterface)
-        foundInterface = createInterface(name, 0);
-    
-    if (foundInterface)
-        return foundInterface;
-    else {
-        char buf[100];
-        sprintf_s(buf, sizeof(buf), "Failed to find %s interface!", name);
-        MessageBox(NULL, buf, "Error", MB_OK | MB_ICONERROR);
-        exit(EXIT_FAILURE);
+    if (moduleHandle) {
+        CreateInterface createInterface = (CreateInterface)GetProcAddress(moduleHandle, "CreateInterface");
+        if (createInterface) {
+            uintptr_t** foundInterface = createInterface(name, 0);
+            if (foundInterface)
+                return foundInterface;
+        }
     }
+
+    char buf[100];
+    sprintf_s(buf, sizeof(buf), "Failed to find %s interface!", name);
+    MessageBox(NULL, buf, "Error", MB_OK | MB_ICONERROR);
+    exit(EXIT_FAILURE);
 }
 
 void Interfaces_init(void)
