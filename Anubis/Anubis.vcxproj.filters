@@ -161,5 +161,8 @@
     <ClInclude Include="SDK\UtlVector.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\GlowObjectDefinition.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
