@@ -59,9 +59,12 @@ static void hookVmt(PVOID base, VmtHook* vmtHook)
     vmtHook->base = base;
     vmtHook->oldVmt = *((PUINT_PTR*)base);
     vmtHook->length = calculateLength(vmtHook->oldVmt) + 1;
-    vmtHook->newVmt = malloc(vmtHook->length * sizeof(uintptr_t));
-    memcpy(vmtHook->newVmt, vmtHook->oldVmt - 1, vmtHook->length * sizeof(uintptr_t));
-    *((PUINT_PTR*)base) = vmtHook->newVmt + 1;
+    PVOID newVmt = malloc(vmtHook->length * sizeof(uintptr_t));
+    if (newVmt) {
+        vmtHook->newVmt = newVmt;
+        memcpy(vmtHook->newVmt, vmtHook->oldVmt - 1, vmtHook->length * sizeof(uintptr_t));
+        *((PUINT_PTR*)base) = vmtHook->newVmt + 1;
+    }
 }
 
 static void restoreVmt(VmtHook* vmtHook)
