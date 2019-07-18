@@ -90,6 +90,9 @@
     <ClCompile Include="Hacks\Glow.c">
       <Filter>Hacks</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\Entity.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
