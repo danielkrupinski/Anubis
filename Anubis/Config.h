@@ -5,6 +5,16 @@
 
 typedef struct Config {
     struct {
+        bool enabled;
+        bool healthBased;
+        bool rainbow;
+        float thickness;
+        float alpha;
+        int style;
+        float color[3];
+    } glow[17];
+
+    struct {
         bool bunnyhop;
         bool autostrafe;
     } misc;

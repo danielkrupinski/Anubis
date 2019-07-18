@@ -83,13 +83,40 @@ VOID Config_load(UINT id)
 
     cJSON* json = cJSON_Parse(buffer);
     if (json) {
-        cJSON* miscJson  = cJSON_GetObjectItem(json, "Misc");
+        {
+            const cJSON* glowJson;
+            int i = 0;
+            cJSON_ArrayForEach(glowJson, cJSON_GetObjectItem(json, "Glow")) {
+                cJSON* enabled = cJSON_GetObjectItem(glowJson, "Enabled");
+                if (cJSON_IsBool(enabled)) config.glow[i].enabled = cJSON_IsTrue(enabled);
+                cJSON* healthBased = cJSON_GetObjectItem(glowJson, "Health based");
+                if (cJSON_IsBool(healthBased)) config.glow[i].healthBased = cJSON_IsTrue(healthBased);
+                cJSON* rainbow = cJSON_GetObjectItem(glowJson, "Rainbow");
+                if (cJSON_IsBool(rainbow)) config.glow[i].rainbow = cJSON_IsTrue(rainbow);
+                cJSON* thickness = cJSON_GetObjectItem(glowJson, "Thickness");
+                if (cJSON_IsNumber(thickness)) config.glow[i].thickness = (float)thickness->valuedouble;
+                cJSON* alpha = cJSON_GetObjectItem(glowJson, "Alpha");
+                if (cJSON_IsNumber(alpha)) config.glow[i].alpha = (float)alpha->valuedouble;
+                cJSON* style = cJSON_GetObjectItem(glowJson, "Style");
+                if (cJSON_IsNumber(style)) config.glow[i].style = style->valueint;
+                const cJSON* colorJson;
+                int j = 0;
+                cJSON_ArrayForEach(colorJson, cJSON_GetObjectItem(glowJson, "Color")) {
+                    if (cJSON_IsNumber(colorJson)) config.glow[i].color[j] = (float)colorJson->valuedouble;
+                    j++;
+                }
+                i++;
+            }
+        }
 
-        cJSON* autoStrafe = cJSON_GetObjectItem(miscJson, "Auto strafe");
-        if (cJSON_IsBool(autoStrafe)) config.misc.autostrafe = cJSON_IsTrue(autoStrafe);
-        cJSON* bunnyHop = cJSON_GetObjectItem(miscJson, "Bunny hop");
-        if (cJSON_IsBool(bunnyHop)) config.misc.bunnyhop = cJSON_IsTrue(bunnyHop);
+        {
+            cJSON* miscJson = cJSON_GetObjectItem(json, "Misc");
 
+            cJSON* autoStrafe = cJSON_GetObjectItem(miscJson, "Auto strafe");
+            if (cJSON_IsBool(autoStrafe)) config.misc.autostrafe = cJSON_IsTrue(autoStrafe);
+            cJSON* bunnyHop = cJSON_GetObjectItem(miscJson, "Bunny hop");
+            if (cJSON_IsBool(bunnyHop)) config.misc.bunnyhop = cJSON_IsTrue(bunnyHop);
+        }
     }
 
     cJSON_Delete(json);
@@ -99,12 +126,36 @@ VOID Config_save(UINT id)
 {
     cJSON* json = cJSON_CreateObject();
 
-    cJSON* miscJson = cJSON_CreateObject();
+    {
+        cJSON* glowJson = cJSON_AddArrayToObject(json, "Glow");
 
-    cJSON_AddBoolToObject(miscJson, "Auto strafe", config.misc.autostrafe);
-    cJSON_AddBoolToObject(miscJson, "Bunny hop", config.misc.bunnyhop);
-    cJSON_AddItemToObject(json, "Misc", miscJson);
+        for (int i = 0; i < sizeof(config.glow) / sizeof(config.glow[0]); i++) {
+            cJSON* glow = cJSON_CreateObject();
 
+            cJSON_AddBoolToObject(glow, "Enabled", config.glow[i].enabled);
+            cJSON_AddBoolToObject(glow, "Health based", config.glow[i].healthBased);
+            cJSON_AddBoolToObject(glow, "Rainbow", config.glow[i].rainbow);
+            cJSON_AddNumberToObject(glow, "Thickness", config.glow[i].thickness);
+            cJSON_AddNumberToObject(glow, "Alpha", config.glow[i].alpha);
+            cJSON_AddNumberToObject(glow, "Style", config.glow[i].style);
+                
+            cJSON* colorJson = cJSON_AddArrayToObject(glow, "Color");
+
+            for (int j = 0; j < 3; j++)
+                cJSON_AddItemToArray(colorJson, cJSON_CreateNumber(config.glow[i].color[j]));
+
+            cJSON_AddItemToArray(glowJson, glow);
+
+        }
+    }
+
+    {
+        cJSON* miscJson = cJSON_CreateObject();
+
+        cJSON_AddBoolToObject(miscJson, "Auto strafe", config.misc.autostrafe);
+        cJSON_AddBoolToObject(miscJson, "Bunny hop", config.misc.bunnyhop);
+        cJSON_AddItemToObject(json, "Misc", miscJson);
+    }
     CHAR fileName[MAX_PATH];
     sprintf(fileName, "%s%s", path, config.names[id]);
 
