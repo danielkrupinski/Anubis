@@ -48,6 +48,7 @@ void GUI_init(IDirect3DDevice9* device)
 }
 
 static struct {
+    bool glow{ false };
     bool misc{ false };
     bool config{ false };
 } window;
