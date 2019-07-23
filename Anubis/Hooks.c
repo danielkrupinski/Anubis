@@ -101,6 +101,11 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
     return false;
 }
 
+static INT __stdcall doPostScreenEffects(INT param)
+{
+    CALL_ORIGINAL_RETURN(INT(__fastcall*)(PVOID, PVOID, INT), memory.clientMode, hooks.clientMode.oldVmt, 44, param);
+}
+
 static VOID __stdcall lockCursor(VOID)
 {
     if (isGuiOpen) {
@@ -114,6 +119,7 @@ VOID Hooks_init(VOID)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, createMove);
+    hookMethod(&hooks.clientMode, 44, doPostScreenEffects);
 
     hookVmt(interfaces.surface, &hooks.surface);
     hookMethod(&hooks.surface, 67, lockCursor);
