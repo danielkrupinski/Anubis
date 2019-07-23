@@ -3,7 +3,7 @@
 #include <Windows.h>
 
 typedef struct UtlVector {
-    PVOID memory;
+    PINT memory;
     INT allocationCount;
     INT growSize;
     INT size;
