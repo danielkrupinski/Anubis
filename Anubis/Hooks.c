@@ -79,7 +79,7 @@ static void hookMethod(VmtHook* vmtHook, SIZE_T index, PVOID function)
         vmtHook->newVmt[index + 1] = (UINT_PTR)function;
 }
 
-static bool __stdcall hookedCreateMove(FLOAT inputSampleTime, UserCmd* cmd)
+static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 {
     bool result;
     CALL_ORIGINAL_RETURN_TO_VARIABLE(bool(__fastcall*)(PVOID, PVOID, FLOAT, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, result, inputSampleTime, cmd);
@@ -113,7 +113,7 @@ static VOID __stdcall lockCursor(VOID)
 VOID Hooks_init(VOID)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
-    hookMethod(&hooks.clientMode, 24, hookedCreateMove);
+    hookMethod(&hooks.clientMode, 24, createMove);
 
     hookVmt(interfaces.surface, &hooks.surface);
     hookMethod(&hooks.surface, 67, lockCursor);
