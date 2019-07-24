@@ -3,16 +3,19 @@
 #include <stdbool.h>
 #include <Windows.h>
 
+typedef struct GlowConfig {
+    bool enabled;
+    bool healthBased;
+    bool rainbow;
+    float thickness;
+    float alpha;
+    int style;
+    float color[3];
+} GlowConfig;
+
 typedef struct Config {
-    struct {
-        bool enabled;
-        bool healthBased;
-        bool rainbow;
-        float thickness;
-        float alpha;
-        int style;
-        float color[3];
-    } glow[17];
+    
+    GlowConfig glow[17];
 
     struct {
         bool bunnyhop;
