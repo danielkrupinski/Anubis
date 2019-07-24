@@ -56,6 +56,7 @@ static struct {
 static void renderMenuBar() noexcept
 {
     if (ImGui::BeginMainMenuBar()) {
+        ImGui::MenuItem("Glow", nullptr, &window.glow);
         ImGui::MenuItem("Misc", nullptr, &window.misc);
         ImGui::MenuItem("Config", nullptr, &window.config);
         ImGui::EndMainMenuBar();
@@ -190,6 +191,7 @@ void GUI_render()
     ImGui::NewFrame();
 
     renderMenuBar();
+    renderGlowWindow();
     renderMiscWindow();
     renderConfigWindow();
 
