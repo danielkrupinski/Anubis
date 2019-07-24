@@ -4,6 +4,7 @@
 #include <intrin.h>
 
 #include "GUI.h"
+#include "Hacks/Glow.h"
 #include "Hacks/Misc.h"
 #include "Hooks.h"
 #include "Interfaces.h"
@@ -103,6 +104,7 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 
 static INT __stdcall doPostScreenEffects(INT param)
 {
+    Glow_render();
     CALL_ORIGINAL_RETURN(INT(__fastcall*)(PVOID, PVOID, INT), memory.clientMode, hooks.clientMode.oldVmt, 44, param);
 }
 
