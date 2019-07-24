@@ -223,6 +223,7 @@
     <ClInclude Include="SDK\Entity.h" />
     <ClInclude Include="SDK\EntityList.h" />
     <ClInclude Include="SDK\GameUI.h" />
+    <ClInclude Include="SDK\GlobalVars.h" />
     <ClInclude Include="SDK\GlowObjectDefinition.h" />
     <ClInclude Include="SDK\Surface.h" />
     <ClInclude Include="SDK\UserCmd.h" />
