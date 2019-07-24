@@ -1,10 +1,14 @@
+#include <math.h>
+
+#include "../Config.h"
 #include "Glow.h"
 #include "../Memory.h"
-#include "../SDK/Entity.h"
-#include "../SDK/GlowObjectDefinition.h"
-#include "../SDK/ClientClass.h"
+
 #include "../SDK/ClassId.h"
-#include "../Config.h"
+#include "../SDK/ClientClass.h"
+#include "../SDK/Entity.h"
+#include "../SDK/GlobalVars.h"
+#include "../SDK/GlowObjectDefinition.h"
 
 static VOID applyGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfig, INT health)
 {
@@ -13,9 +17,20 @@ static VOID applyGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfig, 
         glowObject->alpha = glowConfig->alpha;
         glowObject->glowStyle = glowConfig->style;
         glowObject->bloomAmount = glowConfig->thickness;
-        glowObject->glowColor.x = glowConfig->color[0];
-        glowObject->glowColor.y = glowConfig->color[1];
-        glowObject->glowColor.z = glowConfig->color[2];
+
+        if (glowConfig->healthBased && health) {
+            glowObject->glowColor.x = 1.0f - health / 100.0f;
+            glowObject->glowColor.y = health / 100.0f;
+            glowObject->glowColor.z = 0.0f;
+        } else if (glowConfig->rainbow) {
+            glowObject->glowColor.x = sinf(0.6f * memory.globalVars->currentTime) * 0.5f + 0.5f;
+            glowObject->glowColor.y = sinf(0.6f * memory.globalVars->currentTime + 2.0f) * 0.5f + 0.5f;
+            glowObject->glowColor.z = sinf(0.6f * memory.globalVars->currentTime + 4.0f) * 0.5f + 0.5f;
+        } else {
+            glowObject->glowColor.x = glowConfig->color[0];
+            glowObject->glowColor.y = glowConfig->color[1];
+            glowObject->glowColor.z = glowConfig->color[2];
+        }
     }
 }
 
