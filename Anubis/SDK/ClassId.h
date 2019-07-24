@@ -1,6 +1,6 @@
 #pragma once
 
-enum ClassId {
+typedef enum ClassId {
     ClassId_C4 = 34,
     ClassId_Chicken = 36,
     ClassId_CSPlayer = 40,
@@ -22,4 +22,4 @@ enum ClassId {
     ClassId_Sg553 = 264,
     ClassId_Ssg08 = 266,
     ClassId_Tec9 = 268
-};
+} ClassId;
