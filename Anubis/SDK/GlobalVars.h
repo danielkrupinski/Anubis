@@ -2,6 +2,8 @@
 
 #include <Windows.h>
 
+typedef struct UserCmd UserCmd;
+
 typedef struct GlobalVars {
     const FLOAT realTime;
     const INT frameCount;
@@ -13,3 +15,5 @@ typedef struct GlobalVars {
     const INT tickCount;
     const FLOAT intervalPerTick;
 } GlobalVars;
+
+FLOAT GlobalVars_serverTime(UserCmd*);
