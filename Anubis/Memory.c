@@ -44,4 +44,5 @@ VOID Memory_init(VOID)
     memory.present = findPattern(L"gameoverlayrenderer", "\xFF\x15????\x8B\xF8\x85\xDB", 2);
     memory.reset = findPattern(L"gameoverlayrenderer", "\xC7\x45?????\xFF\x15????\x8B\xF8", 9);
     memory.glowObjectManager = *(GlowObjectManager**)findPattern(L"client_panorama", "\x0F\x11\x05????\x83\xC8\x01", 3);
+    memory.globalVars = **((PVOID**)(interfaces.client[0][11] + 10));
 }
