@@ -65,6 +65,58 @@ static void renderMenuBar() noexcept
 static constexpr auto windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize
 | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 
+static void renderGlowWindow() noexcept
+{
+    if (window.glow) {
+        ImGui::SetNextWindowSize({ 450.0f, 0.0f });
+        ImGui::Begin("Glow", &window.glow, windowFlags);
+
+        static int currentCategory{ 0 };
+        ImGui::PushItemWidth(110.0f);
+        ImGui::PushID(0);
+        ImGui::Combo("", &currentCategory, "Allies\0Enemies\0Planting\0Defusing\0Local player\0Weapons\0C4\0Planted C4\0Chickens\0");
+        ImGui::PopID();
+        static int currentItem{ 0 };
+        if (currentCategory <= 3) {
+            ImGui::SameLine();
+            static int currentType{ 0 };
+            ImGui::PushID(1);
+            ImGui::Combo("", &currentType, "All\0Visible\0Occluded\0");
+            ImGui::PopID();
+            currentItem = currentCategory * 3 + currentType;
+        } else {
+            currentItem = currentCategory + 8;
+        }
+
+        ImGui::SameLine();
+        ImGui::Checkbox("Enabled", &config.glow[currentItem].enabled);
+        ImGui::Separator();
+        ImGui::Columns(2, nullptr, false);
+        ImGui::SetColumnOffset(1, 150.0f);
+        ImGui::Checkbox("Health based", &config.glow[currentItem].healthBased);
+        ImGui::Checkbox("Rainbow", &config.glow[currentItem].rainbow);
+        bool openPopup = ImGui::ColorButton("Color", ImVec4{ config.glow[currentItem].color }, ImGuiColorEditFlags_NoTooltip);
+        ImGui::SameLine(0.0f, 5.0f);
+        ImGui::Text("Color");
+        ImGui::PushID(2);
+        if (openPopup)
+            ImGui::OpenPopup("");
+        if (ImGui::BeginPopup("")) {
+            ImGui::PushID(3);
+            ImGui::ColorPicker3("", config.glow[currentItem].color, ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_NoSidePreview);
+            ImGui::PopID();
+            ImGui::EndPopup();
+        }
+        ImGui::PopID();
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(220.0f);
+        ImGui::SliderFloat("Thickness", &config.glow[currentItem].thickness, 0.0f, 1.0f, "%.2f");
+        ImGui::SliderFloat("Alpha", &config.glow[currentItem].alpha, 0.0f, 1.0f, "%.2f");
+        ImGui::SliderInt("Style", &config.glow[currentItem].style, 0, 3);
+        ImGui::End();
+    }
+}
+
 static void renderMiscWindow() noexcept
 {
     if (window.misc) {
