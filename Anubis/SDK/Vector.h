@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 
-typedef struct {
+typedef struct Vector {
     FLOAT x, y, z;
 } Vector;
 
