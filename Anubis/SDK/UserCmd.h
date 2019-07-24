@@ -5,15 +5,15 @@
 
 #include "Vector.h"
 
-enum UserCmdButtons {
+typedef enum UserCmdButtons {
     IN_ATTACK = 1 << 0,
     IN_JUMP = 1 << 1,
     IN_ATTACK2 = 1 << 11,
     IN_SCORE = 1 << 16,
     IN_BULLRUSH = 1 << 22
-};
+} UserCmdButtons;
 
-typedef struct {
+typedef struct UserCmd {
     INT pad;
     INT commandNumber;
     INT tickCount;
@@ -22,7 +22,7 @@ typedef struct {
     FLOAT forwardmove;
     FLOAT sidemove;
     FLOAT upmove;
-    INT buttons;
+    UserCmdButtons buttons;
     BYTE impulse;
     INT weaponselect;
     INT weaponsubtype;
