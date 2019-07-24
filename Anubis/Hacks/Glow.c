@@ -53,6 +53,17 @@ VOID Glow_render(VOID)
             glowObject->glowColor.y = 1.0f;
             glowObject->glowColor.z = 1.0f;
             break;
+        case ClassId_C4:
+            applyGlow(glowObject, config.glow + 14, 0);
+            break;
+        case ClassId_PlantedC4:
+            applyGlow(glowObject, config.glow + 15, 0);
+            break;
+        case ClassId_Chicken:
+            applyGlow(glowObject, config.glow + 16, 0);
+            break;
+        default:
+            break;
         }
     }
 }
