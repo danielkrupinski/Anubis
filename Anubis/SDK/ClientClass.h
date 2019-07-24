@@ -9,6 +9,6 @@ typedef struct ClientClass {
     PVOID createEventFunction;
     PSTR networkName;
     PVOID recvTable;
-    ClientClass* next;
+    struct ClientClass* next;
     ClassId classId;
 } ClientClass;
