@@ -174,6 +174,18 @@ VOID Config_save(UINT id)
 
 VOID Config_reset(VOID)
 {
+    for (int i = 0; i < sizeof(config.glow) / sizeof(config.glow[0]); i++) {
+        config.glow[i].enabled = false;
+        config.glow[i].healthBased = false;
+        config.glow[i].rainbow = false;
+        config.glow[i].thickness = 1.0f;
+        config.glow[i].alpha = 1.0f;
+        config.glow[i].style = 0;
+        config.glow[i].color[0] = 1.0f;
+        config.glow[i].color[1] = 1.0f;
+        config.glow[i].color[2] = 1.0f;
+    }
+
     config.misc.autostrafe = false;
     config.misc.bunnyhop = false;
 }
