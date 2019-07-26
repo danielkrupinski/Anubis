@@ -1,5 +1,8 @@
+#include "Engine.h"
 #include "Entity.h"
+#include "EntityList.h"
 #include "Utils.h"
+#include "../Memory.h"
 
 ClientClass* Entity_getClientClass(PVOID entity)
 {
@@ -19,4 +22,9 @@ bool Entity_isWeapon(PVOID entity)
 VOID Entity_getEyePosition(PVOID entity, Vector* out)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), ((PUINT*)entity), 281, out);
+}
+
+bool Entity_isEnemy(PVOID entity)
+{
+    return memory.isOtherEnemy(entity, NULL, EntityList_getEntity(Engine_getLocalPlayer()));
 }
