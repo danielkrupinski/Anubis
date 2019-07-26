@@ -51,4 +51,5 @@ VOID Memory_init(VOID)
     memory.glowObjectManager = *(GlowObjectManager**)findPattern(L"client_panorama", "\x0F\x11\x05????\x83\xC8\x01", 3);
     memory.globalVars = **((PVOID**)(interfaces.client[0][11] + 10));
     memory.isOtherEnemy = relativeToAbsolute(findPattern(L"client_panorama", "\xE8????\x02\xC0", 1));
+    memory.lineGoesThroughSmoke = relativeToAbsolute(findPattern(L"client_panorama", "\xE8????\x8B\x4C\x24\x30\x33\xD2", 1));
 }
