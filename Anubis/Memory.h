@@ -13,6 +13,7 @@ typedef struct Memory {
     PVOID** reset;
     GlowObjectManager* glowObjectManager;
     GlobalVars* globalVars;
+    bool(__fastcall* isOtherEnemy)(PVOID, PVOID, PVOID);
 } Memory;
 
 VOID Memory_init(VOID);
