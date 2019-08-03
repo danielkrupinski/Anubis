@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <Windows.h>
 
+#include "../Netvars.h"
+
 typedef struct ClientClass ClientClass;
 typedef struct Vector Vector;
 typedef float Matrix3x4[3][4];
@@ -13,3 +15,5 @@ bool Entity_setupBones(PVOID, Matrix3x4*, INT, INT, FLOAT);
 bool Entity_isWeapon(PVOID);
 VOID Entity_getEyePosition(PVOID, Vector*);
 bool Entity_isEnemy(PVOID);
+
+NETVAR(flags, "CBasePlayer", "m_fFlags", INT);

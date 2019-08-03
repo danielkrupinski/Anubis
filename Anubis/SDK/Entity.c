@@ -33,3 +33,5 @@ bool Entity_isEnemy(PVOID entity)
 {
     return memory.isOtherEnemy(entity, NULL, EntityList_getEntity(Engine_getLocalPlayer()));
 }
+
+NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
