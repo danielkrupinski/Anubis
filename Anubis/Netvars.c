@@ -53,3 +53,11 @@ VOID Netvars_init(VOID)
     for (ClientClass* clientClass = Client_getAllClasses(); clientClass; clientClass = clientClass->next)
         traverseTable(false, clientClass->networkName, clientClass->recvTable, 0);
 }
+
+SIZE_T Netvars_getOffset(UINT hash)
+{
+    for (Offset* offset = &firstOffset; offset; offset = offset->next)
+        if (hash == offset->nameHash)
+            return offset->offset;
+    return 0;
+}
