@@ -14,11 +14,10 @@ typedef struct Offset {
 } Offset;
 
 static Offset firstOffset;
+static Offset* currentOffset;
 
 static VOID traverseTable(bool unload, const char* networkName, RecvTable* recvTable, const SIZE_T offset)
 {
-    Offset* currentOffset = &firstOffset;
-
     for (int i = 0; i < recvTable->propCount; i++) {
         RecvProp* prop = recvTable->props + i;
 
@@ -50,6 +49,8 @@ static VOID traverseTable(bool unload, const char* networkName, RecvTable* recvT
 
 VOID Netvars_init(VOID)
 {
+    currentOffset = &firstOffset;
+
     for (ClientClass* clientClass = Client_getAllClasses(); clientClass; clientClass = clientClass->next)
         traverseTable(false, clientClass->networkName, clientClass->recvTable, 0);
 }
