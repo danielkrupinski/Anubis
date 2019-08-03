@@ -15,5 +15,6 @@ bool Entity_setupBones(PVOID, Matrix3x4*, INT, INT, FLOAT);
 bool Entity_isWeapon(PVOID);
 VOID Entity_getEyePosition(PVOID, Vector*);
 bool Entity_isEnemy(PVOID);
+Vector Entity_getBonePosition(PVOID, INT);
 
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);

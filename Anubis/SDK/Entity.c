@@ -1,8 +1,9 @@
 #include "Engine.h"
 #include "Entity.h"
 #include "EntityList.h"
-#include "Utils.h"
 #include "../Memory.h"
+#include "Utils.h"
+#include "Vector.h"
 
 ClientClass* Entity_getClientClass(PVOID entity)
 {
@@ -32,6 +33,19 @@ VOID Entity_getEyePosition(PVOID entity, Vector* out)
 bool Entity_isEnemy(PVOID entity)
 {
     return memory.isOtherEnemy(entity, NULL, EntityList_getEntity(Engine_getLocalPlayer()));
+}
+
+Vector Entity_getBonePosition(PVOID entity, INT bone)
+{
+    static Matrix3x4 boneMatrices[128];
+
+     if (Entity_setupBones(entity, boneMatrices, 128, 256, 0.0f)) {
+         Vector result = { boneMatrices[bone][0][3], boneMatrices[bone][1][3], boneMatrices[bone][2][3] };
+         return result;
+     } else {
+         Vector result = { 0.0f, 0.0f, 0.0f };
+         return result;
+     }
 }
 
 NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
