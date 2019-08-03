@@ -4,6 +4,7 @@
 #include "Hooks.h"
 #include "Interfaces.h"
 #include "Memory.h"
+#include "Netvars.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule,
                       DWORD ul_reason_for_call,
@@ -13,6 +14,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
         Config_init("Anubis");
         Interfaces_init();
         Memory_init();
+        Netvars_init();
         Hooks_init();
     }
     return TRUE;
