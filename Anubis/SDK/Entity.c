@@ -25,6 +25,11 @@ bool Entity_isWeapon(PVOID entity)
     CALL_VIRTUAL_METHOD_RETURN(bool(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 163);
 }
 
+PVOID Entity_getActiveWeapon(PVOID entity)
+{
+    CALL_VIRTUAL_METHOD_RETURN(PVOID(__fastcall*)(PVOID), (PUINT*)entity, 265);
+}
+
 VOID Entity_getEyePosition(PVOID entity, Vector* out)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), (PUINT*)entity, 281, out);
