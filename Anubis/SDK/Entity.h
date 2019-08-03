@@ -18,3 +18,4 @@ bool Entity_isEnemy(PVOID);
 Vector Entity_getBonePosition(PVOID, INT);
 
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
+NETVAR(health, "CBasePlayer", "m_iHealth", INT);
