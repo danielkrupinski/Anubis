@@ -27,7 +27,7 @@ bool Entity_isWeapon(PVOID entity)
 
 PVOID Entity_getActiveWeapon(PVOID entity)
 {
-    CALL_VIRTUAL_METHOD_RETURN(PVOID(__fastcall*)(PVOID), (PUINT*)entity, 265);
+    CALL_VIRTUAL_METHOD_RETURN(PVOID(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 265);
 }
 
 VOID Entity_getEyePosition(PVOID entity, Vector* out)
@@ -55,3 +55,4 @@ Vector Entity_getBonePosition(PVOID entity, INT bone)
 
 NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR_IMPL(health, "CBasePlayer", "m_iHealth", INT);
+NETVAR_IMPL(c4startedArming, "CC4", "m_bStartedArming", bool);
