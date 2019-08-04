@@ -55,4 +55,7 @@ Vector Entity_getBonePosition(PVOID entity, INT bone)
 
 NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR_IMPL(health, "CBasePlayer", "m_iHealth", INT);
+
+NETVAR_IMPL(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
+
 NETVAR_IMPL(c4startedArming, "CC4", "m_bStartedArming", bool);
