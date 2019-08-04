@@ -174,7 +174,16 @@ VOID Config_save(UINT id)
 
 VOID Config_reset(VOID)
 {
+    Config_resetTriggerbot();
     Config_resetGlow();
+
+
+    config.misc.autostrafe = false;
+    config.misc.bunnyhop = false;
+}
+
+VOID Config_resetTriggerbot(VOID)
+{
     for (int i = 0; i < sizeof(config.triggerbot) / sizeof(config.triggerbot[0]); i++) {
         config.triggerbot[i].enabled = false;
         config.triggerbot[i].onKey = false;
@@ -186,9 +195,6 @@ VOID Config_reset(VOID)
         config.triggerbot[i].hitgroup = 0;
         config.triggerbot[i].shotDelay = 0;
     }
-
-    config.misc.autostrafe = false;
-    config.misc.bunnyhop = false;
 }
 
 VOID Config_resetGlow(VOID)

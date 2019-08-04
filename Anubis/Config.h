@@ -26,9 +26,8 @@ typedef struct TriggerbotConfig {
 } TriggerbotConfig;
 
 typedef struct Config {
-    
-    GlowConfig glow[17];
     TriggerbotConfig triggerbot[35];
+    GlowConfig glow[17];
 
     struct {
         bool bunnyhop;
@@ -51,6 +50,7 @@ VOID Config_rename(size_t, PCSTR);
 VOID Config_load(UINT);
 VOID Config_save(UINT);
 VOID Config_reset(VOID);
+VOID Config_resetTriggerbot(VOID);
 VOID Config_resetGlow(VOID);
 VOID Config_remove(UINT);
 
