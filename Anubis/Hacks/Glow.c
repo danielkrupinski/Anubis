@@ -6,7 +6,9 @@
 
 #include "../SDK/ClassId.h"
 #include "../SDK/ClientClass.h"
+#include "../SDK/Engine.h"
 #include "../SDK/Entity.h"
+#include "../SDK/EntityList.h"
 #include "../SDK/GlobalVars.h"
 #include "../SDK/GlowObjectDefinition.h"
 
@@ -34,6 +36,11 @@ static VOID applyGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfig, 
     }
 }
 
+static VOID applyPlayerGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfigAll, GlowConfig* glowConfigVisible, GlowConfig* glowConfigOccluded, PVOID entity)
+{
+    if (glowConfigAll->enabled) applyGlow(glowObject, glowConfigAll, *Entity_health(entity));
+}
+
 VOID Glow_render(VOID)
 {
     for (int i = 0; i < memory.glowObjectManager->glowObjectDefinitions.size; i++) {
@@ -44,15 +51,20 @@ VOID Glow_render(VOID)
             continue;
 
         switch (Entity_getClientClass(entity)->classId) {
-        case ClassId_CSPlayer:
-            glowObject->renderWhenOccluded = true;
-            glowObject->alpha = 1.0f;
-            glowObject->glowStyle = 0;
-            glowObject->bloomAmount = 1.0f;
-            glowObject->glowColor.x = 1.0f;
-            glowObject->glowColor.y = 1.0f;
-            glowObject->glowColor.z = 1.0f;
+        case ClassId_CSPlayer: {
+            PVOID activeWeapon = Entity_getActiveWeapon(entity);
+            if (activeWeapon && Entity_getClientClass(entity)->classId == ClassId_C4 && *Entity_c4startedArming(activeWeapon))
+                applyPlayerGlow(glowObject, config.glow + 6, config.glow + 7, config.glow + 8, entity);
+            else if (*Entity_isDefusing(entity))
+                applyPlayerGlow(glowObject, config.glow + 9, config.glow + 10, config.glow + 11, entity);
+            else if (entity == EntityList_getEntity(Engine_getLocalPlayer()))
+                applyGlow(glowObject, config.glow + 12, *Entity_health(entity));
+            else if (Entity_isEnemy(entity))
+                applyPlayerGlow(glowObject, config.glow + 3, config.glow + 4, config.glow + 5, entity);
+            else
+                applyPlayerGlow(glowObject, config.glow + 0, config.glow + 1, config.glow + 2, entity);
             break;
+        }
         case ClassId_C4:
             applyGlow(glowObject, config.glow + 14, 0);
             break;
