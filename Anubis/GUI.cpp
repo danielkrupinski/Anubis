@@ -113,7 +113,8 @@ static void renderGlowWindow() noexcept
         ImGui::PushItemWidth(220.0f);
         ImGui::SliderFloat("Thickness", &config.glow[currentItem].thickness, 0.0f, 1.0f, "%.2f");
         ImGui::SliderFloat("Alpha", &config.glow[currentItem].alpha, 0.0f, 1.0f, "%.2f");
-        ImGui::SliderInt("Style", &config.glow[currentItem].style, 0, 3);
+        ImGui::InputInt("Style", &config.glow[currentItem].style, 1, 1);
+        config.glow[currentItem].style = max(min(config.glow[currentItem].style, 3), 0);
         ImGui::End();
     }
 }
@@ -194,6 +195,8 @@ void GUI_render()
     renderGlowWindow();
     renderMiscWindow();
     renderConfigWindow();
+
+    ImGui::ShowDemoWindow();
 
     ImGui::EndFrame();
     ImGui::Render();
