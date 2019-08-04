@@ -194,6 +194,7 @@
     <ClCompile Include="Netvars.c" />
     <ClCompile Include="SDK\Client.c" />
     <ClCompile Include="SDK\Engine.c" />
+    <ClCompile Include="SDK\EngineTrace.c" />
     <ClCompile Include="SDK\Entity.c" />
     <ClCompile Include="SDK\EntityList.c" />
     <ClCompile Include="SDK\GameUI.c" />

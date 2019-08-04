@@ -102,6 +102,9 @@
     <ClCompile Include="SDK\Utils.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\EngineTrace.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">

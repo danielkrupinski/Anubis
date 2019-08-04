@@ -15,8 +15,11 @@ typedef struct Ray {
 } Ray;
 
 typedef struct TraceFilter {
-    LPCVOID skip;
+    PVOID vmt;
+    PVOID skip;
 } TraceFilter;
+
+VOID TraceFilter_init(TraceFilter*);
 
 typedef enum HitGroup {
     HitGroup_Invalid = -1,
