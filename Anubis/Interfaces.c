@@ -30,6 +30,7 @@ void Interfaces_init(void)
 {
     interfaces.client = find(L"client_panorama", "VClient018");
     interfaces.engine = find(L"engine", "VEngineClient014");
+    interfaces.engineTrace = find(L"engine", "EngineTraceClient004");
     interfaces.entityList = find(L"client_panorama", "VClientEntityList003");
     interfaces.gameUI = find(L"client_panorama", "GameUI011");
     interfaces.surface = find(L"vguimatsurface", "VGUI_Surface031");

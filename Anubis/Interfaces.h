@@ -5,6 +5,7 @@
 typedef struct {
     uintptr_t** client;
     uintptr_t** engine;
+    uintptr_t** engineTrace;
     uintptr_t** entityList;
     uintptr_t** gameUI;
     uintptr_t** surface;
