@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdbool.h>
+
 #include "Utils.h"
 #include "Vector.h"
 
@@ -35,7 +37,7 @@ typedef struct TraceSurface {
     USHORT flags;
 } TraceSurface;
 
-struct Trace {
+typedef struct Trace {
     Vector startpos;
     Vector endpos;
     BYTE pad[20];
@@ -50,4 +52,6 @@ struct Trace {
     BYTE pad2[4];
     PVOID entity;
     INT hitbox;
-};
+} Trace;
+
+VOID EngineTrace_traceRay(const Ray*, UINT, const TraceFilter*, Trace*);
