@@ -7,15 +7,28 @@ typedef struct GlowConfig {
     bool enabled;
     bool healthBased;
     bool rainbow;
-    float thickness;
-    float alpha;
-    int style;
-    float color[3];
+    FLOAT thickness;
+    FLOAT alpha;
+    INT style;
+    FLOAT color[3];
 } GlowConfig;
+
+typedef struct TriggerbotConfig {
+    bool enabled;
+    bool onKey;
+    INT key;
+    bool friendlyFire;
+    bool scopedOnly;
+    bool ignoreFlash;
+    bool ignoreSmoke;
+    INT hitgroup;
+    INT shotDelay;
+} TriggerbotConfig;
 
 typedef struct Config {
     
     GlowConfig glow[17];
+    TriggerbotConfig triggerbot[35];
 
     struct {
         bool bunnyhop;
