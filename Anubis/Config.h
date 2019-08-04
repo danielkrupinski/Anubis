@@ -51,6 +51,7 @@ VOID Config_rename(size_t, PCSTR);
 VOID Config_load(UINT);
 VOID Config_save(UINT);
 VOID Config_reset(VOID);
+VOID Config_resetGlow(VOID);
 VOID Config_remove(UINT);
 
 #ifdef __cplusplus
