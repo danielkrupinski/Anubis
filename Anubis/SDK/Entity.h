@@ -17,6 +17,7 @@ PVOID Entity_getActiveWeapon(PVOID);
 VOID Entity_getEyePosition(PVOID, Vector*);
 bool Entity_isEnemy(PVOID);
 Vector Entity_getBonePosition(PVOID, INT);
+bool Entity_isVisible(PVOID, const Vector*);
 
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR(health, "CBasePlayer", "m_iHealth", INT);

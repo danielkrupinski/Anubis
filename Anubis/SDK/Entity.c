@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "EngineTrace.h"
 #include "Entity.h"
 #include "EntityList.h"
 #include "../Memory.h"
@@ -51,6 +52,27 @@ Vector Entity_getBonePosition(PVOID entity, INT bone)
          Vector result = { 0.0f, 0.0f, 0.0f };
          return result;
      }
+}
+
+bool Entity_isVisible(PVOID entity, const Vector* position)
+{
+    PVOID localPlayer = EntityList_getEntity(Engine_getLocalPlayer());
+    Ray ray;
+    Entity_getEyePosition(localPlayer, &ray.start);
+    const Vector endPosition = position ? *position : Entity_getBonePosition(entity, 8);
+
+    ray.delta.x = endPosition.x - ray.start.x;
+    ray.delta.y = endPosition.y - ray.start.y;
+    ray.delta.z = endPosition.z - ray.start.z;
+    if (endPosition.x || endPosition.y || endPosition.z)
+        ray.isSwept = true;
+
+    Trace trace;
+    TraceFilter filter;
+    TraceFilter_init(&filter);
+    filter.skip = localPlayer;
+    EngineTrace_traceRay(&ray, 0x46004009, &filter, &trace);
+    return trace.entity == entity;
 }
 
 NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
