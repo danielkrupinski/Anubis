@@ -186,6 +186,18 @@ VOID Config_reset(VOID)
         config.glow[i].color[2] = 1.0f;
     }
 
+    for (int i = 0; i < sizeof(config.triggerbot) / sizeof(config.triggerbot[0]); i++) {
+        config.triggerbot[i].enabled = false;
+        config.triggerbot[i].onKey = false;
+        config.triggerbot[i].key = 0;
+        config.triggerbot[i].friendlyFire = false;
+        config.triggerbot[i].scopedOnly = false;
+        config.triggerbot[i].ignoreFlash = false;
+        config.triggerbot[i].ignoreSmoke = false;
+        config.triggerbot[i].hitgroup = 0;
+        config.triggerbot[i].shotDelay = 0;
+    }
+
     config.misc.autostrafe = false;
     config.misc.bunnyhop = false;
 }
