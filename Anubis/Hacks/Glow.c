@@ -38,7 +38,12 @@ static VOID applyGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfig, 
 
 static VOID applyPlayerGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfigAll, GlowConfig* glowConfigVisible, GlowConfig* glowConfigOccluded, PVOID entity)
 {
+    Vector localPlayerEyePosition;
+    Entity_getEyePosition(EntityList_getEntity(Engine_getLocalPlayer()), &localPlayerEyePosition);
     if (glowConfigAll->enabled) applyGlow(glowObject, glowConfigAll, *Entity_health(entity));
+    else if (Entity_isVisible(entity, NULL) && !memory.lineGoesThroughSmoke(localPlayerEyePosition, Entity_getBonePosition(entity, 8), 1)) applyGlow(glowObject, glowConfigVisible, *Entity_health(entity));
+    else applyGlow(glowObject, glowConfigOccluded, *Entity_health(entity));
+
 }
 
 VOID Glow_render(VOID)
@@ -75,7 +80,10 @@ VOID Glow_render(VOID)
             applyGlow(glowObject, config.glow + 16, 0);
             break;
         default:
-            break;
+            if (Entity_isWeapon(entity)) {
+                applyGlow(glowObject, config.glow + 13, 0);
+                if (!config.glow[13].enabled) glowObject->renderWhenOccluded = false;
+            }
         }
     }
 }
