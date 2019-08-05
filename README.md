@@ -3,13 +3,17 @@
 Free open-source training software / cheat for **Counter-Strike: Global Offensive** game. Designed as internal cheat - [Dynamic-link library](https://en.wikipedia.org/wiki/Dynamic-link_library) (DLL) loadable into game process. Compatible with the latest version of the game on Steam.
 
 ## Features
+
 * **Glow** - render glow effect on entities
 * **Misc** - miscellaneous features
 * **Config** - JSON-based configuration system
 
+<details>
+<summary>Features in depth</summary>
 * **Misc** - miscellaneous features
     * **Auto strafe** - automatically strafe in air following mouse movement
     * **Bunny hop** - automatically simulate space bar press / release while jump button is being held; increases movement speed
+</details>
 
 ## Getting started
 
