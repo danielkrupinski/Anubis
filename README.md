@@ -10,6 +10,7 @@ Free open-source training software / cheat for **Counter-Strike: Global Offensiv
 
 <details>
 <summary>Features in depth</summary>
+
 * **Misc** - miscellaneous features
     * **Auto strafe** - automatically strafe in air following mouse movement
     * **Bunny hop** - automatically simulate space bar press / release while jump button is being held; increases movement speed
