@@ -196,8 +196,6 @@ void GUI_render()
     renderMiscWindow();
     renderConfigWindow();
 
-    ImGui::ShowDemoWindow();
-
     ImGui::EndFrame();
     ImGui::Render();
     ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
