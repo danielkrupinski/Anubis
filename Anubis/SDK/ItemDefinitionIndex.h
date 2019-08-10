@@ -1,6 +1,8 @@
 #pragma once
 
-typedef enum ItemDefinitionIndex : short {
+#include <Windows.h>
+
+enum ItemDefinitionIndex {
     ItemDefinitionIndex_Deagle = 1,
     ItemDefinitionIndex_Elite,
     ItemDefinitionIndex_Fiveseven,
@@ -61,4 +63,7 @@ typedef enum ItemDefinitionIndex : short {
     ItemDefinitionIndex_GloveMotorcycle,
     ItemDefinitionIndex_GloveSpecialist,
     ItemDefinitionIndex_GloveHydra
-} ItemDefinitionIndex;
+};
+
+typedef enum ItemDefinitionIndex ItemDefinitionIndex;
+INT getWeaponIndex(ItemDefinitionIndex);
