@@ -105,7 +105,7 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 static INT __stdcall doPostScreenEffects(INT param)
 {
     Glow_render();
-    CALL_ORIGINAL_RETURN(INT(__fastcall*)(PVOID, PVOID, INT), memory.clientMode, hooks.clientMode.oldVmt, 44, param);
+    return CALL_ORIGINAL(INT(__fastcall*)(PVOID, PVOID, INT), memory.clientMode, hooks.clientMode.oldVmt, 44, param);
 }
 
 static VOID __stdcall lockCursor(VOID)
