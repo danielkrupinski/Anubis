@@ -80,6 +80,8 @@ NETVAR_IMPL(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 NETVAR_IMPL(clip, "CBaseCombatWeapon", "m_iClip1", INT);
 NETVAR_IMPL(nextPrimaryAttack, "CBaseCombatWeapon", "m_flNextPrimaryAttack", FLOAT);
 
+NETVAR_IMPL(itemDefinitionIndex, "CBaseAttributableItem", "m_iItemDefinitionIndex", SHORT);
+
 NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR_IMPL(health, "CBasePlayer", "m_iHealth", INT);
 NETVAR_IMPL(tickBase, "CBasePlayer", "m_nTickBase", INT);
