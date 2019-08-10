@@ -111,6 +111,9 @@
     <ClCompile Include="SDK\Cvar.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\ConVar.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">

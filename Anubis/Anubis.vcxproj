@@ -194,6 +194,7 @@
     <ClCompile Include="Memory.c" />
     <ClCompile Include="Netvars.c" />
     <ClCompile Include="SDK\Client.c" />
+    <ClCompile Include="SDK\ConVar.c" />
     <ClCompile Include="SDK\Cvar.c" />
     <ClCompile Include="SDK\Engine.c" />
     <ClCompile Include="SDK\EngineTrace.c" />
