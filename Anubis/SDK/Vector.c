@@ -7,3 +7,9 @@ VOID Angles_normalize(Vector* vec)
     vec->y = isfinite(vec->y) ? remainderf(vec->y, 360.0f) : 0.0f;
     vec->z = 0.0f;
 }
+
+Vector Vector_multiply(Vector* v1, Vector* v2)
+{
+    Vector result = { v1->x * v2->x, v1->y * v2->y, v1->z * v2->z };
+    return result;
+}

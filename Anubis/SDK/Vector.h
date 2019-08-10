@@ -7,3 +7,4 @@ typedef struct Vector {
 } Vector;
 
 VOID Angles_normalize(Vector*);
+Vector Vector_multiply(Vector*, Vector*);
