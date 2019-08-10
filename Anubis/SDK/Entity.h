@@ -29,6 +29,7 @@ NETVAR(itemDefinitionIndex, "CBaseAttributableItem", "m_iItemDefinitionIndex", S
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR(health, "CBasePlayer", "m_iHealth", INT);
 NETVAR(tickBase, "CBasePlayer", "m_nTickBase", INT);
+NETVAR(aimPunchAngle, "CBasePlayer", "m_aimPunchAngle", Vector);
 
 NETVAR(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
 
