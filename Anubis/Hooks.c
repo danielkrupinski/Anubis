@@ -82,9 +82,8 @@ static void hookMethod(VmtHook* vmtHook, SIZE_T index, PVOID function)
 
 static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 {
-    bool result;
-    CALL_ORIGINAL_RETURN_TO_VARIABLE(bool(__fastcall*)(PVOID, PVOID, FLOAT, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, result, inputSampleTime, cmd);
-    
+    bool result = CALL_ORIGINAL(bool(__fastcall*)(PVOID, PVOID, FLOAT, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, inputSampleTime, cmd);
+
     if (!cmd->commandNumber)
         return result;
 
