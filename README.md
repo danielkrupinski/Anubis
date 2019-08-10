@@ -11,6 +11,16 @@ Free open-source training software / cheat for **Counter-Strike: Global Offensiv
 <details>
 <summary>Features in depth</summary>
 
+* **Glow** - render glow effect on entities
+
+    *Allies, Enemies, Planting (player planting bomb), Defusing (player defusing bomb), Local player, Weapons (dropped weapons), C4, Planted C4, Chickens* **/** *All, Visible, Occluded*
+
+    * **Enabled** - on / off master switch
+    * **Health based** - color is based on player's hp
+    * **Thickness** - outline thickness
+    * **Alpha** - outline alpha
+    * **Style** - glow style [*0*-*3*]
+
 * **Misc** - miscellaneous features
     * **Auto strafe** - automatically strafe in air following mouse movement
     * **Bunny hop** - automatically simulate space bar press / release while jump button is being held; increases movement speed
