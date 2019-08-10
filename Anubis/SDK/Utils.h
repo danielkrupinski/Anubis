@@ -19,3 +19,5 @@ UINT Utils_hashRuntime(PCSTR);
 
 #define DEG2RAD(x) ((FLOAT)(x) * (FLOAT)M_PI / 180.0f)
 #define RAD2DEG(x) ((FLOAT)(x) * 180.0f / (FLOAT)M_PI)
+
+#define UTILS_STATIC_VAR(type, name, initializer) static type name = NULL; if (!name) name = initializer;
