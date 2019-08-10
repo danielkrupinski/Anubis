@@ -4,5 +4,5 @@
 
 PVOID EntityList_getEntity(INT index)
 {
-    CALL_VIRTUAL_METHOD_RETURN(PVOID(__fastcall*)(PVOID, PVOID, INT), interfaces.entityList, 3, index);
+    return CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID, INT), interfaces.entityList, 3, index);
 }

@@ -4,5 +4,5 @@
 
 ClientClass* Client_getAllClasses(VOID)
 {
-    CALL_VIRTUAL_METHOD_RETURN(ClientClass*(__fastcall*)(PVOID, PVOID), interfaces.client, 8);
+    return CALL_VIRTUAL_METHOD(ClientClass*(__fastcall*)(PVOID, PVOID), interfaces.client, 8);
 }

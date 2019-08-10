@@ -4,10 +4,10 @@
 
 INT Engine_getLocalPlayer(VOID)
 {
-    CALL_VIRTUAL_METHOD_RETURN(INT(__fastcall*)(PVOID, PVOID), interfaces.engine, 12);
+    return CALL_VIRTUAL_METHOD(INT(__fastcall*)(PVOID, PVOID), interfaces.engine, 12);
 }
 
 bool Engine_isInGame(VOID)
 {
-    CALL_VIRTUAL_METHOD_RETURN(bool(__fastcall*)(PVOID, PVOID), interfaces.engine, 26);
+    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), interfaces.engine, 26);
 }

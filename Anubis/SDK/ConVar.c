@@ -3,12 +3,12 @@
 
 FLOAT ConVar_getFloat(ConVar* conVar)
 {
-    CALL_VIRTUAL_METHOD_RETURN(FLOAT(__fastcall*)(PVOID, PVOID), (PUINT*)conVar, 12);
+    return CALL_VIRTUAL_METHOD(FLOAT(__fastcall*)(PVOID, PVOID), (PUINT*)conVar, 12);
 }
 
 INT ConVar_getInt(ConVar* conVar)
 {
-    CALL_VIRTUAL_METHOD_RETURN(INT(__fastcall*)(PVOID, PVOID), (PUINT*)conVar, 13);
+    return CALL_VIRTUAL_METHOD(INT(__fastcall*)(PVOID, PVOID), (PUINT*)conVar, 13);
 }
 
 VOID ConVar_setValueString(ConVar* conVar, PCSTR str)
