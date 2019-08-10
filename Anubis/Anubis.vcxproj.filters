@@ -206,5 +206,8 @@
     <ClInclude Include="SDK\EngineTrace.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Hacks\Triggerbot.h">
+      <Filter>Hacks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
