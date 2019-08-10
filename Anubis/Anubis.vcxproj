@@ -182,6 +182,7 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Hacks\Glow.c" />
     <ClCompile Include="Hacks\Misc.c" />
+    <ClCompile Include="Hacks\Triggerbot.c" />
     <ClCompile Include="Hooks.c" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
