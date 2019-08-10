@@ -19,6 +19,8 @@ bool Entity_isEnemy(PVOID);
 Vector Entity_getBonePosition(PVOID, INT);
 bool Entity_isVisible(PVOID, const Vector*);
 
+NETVAR(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
+
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR(health, "CBasePlayer", "m_iHealth", INT);
 

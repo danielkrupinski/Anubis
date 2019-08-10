@@ -75,6 +75,8 @@ bool Entity_isVisible(PVOID entity, const Vector* position)
     return trace.entity == entity;
 }
 
+NETVAR_IMPL(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
+
 NETVAR_IMPL(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR_IMPL(health, "CBasePlayer", "m_iHealth", INT);
 
