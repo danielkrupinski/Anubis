@@ -224,5 +224,8 @@
     <ClInclude Include="SDK\ConVar.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\ItemDefinitionIndex.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
