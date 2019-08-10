@@ -1,5 +1,7 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <Windows.h>
 
 #define CALL_VIRTUAL_METHOD(type, this, index, ...) ((type)((this)[0][index]))(this, 0, __VA_ARGS__);
@@ -19,3 +21,6 @@
 #define UTILS_HASH(s) ((UINT)(UTILS_HASH_256(s, 0, 0) ^ UTILS_HASH_256(s, 0, 0) >> 16))
 
 UINT Utils_hashRuntime(PCSTR);
+
+#define DEG2RAD(x) ((FLOAT)(x) * (FLOAT)M_PI / 180.0f)
+#define RAD2DEG(x) ((FLOAT)(x) * 180.0f / (FLOAT)M_PI)
