@@ -12,6 +12,7 @@
 
 #include "SDK/Engine.h"
 #include "SDK/EntityList.h"
+#include "SDK/GlobalVars.h"
 #include "SDK/Surface.h"
 #include "SDK/UserCmd.h"
 #include "SDK/Utils.h"
@@ -89,6 +90,7 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 
     bool* sendPacket = (bool*)(*((PUINT_PTR)_AddressOfReturnAddress() - 1) - 0x1C);
 
+    GlobalVars_serverTime(cmd);
     Misc_autostrafe(cmd);
     Misc_bunnyhop(cmd);
 
