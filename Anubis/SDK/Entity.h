@@ -22,6 +22,7 @@ bool Entity_isVisible(PVOID, const Vector*);
 NETVAR(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 
 NETVAR(clip, "CBaseCombatWeapon", "m_iClip1", INT);
+NETVAR(nextPrimaryAttack, "CBaseCombatWeapon", "m_flNextPrimaryAttack", FLOAT);
 
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR(health, "CBasePlayer", "m_iHealth", INT);
