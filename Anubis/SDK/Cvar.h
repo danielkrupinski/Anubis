@@ -2,6 +2,6 @@
 
 #include <Windows.h>
 
-typedef struct ConVar Convar;
+typedef struct ConVar ConVar;
 
 ConVar* Cvar_findVar(PCSTR);
