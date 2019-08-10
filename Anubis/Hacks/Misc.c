@@ -3,14 +3,15 @@
 #include "../SDK/Engine.h"
 #include "../SDK/Entity.h"
 #include "../SDK/EntityList.h"
+#include "../SDK/UserCmd.h"
 
-void Misc_bunnyhop(UserCmd* cmd)
+VOID Misc_bunnyhop(UserCmd* cmd)
 {
     if (config.misc.bunnyhop && !(*Entity_flags(EntityList_getEntity(Engine_getLocalPlayer())) & 1))
         cmd->buttons &= ~IN_JUMP;
 }
 
-void Misc_autostrafe(UserCmd* cmd)
+VOID Misc_autostrafe(UserCmd* cmd)
 {
     if (config.misc.autostrafe && !(*Entity_flags(EntityList_getEntity(Engine_getLocalPlayer())) & 1)) {
         if (cmd->mousedx < 0)

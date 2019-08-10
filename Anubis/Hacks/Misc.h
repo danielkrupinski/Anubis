@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../SDK/UserCmd.h"
+typedef struct UserCmd UserCmd;
 
-void Misc_bunnyhop(UserCmd*);
-void Misc_autostrafe(UserCmd*);
+VOID Misc_bunnyhop(UserCmd*);
+VOID Misc_autostrafe(UserCmd*);
