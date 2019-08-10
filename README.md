@@ -17,6 +17,7 @@ Free open-source training software / cheat for **Counter-Strike: Global Offensiv
 
     * **Enabled** - on / off master switch
     * **Health based** - color is based on player's hp
+    * **Rainbow** - change color frequently
     * **Thickness** - outline thickness
     * **Alpha** - outline alpha
     * **Style** - glow style [*0*-*3*]
@@ -24,6 +25,13 @@ Free open-source training software / cheat for **Counter-Strike: Global Offensiv
 * **Misc** - miscellaneous features
     * **Auto strafe** - automatically strafe in air following mouse movement
     * **Bunny hop** - automatically simulate space bar press / release while jump button is being held; increases movement speed
+
+* **Config** - JSON-based configuration system
+    * **Create config** - create new configuration file
+    * **Reset config** - restore default configuration settings (does not touch saved configuration)
+    * **Load selected** - load selected configuration file
+    * **Save selected** - save selected configuration file
+    * **Delete selected** - delete selected configuration file
 </details>
 
 ## Getting started
