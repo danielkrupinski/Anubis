@@ -23,6 +23,7 @@ NETVAR(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR(health, "CBasePlayer", "m_iHealth", INT);
+NETVAR(tickBase, "CBasePlayer", "m_nTickBase", INT);
 
 NETVAR(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
 
