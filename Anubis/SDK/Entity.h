@@ -18,6 +18,7 @@ VOID Entity_getEyePosition(PVOID, Vector*);
 bool Entity_isEnemy(PVOID);
 Vector Entity_getBonePosition(PVOID, INT);
 bool Entity_isVisible(PVOID, const Vector*);
+bool Entity_isSniperRifle(PVOID);
 
 NETVAR(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 

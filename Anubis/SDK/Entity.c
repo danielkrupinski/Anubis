@@ -1,3 +1,5 @@
+#include "ClassId.h"
+#include "ClientClass.h"
 #include "Engine.h"
 #include "EngineTrace.h"
 #include "Entity.h"
@@ -73,6 +75,19 @@ bool Entity_isVisible(PVOID entity, const Vector* position)
     filter.skip = localPlayer;
     EngineTrace_traceRay(&ray, 0x46004009, &filter, &trace);
     return trace.entity == entity;
+}
+
+bool Entity_isSniperRifle(PVOID entity)
+{
+    switch (Entity_getClientClass(entity)->classId) {
+        case ClassId_Ssg08:
+        case ClassId_Awp:
+        case ClassId_Scar20:
+        case ClassId_G3sg1:
+            return true;
+        default:
+            return false;
+    }
 }
 
 NETVAR_IMPL(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
