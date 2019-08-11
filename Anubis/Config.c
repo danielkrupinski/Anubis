@@ -84,8 +84,33 @@ VOID Config_load(UINT id)
     cJSON* json = cJSON_Parse(buffer);
     if (json) {
         {
-            const cJSON* glowJson;
+            const cJSON* triggerbotJson;
             int i = 0;
+            cJSON_ArrayForEach(triggerbotJson, cJSON_GetObjectItem(json, "Triggerbot")) {
+                cJSON* enabled = cJSON_GetObjectItem(triggerbotJson, "Enabled");
+                if (cJSON_IsBool(enabled)) config.triggerbot[i].enabled = cJSON_IsTrue(enabled);
+                cJSON* onKey = cJSON_GetObjectItem(triggerbotJson, "On key");
+                if (cJSON_IsBool(onKey)) config.triggerbot[i].onKey = cJSON_IsTrue(onKey);
+                cJSON* key = cJSON_GetObjectItem(triggerbotJson, "Key");
+                if (cJSON_IsNumber(key)) config.triggerbot[i].key = key->valueint;
+                cJSON* friendlyFire = cJSON_GetObjectItem(triggerbotJson, "Friendly fire");
+                if (cJSON_IsBool(friendlyFire)) config.triggerbot[i].friendlyFire = cJSON_IsTrue(friendlyFire);
+                cJSON* scopedOnly = cJSON_GetObjectItem(triggerbotJson, "Scoped only");
+                if (cJSON_IsBool(scopedOnly)) config.triggerbot[i].scopedOnly = cJSON_IsTrue(scopedOnly);
+                cJSON* ignoreFlash = cJSON_GetObjectItem(triggerbotJson, "Ignore flash");
+                if (cJSON_IsBool(ignoreFlash)) config.triggerbot[i].ignoreFlash = cJSON_IsTrue(ignoreFlash);
+                cJSON* ignoreSmoke = cJSON_GetObjectItem(triggerbotJson, "Ignore smoke");
+                if (cJSON_IsBool(ignoreSmoke)) config.triggerbot[i].ignoreSmoke = cJSON_IsTrue(ignoreSmoke);
+                cJSON* hitgroup = cJSON_GetObjectItem(triggerbotJson, "Hitgroup");
+                if (cJSON_IsNumber(hitgroup)) config.triggerbot[i].hitgroup = hitgroup->valueint;
+                cJSON* shotDelay = cJSON_GetObjectItem(triggerbotJson, "Shot delay");
+                if (cJSON_IsNumber(shotDelay)) config.triggerbot[i].shotDelay = shotDelay->valueint;
+            }
+        }
+
+        {
+            const cJSON* glowJson;
+            INT i = 0;
             cJSON_ArrayForEach(glowJson, cJSON_GetObjectItem(json, "Glow")) {
                 cJSON* enabled = cJSON_GetObjectItem(glowJson, "Enabled");
                 if (cJSON_IsBool(enabled)) config.glow[i].enabled = cJSON_IsTrue(enabled);
@@ -94,15 +119,15 @@ VOID Config_load(UINT id)
                 cJSON* rainbow = cJSON_GetObjectItem(glowJson, "Rainbow");
                 if (cJSON_IsBool(rainbow)) config.glow[i].rainbow = cJSON_IsTrue(rainbow);
                 cJSON* thickness = cJSON_GetObjectItem(glowJson, "Thickness");
-                if (cJSON_IsNumber(thickness)) config.glow[i].thickness = (float)thickness->valuedouble;
+                if (cJSON_IsNumber(thickness)) config.glow[i].thickness = (FLOAT)thickness->valuedouble;
                 cJSON* alpha = cJSON_GetObjectItem(glowJson, "Alpha");
-                if (cJSON_IsNumber(alpha)) config.glow[i].alpha = (float)alpha->valuedouble;
+                if (cJSON_IsNumber(alpha)) config.glow[i].alpha = (FLOAT)alpha->valuedouble;
                 cJSON* style = cJSON_GetObjectItem(glowJson, "Style");
                 if (cJSON_IsNumber(style)) config.glow[i].style = style->valueint;
                 const cJSON* colorJson;
-                int j = 0;
+                INT j = 0;
                 cJSON_ArrayForEach(colorJson, cJSON_GetObjectItem(glowJson, "Color")) {
-                    if (cJSON_IsNumber(colorJson)) config.glow[i].color[j] = (float)colorJson->valuedouble;
+                    if (cJSON_IsNumber(colorJson)) config.glow[i].color[j] = (FLOAT)colorJson->valuedouble;
                     j++;
                 }
                 i++;
@@ -127,9 +152,29 @@ VOID Config_save(UINT id)
     cJSON* json = cJSON_CreateObject();
 
     {
+        cJSON* triggerbotJson = cJSON_AddArrayToObject(json, "Triggerbot");
+
+        for (INT i = 0; i < sizeof(config.triggerbot) / sizeof(config.triggerbot[0]); i++) {
+            cJSON* triggerbot = cJSON_CreateObject();
+
+            cJSON_AddBoolToObject(triggerbot, "Enabled", config.triggerbot[i].enabled);
+            cJSON_AddBoolToObject(triggerbot, "On key", config.triggerbot[i].onKey);
+            cJSON_AddNumberToObject(triggerbot, "Key", config.triggerbot[i].key);
+            cJSON_AddBoolToObject(triggerbot, "Friendly fire", config.triggerbot[i].friendlyFire);
+            cJSON_AddBoolToObject(triggerbot, "Scoped only", config.triggerbot[i].scopedOnly);
+            cJSON_AddBoolToObject(triggerbot, "Ignore flash", config.triggerbot[i].ignoreFlash);
+            cJSON_AddBoolToObject(triggerbot, "Ignore smoke", config.triggerbot[i].ignoreSmoke);
+            cJSON_AddNumberToObject(triggerbot, "Hitgroup", config.triggerbot[i].hitgroup);
+            cJSON_AddNumberToObject(triggerbot, "Shot delay", config.triggerbot[i].shotDelay);
+
+            cJSON_AddItemToArray(triggerbotJson, triggerbot);
+        }
+    }
+
+    {
         cJSON* glowJson = cJSON_AddArrayToObject(json, "Glow");
 
-        for (int i = 0; i < sizeof(config.glow) / sizeof(config.glow[0]); i++) {
+        for (INT i = 0; i < sizeof(config.glow) / sizeof(config.glow[0]); i++) {
             cJSON* glow = cJSON_CreateObject();
 
             cJSON_AddBoolToObject(glow, "Enabled", config.glow[i].enabled);
@@ -141,7 +186,7 @@ VOID Config_save(UINT id)
                 
             cJSON* colorJson = cJSON_AddArrayToObject(glow, "Color");
 
-            for (int j = 0; j < 3; j++)
+            for (INT j = 0; j < 3; j++)
                 cJSON_AddItemToArray(colorJson, cJSON_CreateNumber(config.glow[i].color[j]));
 
             cJSON_AddItemToArray(glowJson, glow);
@@ -156,6 +201,7 @@ VOID Config_save(UINT id)
         cJSON_AddBoolToObject(miscJson, "Bunny hop", config.misc.bunnyhop);
         cJSON_AddItemToObject(json, "Misc", miscJson);
     }
+
     CHAR fileName[MAX_PATH];
     sprintf(fileName, "%s%s", path, config.names[id]);
 
@@ -184,12 +230,12 @@ VOID Config_reset(VOID)
 
 VOID Config_resetTriggerbot(VOID)
 {
-    for (int i = 0; i < sizeof(config.triggerbot) / sizeof(config.triggerbot[0]); i++) {
+    for (INT i = 0; i < sizeof(config.triggerbot) / sizeof(config.triggerbot[0]); i++) {
         config.triggerbot[i].enabled = false;
         config.triggerbot[i].onKey = false;
         config.triggerbot[i].key = 0;
         config.triggerbot[i].friendlyFire = false;
-        config.triggerbot[i].scopedOnly = false;
+        config.triggerbot[i].scopedOnly = true;
         config.triggerbot[i].ignoreFlash = false;
         config.triggerbot[i].ignoreSmoke = false;
         config.triggerbot[i].hitgroup = 0;
@@ -199,7 +245,7 @@ VOID Config_resetTriggerbot(VOID)
 
 VOID Config_resetGlow(VOID)
 {
-    for (int i = 0; i < sizeof(config.glow) / sizeof(config.glow[0]); i++) {
+    for (INT i = 0; i < sizeof(config.glow) / sizeof(config.glow[0]); i++) {
         config.glow[i].enabled = false;
         config.glow[i].healthBased = false;
         config.glow[i].rainbow = false;
