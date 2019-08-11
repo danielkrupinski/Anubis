@@ -88,5 +88,6 @@ NETVAR_IMPL(tickBase, "CBasePlayer", "m_nTickBase", INT);
 NETVAR_IMPL(aimPunchAngle, "CBasePlayer", "m_aimPunchAngle", Vector);
 
 NETVAR_IMPL(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
+NETVAR_IMPL(gunGameImmunity, "CCSPlayer", "m_bGunGameImmunity", bool);
 
 NETVAR_IMPL(c4startedArming, "CC4", "m_bStartedArming", bool);
