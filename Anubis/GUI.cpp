@@ -48,6 +48,7 @@ void GUI_init(IDirect3DDevice9* device)
 }
 
 static struct {
+    bool triggerbot{ false };
     bool glow{ false };
     bool misc{ false };
     bool config{ false };
@@ -56,6 +57,7 @@ static struct {
 static void renderMenuBar() noexcept
 {
     if (ImGui::BeginMainMenuBar()) {
+        ImGui::MenuItem("Triggerbot", nullptr, &window.triggerbot);
         ImGui::MenuItem("Glow", nullptr, &window.glow);
         ImGui::MenuItem("Misc", nullptr, &window.misc);
         ImGui::MenuItem("Config", nullptr, &window.config);
@@ -65,6 +67,83 @@ static void renderMenuBar() noexcept
 
 static constexpr auto windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize
 | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
+
+static void keybind(int& key) noexcept
+{
+    key ? ImGui::Text("[ 0x%x ]", key) : ImGui::TextUnformatted("[ key ]");
+    if (ImGui::IsItemHovered()) {
+        ImGui::SetTooltip("Press any key to change keybind");
+        ImGuiIO& io = ImGui::GetIO();
+        for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++)
+            if (ImGui::IsKeyPressed(i))
+                key = i != VK_ESCAPE ? i : 0;
+
+        for (int i = 0; i < IM_ARRAYSIZE(io.MouseDown); i++)
+            if (ImGui::IsMouseDown(i))
+                key = i + (i > 1 ? 2 : 1);
+    }
+}
+
+static void renderTriggerbotWindow() noexcept
+{
+    if (window.triggerbot) {
+            ImGui::SetNextWindowSize({ 0.0f, 0.0f });
+            ImGui::Begin("Triggerbot", &window.triggerbot, windowFlags);
+        static int currentCategory{ 0 };
+        ImGui::PushItemWidth(110.0f);
+        ImGui::PushID(0);
+        ImGui::Combo("", &currentCategory, "All\0Pistols\0Heavy\0SMG\0Rifles\0");
+        ImGui::PopID();
+        ImGui::SameLine();
+        static int currentWeapon{ 0 };
+        ImGui::PushID(1);
+        switch (currentCategory) {
+        case 0:
+            currentWeapon = 0;
+            ImGui::NewLine();
+            break;
+        case 1: {
+            static int currentPistol{ 0 };
+            ImGui::Combo("", &currentPistol, "Glock-18\0P2000\0USP-S\0Dual Berettas\0P250\0Tec-9\0Five-Seven\0CZ-75\0Desert Eagle\0Revolver\0");
+            currentWeapon = currentPistol + 1;
+            break;
+        }
+        case 2: {
+            static int currentHeavy{ 0 };
+            ImGui::Combo("", &currentHeavy, "Nova\0XM1014\0Sawed-off\0MAG-7\0M249\0Negev\0");
+            currentWeapon = currentHeavy + 11;
+            break;
+        }
+        case 3: {
+            static int currentSmg{ 0 };
+            ImGui::Combo("", &currentSmg, "Mac-10\0MP9\0MP7\0MP5-SD\0UMP-45\0P90\0PP-Bizon\0");
+            currentWeapon = currentSmg + 17;
+            break;
+        }
+        case 4: {
+            static int currentRifle{ 0 };
+            ImGui::Combo("", &currentRifle, "Galil AR\0Famas\0AK-47\0M4A4\0M4A1-S\0SSG-08\0SG-553\0AUG\0AWP\0G3SG1\0SCAR-20\0");
+            currentWeapon = currentRifle + 24;
+            break;
+        }
+        }
+        ImGui::PopID();
+        ImGui::SameLine();
+        ImGui::Checkbox("Enabled", &config.triggerbot[currentWeapon].enabled);
+        ImGui::Separator();
+        ImGui::Checkbox("On key", &config.triggerbot[currentWeapon].onKey);
+        ImGui::SameLine();
+        keybind(config.triggerbot[currentWeapon].key);
+        ImGui::Checkbox("Friendly fire", &config.triggerbot[currentWeapon].friendlyFire);
+        ImGui::Checkbox("Scoped only", &config.triggerbot[currentWeapon].scopedOnly);
+        ImGui::Checkbox("Ignore flash", &config.triggerbot[currentWeapon].ignoreFlash);
+        ImGui::Checkbox("Ignore smoke", &config.triggerbot[currentWeapon].ignoreSmoke);
+        ImGui::PushItemWidth(85.0f);
+        ImGui::Combo("Hitgroup", &config.triggerbot[currentWeapon].hitgroup, "All\0Head\0Chest\0Stomach\0Left arm\0Right arm\0Left leg\0Right leg\0");
+        ImGui::PushItemWidth(220.0f);
+        ImGui::SliderInt("", &config.triggerbot[currentWeapon].shotDelay, 0, 250, "Shot delay: %d ms");
+    }
+}
 
 static void renderGlowWindow() noexcept
 {
@@ -192,6 +271,7 @@ void GUI_render()
     ImGui::NewFrame();
 
     renderMenuBar();
+    renderTriggerbotWindow();
     renderGlowWindow();
     renderMiscWindow();
     renderConfigWindow();
