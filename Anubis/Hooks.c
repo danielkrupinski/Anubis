@@ -6,6 +6,7 @@
 #include "GUI.h"
 #include "Hacks/Glow.h"
 #include "Hacks/Misc.h"
+#include "Hacks/Triggerbot.h"
 #include "Hooks.h"
 #include "Interfaces.h"
 #include "Memory.h"
@@ -93,6 +94,7 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
     GlobalVars_serverTime(cmd);
     Misc_autostrafe(cmd);
     Misc_bunnyhop(cmd);
+    Triggerbot_run(cmd);
 
     Angles_normalize(&cmd->viewangles);
 
