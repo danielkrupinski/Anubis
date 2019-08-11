@@ -1,9 +1,12 @@
 #include "../Config.h"
 #include "../Memory.h"
 
+#include "../SDK/ClassId.h"
+#include "../SDK/ClientClass.h"
 #include "../SDK/ConVar.h"
 #include "../SDK/Cvar.h"
 #include "../SDK/Engine.h"
+#include "../SDK/EngineTrace.h"
 #include "../SDK/Entity.h"
 #include "../SDK/EntityList.h"
 #include "../SDK/GlobalVars.h"
@@ -51,6 +54,37 @@ VOID Triggerbot_run(UserCmd* cmd)
             Vector viewAngles = { cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * cosf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * MAX_RANGE,
                                   cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * sinf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * MAX_RANGE,
                                  -sinf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * MAX_RANGE };
+
+            Ray ray;
+            ray.isRay = true;
+            Entity_getEyePosition(localPlayer, &ray.start);
+            ray.delta = viewAngles;
+            ray.isSwept = ray.delta.x || ray.delta.y || ray.delta.z;
+
+            Trace trace;
+            TraceFilter filter;
+            TraceFilter_init(&filter);
+            filter.skip = localPlayer;
+            EngineTrace_traceRay(&ray, 0x46004009, &filter, &trace);
+
+            if (trace.entity && Entity_getClientClass(trace.entity)->classId == ClassId_CSPlayer
+                && (config.triggerbot[weaponIndex].friendlyFire
+                    || Entity_isEnemy(trace.entity))
+                && !*Entity_gunGameImmunity(trace.entity)
+                && (!config.triggerbot[weaponIndex].hitgroup
+                    || trace.hitgroup == config.triggerbot[weaponIndex].hitgroup)
+                && (config.triggerbot[weaponIndex].ignoreSmoke
+                    || !memory.lineGoesThroughSmoke(ray.start, Vector_add(&ray.start, &viewAngles), 1))
+                && (config.triggerbot[weaponIndex].ignoreFlash
+                    || !*Entity_flashDuration(localPlayer))
+                && (!config.triggerbot[weaponIndex].scopedOnly
+                    || !Entity_isSniperRifle(activeWeapon)
+                    || *Entity_isScoped(localPlayer))) {
+                cmd->buttons |= IN_ATTACK;
+                lastTime = 0.0f;
+            } else {
+                lastTime = now;
+            }
         }
     }
 }
