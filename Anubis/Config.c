@@ -85,7 +85,7 @@ VOID Config_load(UINT id)
     if (json) {
         {
             const cJSON* triggerbotJson;
-            int i = 0;
+            INT i = 0;
             cJSON_ArrayForEach(triggerbotJson, cJSON_GetObjectItem(json, "Triggerbot")) {
                 cJSON* enabled = cJSON_GetObjectItem(triggerbotJson, "Enabled");
                 if (cJSON_IsBool(enabled)) config.triggerbot[i].enabled = cJSON_IsTrue(enabled);
@@ -105,6 +105,7 @@ VOID Config_load(UINT id)
                 if (cJSON_IsNumber(hitgroup)) config.triggerbot[i].hitgroup = hitgroup->valueint;
                 cJSON* shotDelay = cJSON_GetObjectItem(triggerbotJson, "Shot delay");
                 if (cJSON_IsNumber(shotDelay)) config.triggerbot[i].shotDelay = shotDelay->valueint;
+                i++;
             }
         }
 
