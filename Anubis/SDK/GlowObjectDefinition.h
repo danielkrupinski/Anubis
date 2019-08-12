@@ -26,6 +26,7 @@ typedef struct GlowObjectDefinition {
 
 typedef struct GlowObjectManager {
     UtlVector glowObjectDefinitions;
+    INT firstFreeSlot;
 } GlowObjectManager;
 
 bool GlowObjectManager_hasGlowEffect(GlowObjectManager*, PVOID);
