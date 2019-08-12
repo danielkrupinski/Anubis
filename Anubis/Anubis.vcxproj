@@ -202,6 +202,7 @@
     <ClCompile Include="SDK\EntityList.c" />
     <ClCompile Include="SDK\GameUI.c" />
     <ClCompile Include="SDK\GlobalVars.c" />
+    <ClCompile Include="SDK\GlowObjectDefinition.c" />
     <ClCompile Include="SDK\ItemDefinitionIndex.c" />
     <ClCompile Include="SDK\Surface.c" />
     <ClCompile Include="SDK\Utils.c" />

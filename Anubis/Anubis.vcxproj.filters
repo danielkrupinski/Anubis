@@ -117,6 +117,9 @@
     <ClCompile Include="SDK\ItemDefinitionIndex.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\GlowObjectDefinition.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
