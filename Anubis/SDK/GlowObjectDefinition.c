@@ -24,3 +24,13 @@ INT GlowObjectManager_registerGlowObject(GlowObjectManager* glowObjectManager, P
     }
     return index;
 }
+
+VOID GlowObjectManager_unregisterGlowObject(GlowObjectManager* glowObjectManager, INT index)
+{
+    GlowObjectDefinition* glowObject = (GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + index;
+    glowObject->nextFreeSlot = glowObjectManager->firstFreeSlot;
+    glowObject->entity = NULL;
+    glowObject->renderWhenOccluded = false;
+    glowObject->renderWhenUnoccluded = false;
+    glowObjectManager->firstFreeSlot = index;
+}
