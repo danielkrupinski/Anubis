@@ -27,3 +27,5 @@ typedef struct GlowObjectDefinition {
 typedef struct GlowObjectManager {
     UtlVector glowObjectDefinitions;
 } GlowObjectManager;
+
+bool GlowObjectManager_hasGlowEffect(GlowObjectManager*, PVOID);
