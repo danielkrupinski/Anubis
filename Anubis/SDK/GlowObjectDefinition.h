@@ -30,3 +30,4 @@ typedef struct GlowObjectManager {
 } GlowObjectManager;
 
 bool GlowObjectManager_hasGlowEffect(GlowObjectManager*, PVOID);
+INT GlowObjectManager_registerGlowObject(GlowObjectManager*, PVOID);

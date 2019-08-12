@@ -9,3 +9,18 @@ bool GlowObjectManager_hasGlowEffect(GlowObjectManager* glowObjectManager, PVOID
     }
     return false;
 }
+
+INT GlowObjectManager_registerGlowObject(GlowObjectManager* glowObjectManager, PVOID entity)
+{
+    int index = glowObjectManager->firstFreeSlot;
+    if (index != -1) {
+        GlowObjectDefinition* glowObject = (GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + index;
+        glowObjectManager->firstFreeSlot = glowObject->nextFreeSlot;
+        glowObject->entity = entity;
+        glowObject->fullBloomRender = false;
+        glowObject->fullBloomStencilTestValue = 0;
+        glowObject->splitScreenSlot = -1;
+        glowObject->nextFreeSlot = -2;
+    }
+    return index;
+}
