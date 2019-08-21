@@ -14,7 +14,6 @@ BOOL APIENTRY DllMain(HMODULE hModule,
         Config_init("Anubis");
         Interfaces_init();
         Memory_init();
-        Netvars_init();
         Hooks_init();
     }
     return TRUE;

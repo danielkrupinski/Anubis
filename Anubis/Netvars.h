@@ -2,7 +2,6 @@
 
 #include <Windows.h>
 
-VOID Netvars_init(VOID);
 SIZE_T Netvars_getOffset(UINT);
 
 #define NETVAR_OFFSET(funcname, class_name, var_name, offset, type) \

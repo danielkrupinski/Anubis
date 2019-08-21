@@ -47,7 +47,7 @@ static VOID traverseTable(bool unload, const char* networkName, RecvTable* recvT
     }
 }
 
-VOID Netvars_init(VOID)
+VOID initializeNetvars(VOID)
 {
     currentOffset = &firstOffset;
 
@@ -57,6 +57,13 @@ VOID Netvars_init(VOID)
 
 SIZE_T Netvars_getOffset(UINT hash)
 {
+    static bool netvarsInitialized = false;
+
+    if (!netvarsInitialized) {
+        initializeNetvars();
+        netvarsInitialized = true;
+    }
+
     for (Offset* offset = &firstOffset; offset; offset = offset->next)
         if (hash == offset->nameHash)
             return offset->offset;
