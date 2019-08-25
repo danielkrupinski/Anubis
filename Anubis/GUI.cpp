@@ -205,6 +205,7 @@ static void renderMiscWindow() noexcept
         ImGui::Begin("Misc", &window.misc, windowFlags);
         ImGui::Checkbox("Auto strafe", &config.misc.autostrafe);
         ImGui::Checkbox("Bunnyhop", &config.misc.bunnyhop);
+        ImGui::Checkbox("Moonwalk", &config.misc.moonwalk);
         if (ImGui::Button("Unhook"))
             Hooks_restore();
         ImGui::End();
