@@ -90,6 +90,8 @@ bool Entity_isSniperRifle(PVOID entity)
     }
 }
 
+NETVAR_OFFSET_IMPL(moveType, "CBaseEntity", "m_nRenderMode", 1, MoveType);
+
 NETVAR_IMPL(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 
 NETVAR_IMPL(clip, "CBaseCombatWeapon", "m_iClip1", INT);
