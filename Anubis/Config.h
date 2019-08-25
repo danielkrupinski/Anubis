@@ -32,6 +32,7 @@ typedef struct Config {
     struct {
         bool bunnyhop;
         bool autostrafe;
+        bool moonwalk;
     } misc;
 
     size_t count;

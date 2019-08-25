@@ -142,6 +142,8 @@ VOID Config_load(UINT id)
             if (cJSON_IsBool(autoStrafe)) config.misc.autostrafe = cJSON_IsTrue(autoStrafe);
             cJSON* bunnyHop = cJSON_GetObjectItem(miscJson, "Bunny hop");
             if (cJSON_IsBool(bunnyHop)) config.misc.bunnyhop = cJSON_IsTrue(bunnyHop);
+            cJSON* moonwalk = cJSON_GetObjectItem(miscJson, "Moonwalk");
+            if (cJSON_IsBool(moonwalk)) config.misc.moonwalk = cJSON_IsTrue(moonwalk);
         }
     }
 
@@ -200,6 +202,7 @@ VOID Config_save(UINT id)
 
         cJSON_AddBoolToObject(miscJson, "Auto strafe", config.misc.autostrafe);
         cJSON_AddBoolToObject(miscJson, "Bunny hop", config.misc.bunnyhop);
+        cJSON_AddBoolToObject(miscJson, "Moonwalk", config.misc.moonwalk);
         cJSON_AddItemToObject(json, "Misc", miscJson);
     }
 
@@ -227,6 +230,7 @@ VOID Config_reset(VOID)
 
     config.misc.autostrafe = false;
     config.misc.bunnyhop = false;
+    config.misc.moonwalk = false;
 }
 
 VOID Config_resetTriggerbot(VOID)
