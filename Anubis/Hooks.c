@@ -94,6 +94,7 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
     GlobalVars_serverTime(cmd);
     Misc_autostrafe(cmd);
     Misc_bunnyhop(cmd);
+    Misc_moonwalk(cmd);
     Triggerbot_run(cmd);
 
     Angles_normalize(&cmd->viewangles);
