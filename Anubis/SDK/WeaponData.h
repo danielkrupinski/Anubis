@@ -4,19 +4,19 @@
 
 typedef struct WeaponData {
     BYTE pad[20];
-    int maxClip;
+    INT maxClip;
     BYTE pad1[176];
-    int type;
+    INT type;
     BYTE pad2[32];
-    bool fullAuto;
+    BOOLEAN fullAuto;
     BYTE pad3[3];
-    int damage;
-    float armorRatio;
-    int bullets;
-    float penetration;
+    INT damage;
+    FLOAT armorRatio;
+    INT bullets;
+    FLOAT penetration;
     BYTE pad4[8];
-    float range;
-    float rangeModifier;
+    FLOAT range;
+    FLOAT rangeModifier;
     BYTE pad5[16];
-    bool hasSilencer;
+    BOOLEAN hasSilencer;
 } WeaponData;
