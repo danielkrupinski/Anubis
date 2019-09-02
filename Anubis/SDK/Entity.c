@@ -38,6 +38,11 @@ VOID Entity_getEyePosition(PVOID entity, Vector* out)
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), (PUINT*)entity, 281, out);
 }
 
+WeaponData* Entity_getWeaponData(PVOID entity)
+{
+    return CALL_VIRTUAL_METHOD(WeaponData*(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 454);
+}
+
 bool Entity_isEnemy(PVOID entity)
 {
     return memory.isOtherEnemy(entity, NULL, EntityList_getEntity(Engine_getLocalPlayer()));

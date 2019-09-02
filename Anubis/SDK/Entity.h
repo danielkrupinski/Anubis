@@ -7,6 +7,7 @@
 
 typedef struct ClientClass ClientClass;
 typedef struct Vector Vector;
+typedef struct WeaponData WeaponData;
 typedef float Matrix3x4[3][4];
 
 ClientClass* Entity_getClientClass(PVOID);
@@ -15,6 +16,7 @@ bool Entity_setupBones(PVOID, Matrix3x4*, INT, INT, FLOAT);
 bool Entity_isWeapon(PVOID);
 PVOID Entity_getActiveWeapon(PVOID);
 VOID Entity_getEyePosition(PVOID, Vector*);
+WeaponData* Entity_getWeaponData(PVOID);
 bool Entity_isEnemy(PVOID);
 Vector Entity_getBonePosition(PVOID, INT);
 bool Entity_isVisible(PVOID, const Vector*);
