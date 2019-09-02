@@ -233,5 +233,8 @@
     <ClInclude Include="SDK\ItemDefinitionIndex.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\WeaponData.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
