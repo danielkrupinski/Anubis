@@ -14,10 +14,9 @@
 #include "../SDK/UserCmd.h"
 #include "../SDK/Utils.h"
 #include "../SDK/Vector.h"
+#include "../SDK/WeaponData.h"
 
 #include "Triggerbot.h"
-
-#define MAX_RANGE 8192.0f
 
 VOID Triggerbot_run(UserCmd* cmd)
 {
@@ -51,9 +50,11 @@ VOID Triggerbot_run(UserCmd* cmd)
             aimPunch.y *= ConVar_getFloat(weaponRecoilScale);
             aimPunch.z *= ConVar_getFloat(weaponRecoilScale);
 
-            Vector viewAngles = { cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * cosf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * MAX_RANGE,
-                                  cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * sinf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * MAX_RANGE,
-                                 -sinf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * MAX_RANGE };
+            FLOAT maxRange = Entity_getWeaponData(activeWeapon)->range;
+
+            Vector viewAngles = { cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * cosf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * maxRange,
+                                  cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * sinf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * maxRange,
+                                 -sinf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * maxRange };
 
             Ray ray;
             ray.isRay = true;
