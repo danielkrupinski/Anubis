@@ -113,5 +113,6 @@ NETVAR_IMPL(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
 NETVAR_IMPL(gunGameImmunity, "CCSPlayer", "m_bGunGameImmunity", bool);
 NETVAR_IMPL(flashDuration, "CCSPlayer", "m_flFlashDuration", FLOAT);
 NETVAR_IMPL(isScoped, "CCSPlayer", "m_bIsScoped", bool);
+NETVAR_IMPL(hasHelmet, "CCSPlayer", "m_bHasHelmet", BOOLEAN);
 
 NETVAR_IMPL(c4startedArming, "CC4", "m_bStartedArming", bool);
