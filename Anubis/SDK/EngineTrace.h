@@ -34,6 +34,8 @@ typedef enum HitGroup {
     HitGroup_Gear = 10
 } HitGroup;
 
+FLOAT HitGroup_getDamageMultiplier(INT);
+
 typedef struct TraceSurface {
     PCSTR name;
     SHORT surfaceProps;
