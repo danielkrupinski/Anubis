@@ -33,6 +33,21 @@ FLOAT HitGroup_getDamageMultiplier(INT hitGroup)
     }
 }
 
+BOOLEAN HitGroup_isArmored(INT hitGroup, BOOLEAN helmet)
+{
+    switch (hitGroup) {
+    case HitGroup_Head:
+        return helmet;
+    case HitGroup_Chest:
+    case HitGroup_Stomach:
+    case HitGroup_LeftArm:
+    case HitGroup_RightArm:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 VOID EngineTrace_traceRay(const Ray* ray, UINT mask, const TraceFilter* filter, Trace* trace)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, const Ray*, UINT, const TraceFilter*, Trace*), interfaces.engineTrace, 5, ray, mask, filter, trace);

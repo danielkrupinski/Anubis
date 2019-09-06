@@ -35,6 +35,7 @@ typedef enum HitGroup {
 } HitGroup;
 
 FLOAT HitGroup_getDamageMultiplier(INT);
+BOOLEAN HitGroup_isArmored(INT, BOOLEAN);
 
 typedef struct TraceSurface {
     PCSTR name;
