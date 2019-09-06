@@ -105,6 +105,11 @@ VOID Config_load(UINT id)
                 if (cJSON_IsNumber(hitgroup)) config.triggerbot[i].hitgroup = hitgroup->valueint;
                 cJSON* shotDelay = cJSON_GetObjectItem(triggerbotJson, "Shot delay");
                 if (cJSON_IsNumber(shotDelay)) config.triggerbot[i].shotDelay = shotDelay->valueint;
+                cJSON* minDamage = cJSON_GetObjectItem(triggerbotJson, "Min damage");
+                if (cJSON_IsNumber(minDamage)) config.triggerbot[i].minDamage = minDamage->valueint;
+                cJSON* killshot = cJSON_GetObjectItem(triggerbotJson, "Killshot");
+                if (cJSON_IsBool(killshot)) config.triggerbot[i].killshot = cJSON_IsTrue(killshot);
+
                 i++;
             }
         }
@@ -169,6 +174,8 @@ VOID Config_save(UINT id)
             cJSON_AddBoolToObject(triggerbot, "Ignore smoke", config.triggerbot[i].ignoreSmoke);
             cJSON_AddNumberToObject(triggerbot, "Hitgroup", config.triggerbot[i].hitgroup);
             cJSON_AddNumberToObject(triggerbot, "Shot delay", config.triggerbot[i].shotDelay);
+            cJSON_AddNumberToObject(triggerbot, "Min damage", config.triggerbot[i].minDamage);
+            cJSON_AddBoolToObject(triggerbot, "Killshot", config.triggerbot[i].killshot);
 
             cJSON_AddItemToArray(triggerbotJson, triggerbot);
         }
@@ -245,6 +252,8 @@ VOID Config_resetTriggerbot(VOID)
         config.triggerbot[i].ignoreSmoke = false;
         config.triggerbot[i].hitgroup = 0;
         config.triggerbot[i].shotDelay = 0;
+        config.triggerbot[i].minDamage = 1;
+        config.triggerbot[i].killshot = false;
     }
 }
 

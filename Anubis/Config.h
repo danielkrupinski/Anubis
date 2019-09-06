@@ -23,6 +23,8 @@ typedef struct TriggerbotConfig {
     bool ignoreSmoke;
     INT hitgroup;
     INT shotDelay;
+    INT minDamage;
+    bool killshot;
 } TriggerbotConfig;
 
 typedef struct Config {
