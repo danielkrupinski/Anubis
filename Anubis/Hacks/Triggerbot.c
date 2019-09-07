@@ -50,11 +50,11 @@ VOID Triggerbot_run(UserCmd* cmd)
             aimPunch.y *= ConVar_getFloat(weaponRecoilScale);
             aimPunch.z *= ConVar_getFloat(weaponRecoilScale);
 
-            FLOAT maxRange = Entity_getWeaponData(activeWeapon)->range;
+            CONST WeaponData* weaponData = Entity_getWeaponData(activeWeapon);
 
-            Vector viewAngles = { cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * cosf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * maxRange,
-                                  cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * sinf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * maxRange,
-                                 -sinf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * maxRange };
+            Vector viewAngles = { cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * cosf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * weaponData->range,
+                                  cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * sinf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * weaponData->range,
+                                 -sinf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * weaponData->range };
 
             Ray ray;
             ray.isRay = true;
@@ -81,8 +81,16 @@ VOID Triggerbot_run(UserCmd* cmd)
                 && (!config.triggerbot[weaponIndex].scopedOnly
                     || !Entity_isSniperRifle(activeWeapon)
                     || *Entity_isScoped(localPlayer))) {
-                cmd->buttons |= IN_ATTACK;
-                lastTime = 0.0f;
+
+                FLOAT damage = (*Entity_itemDefinitionIndex(activeWeapon) != ItemDefinitionIndex_Taser ? HitGroup_getDamageMultiplier(trace.hitgroup) : 1.0f) * weaponData->damage * powf(weaponData->rangeModifier, trace.fraction * weaponData->range / 500.0f);
+                FLOAT armorRatio = weaponData->armorRatio / 2.0f;
+                if (*Entity_itemDefinitionIndex(activeWeapon) != ItemDefinitionIndex_Taser && HitGroup_isArmored(trace.hitgroup, *Entity_hasHelmet(trace.entity)))
+                    damage -= (*Entity_armor(trace.entity) < damage * armorRatio / 2.0f ? *Entity_armor(trace.entity) * 4.0f : damage) * (1.0f - armorRatio);
+
+                if (damage >= (config.triggerbot[weaponIndex].killshot ? *Entity_health(trace.entity) : config.triggerbot[weaponIndex].minDamage)) {
+                    cmd->buttons |= IN_ATTACK;
+                    lastTime = 0.0f;
+                }
             } else {
                 lastTime = now;
             }
