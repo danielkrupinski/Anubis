@@ -23,10 +23,6 @@ VOID Misc_autostrafe(UserCmd* cmd)
 
 VOID Misc_moonwalk(UserCmd* cmd)
 {
-    if (config.misc.moonwalk && *Entity_moveType(EntityList_getEntity(Engine_getLocalPlayer())) != MoveType_Ladder) {
-        if (cmd->buttons & (IN_FORWARD | IN_BACK))
-            cmd->buttons ^= IN_FORWARD | IN_BACK;
-        if (cmd->buttons & (IN_MOVELEFT | IN_MOVERIGHT))
-            cmd->buttons ^= IN_MOVELEFT | IN_MOVERIGHT;
-    }
+    if (config.misc.moonwalk && *Entity_moveType(EntityList_getEntity(Engine_getLocalPlayer())) != MoveType_Ladder)
+        cmd->buttons ^= IN_FORWARD | IN_BACK | IN_MOVELEFT | IN_MOVERIGHT;
 }
