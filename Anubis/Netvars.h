@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+#include "SDK/Utils.h"
 
 SIZE_T Netvars_getOffset(UINT);
 
@@ -13,7 +14,8 @@ type* Entity_##funcname(PVOID entity);
 #define NETVAR_OFFSET_IMPL(funcname, class_name, var_name, offset, type) \
 type* Entity_##funcname(PVOID entity) \
 { \
-	return (type*)((PBYTE)entity + Netvars_getOffset(UTILS_HASH(class_name "->" var_name)) + offset); \
+    UTILS_STATIC_VAR(SIZE_T, netvarOffset, Netvars_getOffset(UTILS_HASH(class_name "->" var_name))); \
+	return (type*)((PBYTE)entity + netvarOffset + offset); \
 }
 
 #define NETVAR_IMPL(funcname, class_name, var_name, type) \
