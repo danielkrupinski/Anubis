@@ -87,8 +87,8 @@ static void keybind(int& key) noexcept
 static void renderTriggerbotWindow() noexcept
 {
     if (window.triggerbot) {
-            ImGui::SetNextWindowSize({ 0.0f, 0.0f });
-            ImGui::Begin("Triggerbot", &window.triggerbot, windowFlags);
+        ImGui::SetNextWindowSize({ 0.0f, 0.0f });
+        ImGui::Begin("Triggerbot", &window.triggerbot, windowFlags);
         static int currentCategory{ 0 };
         ImGui::PushItemWidth(110.0f);
         ImGui::PushID(0);
@@ -145,6 +145,7 @@ static void renderTriggerbotWindow() noexcept
         ImGui::InputInt("Min damage", &config.triggerbot[currentWeapon].minDamage);
         config.triggerbot[currentWeapon].minDamage = max(min(config.triggerbot[currentWeapon].minDamage, 250), 0);
         ImGui::Checkbox("Killshot", &config.triggerbot[currentWeapon].killshot);
+        ImGui::End();
     }
 }
 
