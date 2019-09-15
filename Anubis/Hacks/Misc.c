@@ -7,8 +7,13 @@
 
 VOID Misc_bunnyhop(UserCmd* cmd)
 {
-    if (config.misc.bunnyhop && !(*Entity_flags(EntityList_getEntity(Engine_getLocalPlayer())) & 1))
+    PVOID localPlayer = EntityList_getEntity(Engine_getLocalPlayer());
+    static BOOLEAN wasLastTimeOnGround = TRUE;
+
+    if (config.misc.bunnyhop && !(*Entity_flags(localPlayer) & 1) && !wasLastTimeOnGround && *Entity_moveType(localPlayer) != MoveType_Ladder)
         cmd->buttons &= ~IN_JUMP;
+
+    wasLastTimeOnGround = *Entity_flags(localPlayer) & 1;
 }
 
 VOID Misc_autostrafe(UserCmd* cmd)
