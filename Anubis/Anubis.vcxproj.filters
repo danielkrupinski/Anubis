@@ -236,5 +236,8 @@
     <ClInclude Include="SDK\WeaponData.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
