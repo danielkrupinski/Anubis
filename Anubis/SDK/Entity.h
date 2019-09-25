@@ -22,7 +22,6 @@ Vector Entity_getBonePosition(PVOID, INT);
 bool Entity_isVisible(PVOID, const Vector*);
 bool Entity_isSniperRifle(PVOID);
 
-
 typedef enum MoveType {
     MoveType_Noclip = 8,
     MoveType_Ladder = 9
