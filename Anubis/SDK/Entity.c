@@ -25,22 +25,22 @@ bool Entity_setupBones(PVOID entity, Matrix3x4* out, INT maxBones, INT boneMask,
 
 bool Entity_isWeapon(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 164);
+    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 165);
 }
 
 PVOID Entity_getActiveWeapon(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 266);
+    return CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 267);
 }
 
 VOID Entity_getEyePosition(PVOID entity, Vector* out)
 {
-    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), (PUINT*)entity, 282, out);
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), (PUINT*)entity, 283, out);
 }
 
 WeaponData* Entity_getWeaponData(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(WeaponData*(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 455);
+    return CALL_VIRTUAL_METHOD(WeaponData*(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 456);
 }
 
 bool Entity_isEnemy(PVOID entity)
