@@ -41,7 +41,7 @@ static VOID applyPlayerGlow(GlowObjectDefinition* glowObject, GlowConfig* glowCo
     Vector localPlayerEyePosition;
     Entity_getEyePosition(EntityList_getEntity(Engine_getLocalPlayer()), &localPlayerEyePosition);
     if (glowConfigAll->enabled) applyGlow(glowObject, glowConfigAll, *Entity_health(entity));
-    else if (Entity_isVisible(entity, NULL) && !memory.lineGoesThroughSmoke(localPlayerEyePosition, Entity_getBonePosition(entity, 8), 1)) applyGlow(glowObject, glowConfigVisible, *Entity_health(entity));
+    else if ((glowConfigVisible->style || Entity_isVisible(entity, NULL)) && !memory.lineGoesThroughSmoke(localPlayerEyePosition, Entity_getBonePosition(entity, 8), 1)) applyGlow(glowObject, glowConfigVisible, *Entity_health(entity));
     else applyGlow(glowObject, glowConfigOccluded, *Entity_health(entity));
 
 }
