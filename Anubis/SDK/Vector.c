@@ -14,7 +14,7 @@ Vector Vector_multiply(Vector* v1, Vector* v2)
     return result;
 }
 
-Vector Vector_add(Vector* v1, Vector* v2)
+Vector Vector_add(Vector CONST* v1, Vector CONST* v2)
 {
     Vector result = { v1->x + v2->x, v1->y + v2->y, v1->z + v2->z };
     return result;
