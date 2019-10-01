@@ -8,7 +8,7 @@
 typedef struct ClientClass ClientClass;
 typedef struct Vector Vector;
 typedef struct WeaponData WeaponData;
-typedef float Matrix3x4[3][4];
+typedef struct Matrix3x4 Matrix3x4;
 
 ClientClass* Entity_getClientClass(PVOID);
 bool Entity_isDormant(PVOID);
