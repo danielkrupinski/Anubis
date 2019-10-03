@@ -41,11 +41,11 @@ NETVAR(health, "CBasePlayer", "m_iHealth", INT);
 NETVAR(tickBase, "CBasePlayer", "m_nTickBase", INT);
 NETVAR(aimPunchAngle, "CBasePlayer", "m_aimPunchAngle", struct Vector);
 
-NETVAR(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
-NETVAR(gunGameImmunity, "CCSPlayer", "m_bGunGameImmunity", bool);
+NETVAR(isDefusing, "CCSPlayer", "m_bIsDefusing", BOOLEAN);
+NETVAR(gunGameImmunity, "CCSPlayer", "m_bGunGameImmunity", BOOLEAN);
 NETVAR(flashDuration, "CCSPlayer", "m_flFlashDuration", FLOAT);
-NETVAR(isScoped, "CCSPlayer", "m_bIsScoped", bool);
+NETVAR(isScoped, "CCSPlayer", "m_bIsScoped", BOOLEAN);
 NETVAR(hasHelmet, "CCSPlayer", "m_bHasHelmet", BOOLEAN);
 NETVAR(armor, "CCSPlayer", "m_ArmorValue", INT);
 
-NETVAR(c4startedArming, "CC4", "m_bStartedArming", bool);
+NETVAR(c4startedArming, "CC4", "m_bStartedArming", BOOLEAN);
