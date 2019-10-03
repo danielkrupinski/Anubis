@@ -6,10 +6,10 @@
 #include "../SDK/Entity.h"
 #include "../SDK/EntityList.h"
 
-FLOAT GlobalVars_serverTime(UserCmd* cmd)
+FLOAT GlobalVars_serverTime(struct UserCmd* cmd)
 {
     static INT tick = 0;
-    static UserCmd* lastCmd = NULL;
+    static struct UserCmd* lastCmd = NULL;
 
     if (cmd) {
         if (!lastCmd || lastCmd->hasbeenpredicted)

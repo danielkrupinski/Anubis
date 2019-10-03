@@ -51,7 +51,7 @@ VOID initializeNetvars(VOID)
 {
     currentOffset = &firstOffset;
 
-    for (ClientClass* clientClass = Client_getAllClasses(); clientClass; clientClass = clientClass->next)
+    for (struct ClientClass* clientClass = Client_getAllClasses(); clientClass; clientClass = clientClass->next)
         traverseTable(false, clientClass->networkName, clientClass->recvTable, 0);
 }
 

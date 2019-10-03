@@ -2,6 +2,6 @@
 
 #include <Windows.h>
 
-typedef struct ClientClass ClientClass;
+struct ClientClass;
 
-ClientClass* Client_getAllClasses(VOID);
+struct ClientClass* Client_getAllClasses(VOID);

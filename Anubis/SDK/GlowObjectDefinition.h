@@ -6,9 +6,9 @@
 #include "UtlVector.h"
 #include "Vector.h"
 
-typedef struct GlowObjectDefinition {
+struct GlowObjectDefinition {
     PVOID entity;
-    Vector glowColor;
+    struct Vector glowColor;
     float   alpha;
     BYTE pad[4];
     float m_flSomeFloat;
@@ -22,13 +22,13 @@ typedef struct GlowObjectDefinition {
     int glowStyle;
     int splitScreenSlot;
     int nextFreeSlot;
-} GlowObjectDefinition;
+};
 
-typedef struct GlowObjectManager {
-    UtlVector glowObjectDefinitions;
+struct GlowObjectManager {
+    struct UtlVector glowObjectDefinitions;
     INT firstFreeSlot;
-} GlowObjectManager;
+};
 
-bool GlowObjectManager_hasGlowEffect(GlowObjectManager*, PVOID);
-INT GlowObjectManager_registerGlowObject(GlowObjectManager*, PVOID);
-VOID GlowObjectManager_unregisterGlowObject(GlowObjectManager*, INT);
+bool GlowObjectManager_hasGlowEffect(struct GlowObjectManager*, PVOID);
+INT GlowObjectManager_registerGlowObject(struct GlowObjectManager*, PVOID);
+VOID GlowObjectManager_unregisterGlowObject(struct GlowObjectManager*, INT);

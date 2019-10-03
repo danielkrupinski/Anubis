@@ -6,9 +6,9 @@
 #include "Vector.h"
 
 typedef struct Ray {
-    Vector start;
+    struct Vector start;
     FLOAT pad;
-    Vector delta;
+    struct Vector delta;
     BYTE pad2[40];
     bool isRay;
     bool isSwept;
@@ -44,8 +44,8 @@ typedef struct TraceSurface {
 } TraceSurface;
 
 typedef struct Trace {
-    Vector startpos;
-    Vector endpos;
+    struct Vector startpos;
+    struct Vector endpos;
     BYTE pad[20];
     FLOAT fraction;
     INT contents;

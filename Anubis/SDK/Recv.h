@@ -10,7 +10,7 @@ typedef struct RecvProxyData {
         INT _int;
         PSTR _string;
         PVOID data;
-        Vector vector;
+        struct Vector vector;
         INT64 int64;
     } value;
 } RecvProxyData;

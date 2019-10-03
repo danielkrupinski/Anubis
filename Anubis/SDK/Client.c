@@ -2,7 +2,7 @@
 #include "../Interfaces.h"
 #include "Utils.h"
 
-ClientClass* Client_getAllClasses(VOID)
+struct ClientClass* Client_getAllClasses(VOID)
 {
-    return CALL_VIRTUAL_METHOD(ClientClass*(__fastcall*)(PVOID, PVOID), interfaces.client, 8);
+    return CALL_VIRTUAL_METHOD(struct ClientClass*(__fastcall*)(PVOID, PVOID), interfaces.client, 8);
 }

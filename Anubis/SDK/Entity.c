@@ -9,9 +9,9 @@
 #include "Utils.h"
 #include "Vector.h"
 
-ClientClass* Entity_getClientClass(PVOID entity)
+struct ClientClass* Entity_getClientClass(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(ClientClass*(__fastcall*)(PVOID, PVOID), (PBYTE)entity + 8, 2);
+    return CALL_VIRTUAL_METHOD(struct ClientClass*(__fastcall*)(PVOID, PVOID), (PBYTE)entity + 8, 2);
 }
 
 bool Entity_isDormant(PVOID entity)
@@ -19,9 +19,9 @@ bool Entity_isDormant(PVOID entity)
     return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), (PBYTE)entity + 8, 9);
 }
 
-bool Entity_setupBones(PVOID entity, Matrix3x4* out, INT maxBones, INT boneMask, FLOAT currentTime)
+bool Entity_setupBones(PVOID entity, struct Matrix3x4* out, INT maxBones, INT boneMask, FLOAT currentTime)
 {
-    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID, Matrix3x4*, INT, INT, FLOAT), (PBYTE)entity + 4, 13, out, maxBones, boneMask, currentTime);
+    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID, struct Matrix3x4*, INT, INT, FLOAT), (PBYTE)entity + 4, 13, out, maxBones, boneMask, currentTime);
 }
 
 bool Entity_isWeapon(PVOID entity)
@@ -39,9 +39,9 @@ VOID Entity_getEyePosition(PVOID entity, Vector* out)
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), entity, 283, out);
 }
 
-WeaponData* Entity_getWeaponData(PVOID entity)
+struct WeaponData* Entity_getWeaponData(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(WeaponData*(__fastcall*)(PVOID, PVOID), entity, 456);
+    return CALL_VIRTUAL_METHOD(struct WeaponData*(__fastcall*)(PVOID, PVOID), entity, 456);
 }
 
 bool Entity_isEnemy(PVOID entity)
@@ -51,7 +51,7 @@ bool Entity_isEnemy(PVOID entity)
 
 Vector Entity_getBonePosition(PVOID entity, INT bone)
 {
-    static Matrix3x4 boneMatrices[128];
+    static struct Matrix3x4 boneMatrices[128];
 
      if (Entity_setupBones(entity, boneMatrices, 128, 256, 0.0f)) {
          Vector result = { boneMatrices[bone].m[0][3], boneMatrices[bone].m[1][3], boneMatrices[bone].m[2][3] };
@@ -96,7 +96,7 @@ bool Entity_isSniperRifle(PVOID entity)
     }
 }
 
-NETVAR_OFFSET_IMPL(moveType, "CBaseEntity", "m_nRenderMode", 1, MoveType);
+NETVAR_OFFSET_IMPL(moveType, "CBaseEntity", "m_nRenderMode", 1, enum MoveType);
 
 NETVAR_IMPL(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 

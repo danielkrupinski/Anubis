@@ -2,9 +2,9 @@
 
 #include <Windows.h>
 
-typedef struct UserCmd UserCmd;
+struct UserCmd;
 
-typedef struct GlobalVars {
+struct GlobalVars {
     const FLOAT realTime;
     const INT frameCount;
     const FLOAT absoluteFrameTime;
@@ -14,6 +14,6 @@ typedef struct GlobalVars {
     const INT maxClients;
     const INT tickCount;
     const FLOAT intervalPerTick;
-} GlobalVars;
+};
 
-FLOAT GlobalVars_serverTime(UserCmd*);
+FLOAT GlobalVars_serverTime(struct UserCmd*);

@@ -4,11 +4,11 @@
 
 typedef enum ClassId ClassId;
 
-typedef struct ClientClass {
+struct ClientClass {
     PVOID(*createFunction)(INT, INT);
     PVOID createEventFunction;
     PSTR networkName;
     PVOID recvTable;
     struct ClientClass* next;
     ClassId classId;
-} ClientClass;
+};

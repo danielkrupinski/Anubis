@@ -1,20 +1,20 @@
 #include "GlowObjectDefinition.h"
 
-bool GlowObjectManager_hasGlowEffect(GlowObjectManager* glowObjectManager, PVOID entity)
+bool GlowObjectManager_hasGlowEffect(struct GlowObjectManager* glowObjectManager, PVOID entity)
 {
     for (int i = 0; i < glowObjectManager->glowObjectDefinitions.size; i++) {
-        GlowObjectDefinition* glowObject = (GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + i;
+        struct GlowObjectDefinition* glowObject = (struct GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + i;
         if (glowObject->nextFreeSlot == -2 && glowObject->entity == entity)
             return true;
     }
     return false;
 }
 
-INT GlowObjectManager_registerGlowObject(GlowObjectManager* glowObjectManager, PVOID entity)
+INT GlowObjectManager_registerGlowObject(struct GlowObjectManager* glowObjectManager, PVOID entity)
 {
     int index = glowObjectManager->firstFreeSlot;
     if (index != -1) {
-        GlowObjectDefinition* glowObject = (GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + index;
+        struct GlowObjectDefinition* glowObject = (struct GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + index;
         glowObjectManager->firstFreeSlot = glowObject->nextFreeSlot;
         glowObject->entity = entity;
         glowObject->fullBloomRender = false;
@@ -25,9 +25,9 @@ INT GlowObjectManager_registerGlowObject(GlowObjectManager* glowObjectManager, P
     return index;
 }
 
-VOID GlowObjectManager_unregisterGlowObject(GlowObjectManager* glowObjectManager, INT index)
+VOID GlowObjectManager_unregisterGlowObject(struct GlowObjectManager* glowObjectManager, INT index)
 {
-    GlowObjectDefinition* glowObject = (GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + index;
+    struct GlowObjectDefinition* glowObject = (struct GlowObjectDefinition*)glowObjectManager->glowObjectDefinitions.memory + index;
     glowObject->nextFreeSlot = glowObjectManager->firstFreeSlot;
     glowObject->entity = NULL;
     glowObject->renderWhenOccluded = false;

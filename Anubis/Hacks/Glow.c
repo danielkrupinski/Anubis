@@ -12,7 +12,7 @@
 #include "../SDK/GlobalVars.h"
 #include "../SDK/GlowObjectDefinition.h"
 
-static VOID applyGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfig, INT health)
+static VOID applyGlow(struct GlowObjectDefinition* glowObject, GlowConfig* glowConfig, INT health)
 {
     if (glowConfig->enabled) {
         glowObject->renderWhenOccluded = true;
@@ -36,7 +36,7 @@ static VOID applyGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfig, 
     }
 }
 
-static VOID applyPlayerGlow(GlowObjectDefinition* glowObject, GlowConfig* glowConfigAll, GlowConfig* glowConfigVisible, GlowConfig* glowConfigOccluded, PVOID entity)
+static VOID applyPlayerGlow(struct GlowObjectDefinition* glowObject, GlowConfig* glowConfigAll, GlowConfig* glowConfigVisible, GlowConfig* glowConfigOccluded, PVOID entity)
 {
     Vector localPlayerEyePosition;
     Entity_getEyePosition(EntityList_getEntity(Engine_getLocalPlayer()), &localPlayerEyePosition);
@@ -49,7 +49,7 @@ static VOID applyPlayerGlow(GlowObjectDefinition* glowObject, GlowConfig* glowCo
 VOID Glow_render(VOID)
 {
     for (int i = 0; i < memory.glowObjectManager->glowObjectDefinitions.size; i++) {
-        GlowObjectDefinition* glowObject = (GlowObjectDefinition*)memory.glowObjectManager->glowObjectDefinitions.memory + i;
+        struct GlowObjectDefinition* glowObject = (struct GlowObjectDefinition*)memory.glowObjectManager->glowObjectDefinitions.memory + i;
         PVOID entity = glowObject->entity;
 
         if (glowObject->nextFreeSlot != -2 || !entity || Entity_isDormant(entity))

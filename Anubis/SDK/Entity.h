@@ -5,29 +5,29 @@
 
 #include "../Netvars.h"
 
-typedef struct ClientClass ClientClass;
-typedef struct Vector Vector;
-typedef struct WeaponData WeaponData;
-typedef struct Matrix3x4 Matrix3x4;
+struct ClientClass;
+struct Vector;
+struct WeaponData;
+struct Matrix3x4;
 
-ClientClass* Entity_getClientClass(PVOID);
+struct ClientClass* Entity_getClientClass(PVOID);
 bool Entity_isDormant(PVOID);
-bool Entity_setupBones(PVOID, Matrix3x4*, INT, INT, FLOAT);
+bool Entity_setupBones(PVOID, struct Matrix3x4*, INT, INT, FLOAT);
 bool Entity_isWeapon(PVOID);
 PVOID Entity_getActiveWeapon(PVOID);
-VOID Entity_getEyePosition(PVOID, Vector*);
-WeaponData* Entity_getWeaponData(PVOID);
+VOID Entity_getEyePosition(PVOID, struct Vector*);
+struct WeaponData* Entity_getWeaponData(PVOID);
 bool Entity_isEnemy(PVOID);
-Vector Entity_getBonePosition(PVOID, INT);
-bool Entity_isVisible(PVOID, const Vector*);
+struct Vector Entity_getBonePosition(PVOID, INT);
+bool Entity_isVisible(PVOID, const struct Vector*);
 bool Entity_isSniperRifle(PVOID);
 
-typedef enum MoveType {
+enum MoveType {
     MoveType_Noclip = 8,
     MoveType_Ladder = 9
 } MoveType;
 
-NETVAR_OFFSET(moveType, "CBaseEntity", "m_nRenderMode", 1, MoveType);
+NETVAR_OFFSET(moveType, "CBaseEntity", "m_nRenderMode", 1, enum MoveType);
 
 NETVAR(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 
@@ -39,7 +39,7 @@ NETVAR(itemDefinitionIndex, "CBaseAttributableItem", "m_iItemDefinitionIndex", S
 NETVAR(flags, "CBasePlayer", "m_fFlags", INT);
 NETVAR(health, "CBasePlayer", "m_iHealth", INT);
 NETVAR(tickBase, "CBasePlayer", "m_nTickBase", INT);
-NETVAR(aimPunchAngle, "CBasePlayer", "m_aimPunchAngle", Vector);
+NETVAR(aimPunchAngle, "CBasePlayer", "m_aimPunchAngle", struct Vector);
 
 NETVAR(isDefusing, "CCSPlayer", "m_bIsDefusing", bool);
 NETVAR(gunGameImmunity, "CCSPlayer", "m_bGunGameImmunity", bool);

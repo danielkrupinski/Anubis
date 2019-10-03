@@ -2,10 +2,10 @@
 
 #include <Windows.h>
 
-typedef struct UtlVector {
+struct UtlVector {
     PINT memory;
     INT allocationCount;
     INT growSize;
     INT size;
     PVOID elements;
-} UtlVector;
+};

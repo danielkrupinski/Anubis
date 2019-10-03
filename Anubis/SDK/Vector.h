@@ -2,12 +2,12 @@
 
 #include <Windows.h>
 
-typedef struct Vector {
+struct Vector {
     FLOAT x, y, z;
-} Vector;
+};
 
-VOID Angles_normalize(Vector*);
+VOID Angles_normalize(struct Vector*);
 
-Vector Vector_multiply(Vector CONST*, Vector CONST*);
-Vector Vector_add(Vector CONST*, Vector CONST*);
-FLOAT Vector_dotProduct(Vector CONST*, Vector CONST*);
+struct Vector Vector_multiply(struct Vector CONST*, struct Vector CONST*);
+struct Vector Vector_add(struct Vector CONST*, struct Vector CONST*);
+FLOAT Vector_dotProduct(struct Vector CONST*, struct Vector CONST*);
