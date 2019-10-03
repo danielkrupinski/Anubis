@@ -11,37 +11,37 @@
 
 ClientClass* Entity_getClientClass(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(ClientClass*(__fastcall*)(PVOID, PVOID), (PUINT*)entity + 2, 2);
+    return CALL_VIRTUAL_METHOD(ClientClass*(__fastcall*)(PVOID, PVOID), (PBYTE)entity + 8, 2);
 }
 
 bool Entity_isDormant(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), (PUINT*)entity + 2, 9);
+    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), (PBYTE)entity + 8, 9);
 }
 
 bool Entity_setupBones(PVOID entity, Matrix3x4* out, INT maxBones, INT boneMask, FLOAT currentTime)
 {
-    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID, Matrix3x4*, INT, INT, FLOAT), (PUINT*)entity + 1, 13, out, maxBones, boneMask, currentTime);
+    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID, Matrix3x4*, INT, INT, FLOAT), (PBYTE)entity + 4, 13, out, maxBones, boneMask, currentTime);
 }
 
 bool Entity_isWeapon(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 165);
+    return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), entity, 165);
 }
 
 PVOID Entity_getActiveWeapon(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 267);
+    return CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID), entity, 267);
 }
 
 VOID Entity_getEyePosition(PVOID entity, Vector* out)
 {
-    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), (PUINT*)entity, 283, out);
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), entity, 283, out);
 }
 
 WeaponData* Entity_getWeaponData(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(WeaponData*(__fastcall*)(PVOID, PVOID), (PUINT*)entity, 456);
+    return CALL_VIRTUAL_METHOD(WeaponData*(__fastcall*)(PVOID, PVOID), entity, 456);
 }
 
 bool Entity_isEnemy(PVOID entity)
