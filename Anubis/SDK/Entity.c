@@ -62,13 +62,13 @@ Vector Entity_getBonePosition(PVOID entity, INT bone)
      }
 }
 
-bool Entity_isVisible(PVOID entity, const Vector* position)
+bool Entity_isVisible(PVOID entity, CONST struct Vector* position)
 {
     PVOID localPlayer = EntityList_getEntity(Engine_getLocalPlayer());
     Ray ray;
     Entity_getEyePosition(localPlayer, &ray.start);
     const Vector endPosition = position ? *position : Entity_getBonePosition(entity, 8);
-
+   
     ray.delta.x = endPosition.x - ray.start.x;
     ray.delta.y = endPosition.y - ray.start.y;
     ray.delta.z = endPosition.z - ray.start.z;
@@ -94,6 +94,11 @@ bool Entity_isSniperRifle(PVOID entity)
         default:
             return false;
     }
+}
+
+CONST struct Matrix3x4* Entity_coordinateFrame(PVOID entity)
+{
+    return (CONST struct Matrix3x4*)((PBYTE)entity + 0x444);
 }
 
 NETVAR_OFFSET_IMPL(moveType, "CBaseEntity", "m_nRenderMode", 1, enum MoveType);

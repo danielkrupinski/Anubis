@@ -19,8 +19,9 @@ VOID Entity_getEyePosition(PVOID, struct Vector*);
 struct WeaponData* Entity_getWeaponData(PVOID);
 bool Entity_isEnemy(PVOID);
 struct Vector Entity_getBonePosition(PVOID, INT);
-bool Entity_isVisible(PVOID, const struct Vector*);
+bool Entity_isVisible(PVOID, CONST struct Vector*);
 bool Entity_isSniperRifle(PVOID);
+CONST struct Matrix3x4* Entity_coordinateFrame(PVOID);
 
 enum MoveType {
     MoveType_Noclip = 8,
