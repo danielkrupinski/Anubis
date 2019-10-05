@@ -3,16 +3,6 @@
 #include <stdbool.h>
 #include <Windows.h>
 
-struct GlowConfig {
-    bool enabled;
-    bool healthBased;
-    bool rainbow;
-    FLOAT thickness;
-    FLOAT alpha;
-    INT style;
-    FLOAT color[3];
-};
-
 struct TriggerbotConfig {
     bool enabled;
     bool onKey;
@@ -27,9 +17,26 @@ struct TriggerbotConfig {
     bool killshot;
 };
 
+struct GlowConfig {
+    bool enabled;
+    bool healthBased;
+    bool rainbow;
+    FLOAT thickness;
+    FLOAT alpha;
+    INT style;
+    FLOAT color[3];
+};
+
+struct Esp {
+    bool enabled;
+    bool box;
+    FLOAT boxColor[3];
+};
+
 struct Config {
     struct TriggerbotConfig triggerbot[35];
     struct GlowConfig glow[17];
+    struct Esp esp[6];
 
     struct {
         bool bunnyhop;
