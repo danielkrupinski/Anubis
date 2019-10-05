@@ -14,6 +14,7 @@
 #include "SDK/Engine.h"
 #include "SDK/EntityList.h"
 #include "SDK/GlobalVars.h"
+#include "SDK/Panel.h"
 #include "SDK/Surface.h"
 #include "SDK/UserCmd.h"
 #include "SDK/Utils.h"
@@ -129,11 +130,23 @@ static VOID __stdcall lockCursor(VOID)
     CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID), interfaces.surface, hooks.surface.oldVmt, 67);
 }
 
+static VOID __stdcall paintTraverse(UINT panel, BOOLEAN forceRepaint, BOOLEAN allowForce)
+{
+    if (!strcmp(Panel_getName(panel), "MatSystemTopPanel")) {
+
+    }
+
+    CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID, UINT, BOOLEAN, BOOLEAN), interfaces.panel, hooks.panel.oldVmt, 41, panel, forceRepaint, allowForce);
+}
+
 VOID Hooks_init(VOID)
 {
     hookVmt(memory.clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, createMove);
     hookMethod(&hooks.clientMode, 44, doPostScreenEffects);
+
+    hookVmt(interfaces.panel, &hooks.panel);
+    hookMethod(&hooks.panel, 41, paintTraverse);
 
     hookVmt(interfaces.surface, &hooks.surface);
     hookMethod(&hooks.surface, 67, lockCursor);
@@ -151,6 +164,7 @@ VOID Hooks_init(VOID)
 VOID Hooks_restore(VOID)
 {
     restoreVmt(&hooks.clientMode);
+    restoreVmt(&hooks.panel);
     restoreVmt(&hooks.surface);
 
     SetWindowLongPtr(FindWindowW(L"Valve001", NULL), GWLP_WNDPROC, (LONG_PTR)hooks.originalWndProc);

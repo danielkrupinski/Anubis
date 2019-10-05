@@ -15,6 +15,7 @@ struct Hooks {
     HRESULT(WINAPI* originalReset)(IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
     WNDPROC originalWndProc;
     struct VmtHook clientMode;
+    struct VmtHook panel;
     struct VmtHook surface;
 };
 
