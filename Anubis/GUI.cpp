@@ -285,3 +285,8 @@ void GUI_render()
     ImGui::Render();
     ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
 }
+
+void GUI_invalidateDeviceObjects(void)
+{
+    ImGui_ImplDX9_InvalidateDeviceObjects();
+}
