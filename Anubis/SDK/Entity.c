@@ -24,6 +24,12 @@ bool Entity_setupBones(PVOID entity, struct Matrix3x4* out, INT maxBones, INT bo
     return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID, struct Matrix3x4*, INT, INT, FLOAT), (PBYTE)entity + 4, 13, out, maxBones, boneMask, currentTime);
 }
 
+CONST struct Vector* Entity_obbMins(PVOID entity)
+{
+    PVOID collideable = CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID), entity, 3);
+    return CALL_VIRTUAL_METHOD(CONST struct Vector*(__fastcall*)(PVOID, PVOID), collideable, 1);
+}
+
 bool Entity_isWeapon(PVOID entity)
 {
     return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), entity, 165);
