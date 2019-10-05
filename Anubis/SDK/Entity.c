@@ -30,6 +30,12 @@ CONST struct Vector* Entity_obbMins(PVOID entity)
     return CALL_VIRTUAL_METHOD(CONST struct Vector*(__fastcall*)(PVOID, PVOID), collideable, 1);
 }
 
+CONST struct Vector* Entity_obbMaxs(PVOID entity)
+{
+    PVOID collideable = CALL_VIRTUAL_METHOD(PVOID(__fastcall*)(PVOID, PVOID), entity, 3);
+    return CALL_VIRTUAL_METHOD(CONST struct Vector* (__fastcall*)(PVOID, PVOID), collideable, 2);
+}
+
 bool Entity_isWeapon(PVOID entity)
 {
     return CALL_VIRTUAL_METHOD(bool(__fastcall*)(PVOID, PVOID), entity, 165);
