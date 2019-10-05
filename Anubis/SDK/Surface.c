@@ -12,6 +12,11 @@ VOID Surface_setDrawColor2(FLOAT color[3], INT a)
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, INT, INT, INT, INT), interfaces.surface, 15, (INT)(color[0] * 255), (INT)(color[1] * 255), (INT)(color[2] * 255), a);
 }
 
+VOID Surface_getScreenSize(INT* width, INT* height)
+{
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, INT*, INT*), interfaces.surface, 44, width, height);
+}
+
 VOID Surface_unlockCursor(VOID)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID), interfaces.surface, 66);
