@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <Windows.h>
 
-typedef struct GlowConfig {
+struct GlowConfig {
     bool enabled;
     bool healthBased;
     bool rainbow;
@@ -11,9 +11,9 @@ typedef struct GlowConfig {
     FLOAT alpha;
     INT style;
     FLOAT color[3];
-} GlowConfig;
+};
 
-typedef struct TriggerbotConfig {
+struct TriggerbotConfig {
     bool enabled;
     bool onKey;
     INT key;
@@ -25,11 +25,11 @@ typedef struct TriggerbotConfig {
     INT shotDelay;
     INT minDamage;
     bool killshot;
-} TriggerbotConfig;
+};
 
-typedef struct Config {
-    TriggerbotConfig triggerbot[35];
-    GlowConfig glow[17];
+struct Config {
+    struct TriggerbotConfig triggerbot[35];
+    struct GlowConfig glow[17];
 
     struct {
         bool bunnyhop;
@@ -39,14 +39,14 @@ typedef struct Config {
 
     size_t count;
     PSTR* names;
-} Config;
+};
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-extern Config config;
+extern struct Config config;
 VOID Config_init(PCSTR);
 VOID Config_add(PCSTR);
 VOID Config_rename(size_t, PCSTR);

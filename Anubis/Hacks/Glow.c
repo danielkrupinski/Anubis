@@ -12,7 +12,7 @@
 #include "../SDK/GlobalVars.h"
 #include "../SDK/GlowObjectDefinition.h"
 
-static VOID applyGlow(struct GlowObjectDefinition* glowObject, GlowConfig* glowConfig, INT health)
+static VOID applyGlow(struct GlowObjectDefinition* glowObject, struct GlowConfig* glowConfig, INT health)
 {
     if (glowConfig->enabled) {
         glowObject->renderWhenOccluded = true;
@@ -36,7 +36,7 @@ static VOID applyGlow(struct GlowObjectDefinition* glowObject, GlowConfig* glowC
     }
 }
 
-static VOID applyPlayerGlow(struct GlowObjectDefinition* glowObject, GlowConfig* glowConfigAll, GlowConfig* glowConfigVisible, GlowConfig* glowConfigOccluded, PVOID entity)
+static VOID applyPlayerGlow(struct GlowObjectDefinition* glowObject, struct GlowConfig* glowConfigAll, struct GlowConfig* glowConfigVisible, struct GlowConfig* glowConfigOccluded, PVOID entity)
 {
     Vector localPlayerEyePosition;
     Entity_getEyePosition(EntityList_getEntity(Engine_getLocalPlayer()), &localPlayerEyePosition);

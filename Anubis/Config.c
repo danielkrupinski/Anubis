@@ -4,7 +4,7 @@
 #include "cJSON/cJSON.h"
 #include "Config.h"
 
-Config config;
+struct Config config;
 
 static CHAR path[MAX_PATH];
 
