@@ -120,6 +120,9 @@
     <ClCompile Include="SDK\GlowObjectDefinition.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="Hacks\Esp.c">
+      <Filter>Hacks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">

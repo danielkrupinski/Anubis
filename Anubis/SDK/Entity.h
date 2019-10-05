@@ -26,7 +26,7 @@ CONST struct Matrix3x4* Entity_coordinateFrame(PVOID);
 enum MoveType {
     MoveType_Noclip = 8,
     MoveType_Ladder = 9
-} MoveType;
+};
 
 NETVAR_OFFSET(moveType, "CBaseEntity", "m_nRenderMode", 1, enum MoveType);
 
