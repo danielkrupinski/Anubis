@@ -3,19 +3,20 @@
 #include <d3d9.h>
 #include <Windows.h>
 
-typedef struct {
+struct VmtHook {
     PVOID base;
     PUINT_PTR oldVmt;
     PUINT_PTR newVmt;
     SIZE_T length;
-} VmtHook;
+};
 
-typedef struct {
-    HRESULT(__stdcall* originalPresent)(IDirect3DDevice9*, const RECT*, const RECT*, HWND, const RGNDATA*);
+struct Hooks {
+    HRESULT(WINAPI* originalPresent)(IDirect3DDevice9*, const RECT*, const RECT*, HWND, const RGNDATA*);
+    HRESULT(WINAPI* originalReset)(IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
     WNDPROC originalWndProc;
-    VmtHook clientMode;
-    VmtHook surface;
-} Hooks;
+    struct VmtHook clientMode;
+    struct VmtHook surface;
+};
 
 #ifdef __cplusplus
 extern "C"
@@ -25,7 +26,7 @@ extern "C"
 VOID Hooks_init(VOID);
 VOID Hooks_restore(VOID);
 
-extern Hooks hooks;
+extern struct Hooks hooks;
 
 #ifdef __cplusplus
 }

@@ -18,7 +18,7 @@
 #include "SDK/UserCmd.h"
 #include "SDK/Utils.h"
 
-Hooks hooks;
+struct Hooks hooks;
 
 static LRESULT WINAPI hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -48,6 +48,14 @@ static HRESULT WINAPI hookedPresent(IDirect3DDevice9* device, const RECT* src, c
     return hooks.originalPresent(device, src, dest, windowOverride, dirtyRegion);
 }
 
+static HRESULT WINAPI hookedReset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* params)
+{
+    GUI_invalidateDeviceObjects();
+    HRESULT result = hooks.originalReset(device, params);
+    GUI_createDeviceObjects();
+    return result;
+}
+
 static SIZE_T calculateLength(PUINT_PTR vmt)
 {
     SIZE_T length = 0;
@@ -57,7 +65,7 @@ static SIZE_T calculateLength(PUINT_PTR vmt)
     return length;
 }
 
-static void hookVmt(PVOID base, VmtHook* vmtHook)
+static void hookVmt(PVOID base, struct VmtHook* vmtHook)
 {
     vmtHook->base = base;
     vmtHook->oldVmt = *((PUINT_PTR*)base);
@@ -70,13 +78,13 @@ static void hookVmt(PVOID base, VmtHook* vmtHook)
     }
 }
 
-static void restoreVmt(VmtHook* vmtHook)
+static void restoreVmt(struct VmtHook* vmtHook)
 {
     *((PUINT_PTR*)vmtHook->base) = vmtHook->oldVmt;
     free(vmtHook->newVmt);
 }
 
-static void hookMethod(VmtHook* vmtHook, SIZE_T index, PVOID function)
+static void hookMethod(struct VmtHook* vmtHook, SIZE_T index, PVOID function)
 {
     if (index < vmtHook->length)
         vmtHook->newVmt[index + 1] = (UINT_PTR)function;
@@ -135,6 +143,9 @@ VOID Hooks_init(VOID)
 
     hooks.originalPresent = **memory.present;
     **memory.present = hookedPresent;
+
+    hooks.originalReset = **memory.reset;
+    **memory.reset = hookedReset;
 }
 
 VOID Hooks_restore(VOID)
@@ -145,4 +156,5 @@ VOID Hooks_restore(VOID)
     SetWindowLongPtr(FindWindowW(L"Valve001", NULL), GWLP_WNDPROC, (LONG_PTR)hooks.originalWndProc);
 
     **memory.present = hooks.originalPresent;
+    **memory.reset = hooks.originalReset;
 }
