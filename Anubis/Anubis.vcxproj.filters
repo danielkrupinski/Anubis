@@ -242,5 +242,8 @@
     <ClInclude Include="SDK\Matrix3x4.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Hacks\Esp.h">
+      <Filter>Hacks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

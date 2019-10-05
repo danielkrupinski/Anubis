@@ -212,6 +212,7 @@
     <ClInclude Include="cJSON\cJSON.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="Hacks\Esp.h" />
     <ClInclude Include="Hacks\Glow.h" />
     <ClInclude Include="Hacks\Misc.h" />
     <ClInclude Include="Hacks\Triggerbot.h" />
