@@ -119,6 +119,9 @@
     <ClCompile Include="Hacks\Esp.c">
       <Filter>Hacks</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\Panel.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
