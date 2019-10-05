@@ -290,3 +290,8 @@ void GUI_invalidateDeviceObjects(void)
 {
     ImGui_ImplDX9_InvalidateDeviceObjects();
 }
+
+void GUI_createDeviceObjects(void)
+{
+    ImGui_ImplDX9_CreateDeviceObjects();
+}
