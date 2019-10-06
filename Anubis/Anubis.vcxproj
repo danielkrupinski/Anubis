@@ -235,6 +235,7 @@
     <ClInclude Include="SDK\ClientClass.h" />
     <ClInclude Include="SDK\ConVar.h" />
     <ClInclude Include="SDK\Cvar.h" />
+    <ClInclude Include="SDK\DebugOverlay.h" />
     <ClInclude Include="SDK\Engine.h" />
     <ClInclude Include="SDK\EngineTrace.h" />
     <ClInclude Include="SDK\Entity.h" />

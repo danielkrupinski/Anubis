@@ -250,5 +250,8 @@
     <ClInclude Include="SDK\Panel.h">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="SDK\DebugOverlay.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
