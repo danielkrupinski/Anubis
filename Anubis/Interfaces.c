@@ -30,6 +30,7 @@ void Interfaces_init(void)
 {
     interfaces.client = find(L"client_panorama", "VClient018");
     interfaces.cvar = find(L"vstdlib", "VEngineCvar007");
+    interfaces.debugOverlay = find(L"engine", "VDebugOverlay004");
     interfaces.engine = find(L"engine", "VEngineClient014");
     interfaces.engineTrace = find(L"engine", "EngineTraceClient004");
     interfaces.entityList = find(L"client_panorama", "VClientEntityList003");

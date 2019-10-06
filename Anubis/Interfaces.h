@@ -5,6 +5,7 @@
 typedef struct {
     uintptr_t** client;
     uintptr_t** cvar;
+    uintptr_t** debugOverlay;
     uintptr_t** engine;
     uintptr_t** engineTrace;
     uintptr_t** entityList;
