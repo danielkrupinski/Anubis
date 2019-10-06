@@ -197,6 +197,7 @@
     <ClCompile Include="SDK\Client.c" />
     <ClCompile Include="SDK\ConVar.c" />
     <ClCompile Include="SDK\Cvar.c" />
+    <ClCompile Include="SDK\DebugOverlay.c" />
     <ClCompile Include="SDK\Engine.c" />
     <ClCompile Include="SDK\EngineTrace.c" />
     <ClCompile Include="SDK\Entity.c" />

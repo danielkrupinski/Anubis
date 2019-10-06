@@ -122,6 +122,9 @@
     <ClCompile Include="SDK\Panel.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="SDK\DebugOverlay.c">
+      <Filter>SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
