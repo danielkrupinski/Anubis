@@ -15,6 +15,7 @@ bool Entity_isDormant(PVOID);
 bool Entity_setupBones(PVOID, struct Matrix3x4*, INT, INT, FLOAT);
 CONST struct Vector* Entity_obbMins(PVOID);
 CONST struct Vector* Entity_obbMaxs(PVOID);
+BOOLEAN Entity_isAlive(PVOID);
 bool Entity_isWeapon(PVOID);
 PVOID Entity_getActiveWeapon(PVOID);
 VOID Entity_getEyePosition(PVOID, struct Vector*);
