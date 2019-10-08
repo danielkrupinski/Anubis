@@ -28,15 +28,23 @@ struct GlowConfig {
 };
 
 struct Esp {
-    bool enabled;
-    bool box;
-    FLOAT boxColor[3];
+    struct {
+        bool enabled;
+        bool box;
+        FLOAT boxColor[3];
+    } players[6];
+
+    struct {
+        bool enabled;
+        bool box;
+        FLOAT boxColor[3];
+    } weapon;
 };
 
 struct Config {
     struct TriggerbotConfig triggerbot[35];
     struct GlowConfig glow[17];
-    struct Esp esp[6];
+    struct Esp esp;
 
     struct {
         bool bunnyhop;
