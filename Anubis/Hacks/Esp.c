@@ -79,7 +79,7 @@ VOID Esp_render(VOID)
         for (INT i = Engine_getMaxClients() + 1; i <= EntityList_getHighestEntityIndex(); i++) {
             PVOID entity = EntityList_getEntity(i);
 
-            if (!entity || Entity_isDormant(entity) || !Entity_isWeapon(entity))
+            if (!entity || Entity_isDormant(entity) || !Entity_isWeapon(entity) || *Entity_ownerEntity(entity) != -1)
                 continue;
 
             renderEspforWeapon(entity);
