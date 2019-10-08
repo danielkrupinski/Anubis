@@ -255,6 +255,8 @@ static void renderEspWindow() noexcept
             ImGui::Separator();
 
             checkboxedColorPicker("Box", &config.esp.weapon.box, config.esp.weapon.boxColor);
+            ImGui::SameLine();
+            ImGui::Combo("", &config.esp.weapon.boxType, "2D\0""3D\0");
         }
         ImGui::End();
     }
