@@ -10,6 +10,7 @@
 struct BoundingBox {
     FLOAT x0, y0;
     FLOAT x1, y1;
+    struct Vector vertices[8];
 };
 
 static BOOLEAN boundingBox(PVOID entity, struct BoundingBox* out)
@@ -30,23 +31,22 @@ static BOOLEAN boundingBox(PVOID entity, struct BoundingBox* out)
                                        i & 2 ? max->y : min->y,
                                        i & 4 ? max->z : min->z };
 
-        struct Vector point;
         struct Vector transformed = Vector_transform(&vertex, Entity_coordinateFrame(entity));
-
-        if (DebugOverlay_screenPosition(&transformed, &point))
+        
+        if (DebugOverlay_screenPosition(&transformed, out->vertices + i))
             return FALSE;
 
-        if (out->x0 > point.x)
-            out->x0 = point.x;
+        if (out->x0 > out->vertices[i].x)
+            out->x0 = out->vertices[i].x;
 
-        if (out->y0 > point.y)
-            out->y0 = point.y;
+        if (out->y0 > out->vertices[i].y)
+            out->y0 = out->vertices[i].y;
 
-        if (out->x1 < point.x)
-            out->x1 = point.x;
+        if (out->x1 < out->vertices[i].x)
+            out->x1 = out->vertices[i].x;
 
-        if (out->y1 < point.y)
-            out->y1 = point.y;
+        if (out->y1 < out->vertices[i].y)
+            out->y1 = out->vertices[i].y;
     }
     return TRUE;
 }
