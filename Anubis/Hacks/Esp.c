@@ -1,3 +1,4 @@
+#include "../Config.h"
 #include "Esp.h"
 #include "../SDK/DebugOverlay.h"
 #include "../SDK/Engine.h"
@@ -50,7 +51,39 @@ static BOOLEAN boundingBox(PVOID entity, struct BoundingBox* out)
     return TRUE;
 }
 
+static VOID renderEspforWeapon(PVOID entity)
+{
+    if (config.esp.weapon.enabled) {
+        struct BoundingBox bbox;
+        if (boundingBox(entity, &bbox)) {
+            if (config.esp.weapon.box) {
+                Surface_setDrawColor2(config.esp.weapon.boxColor, 255);
+                Surface_drawOutlinedRect(bbox.x0, bbox.y0, bbox.x1, bbox.y1);
+            }
+        }
+    }
+}
+
 VOID Esp_render(VOID)
 {
-    
+    if (Engine_isInGame()) {
+        PVOID localPlayer = EntityList_getEntity(Engine_getLocalPlayer());
+        for (INT i = 1; i <= Engine_getMaxClients(); i++) {
+            PVOID entity = EntityList_getEntity(i);
+
+            if (!entity || entity == localPlayer || Entity_isDormant(entity) || !Entity_isAlive(entity))
+                continue;
+
+        }
+
+        for (INT i = Engine_getMaxClients() + 1; i <= EntityList_getHighestEntityIndex(); i++) {
+            PVOID entity = EntityList_getEntity(i);
+
+            if (!entity || Entity_isDormant(entity) || !Entity_isWeapon(entity))
+                continue;
+
+            renderEspforWeapon(entity);
+        }
+
+    }
 }
