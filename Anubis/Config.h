@@ -37,6 +37,7 @@ struct WeaponEsp {
     bool enabled;
     bool box;
     FLOAT boxColor[3];
+    INT boxType;
 };
 
 struct Esp {

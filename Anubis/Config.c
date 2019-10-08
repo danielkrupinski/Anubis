@@ -286,6 +286,7 @@ VOID Config_resetEsp(VOID)
     config.esp.weapon.boxColor[0] = 1.0f;
     config.esp.weapon.boxColor[1] = 1.0f;
     config.esp.weapon.boxColor[2] = 1.0f;
+    config.esp.weapon.boxType = 0;
 }
 
 VOID Config_remove(UINT id)
