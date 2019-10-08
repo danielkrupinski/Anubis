@@ -4,6 +4,7 @@
 #include <intrin.h>
 
 #include "GUI.h"
+#include "Hacks/Esp.h"
 #include "Hacks/Glow.h"
 #include "Hacks/Misc.h"
 #include "Hacks/Triggerbot.h"
@@ -133,7 +134,7 @@ static VOID __stdcall lockCursor(VOID)
 static VOID __stdcall paintTraverse(UINT panel, BOOLEAN forceRepaint, BOOLEAN allowForce)
 {
     if (!strcmp(Panel_getName(panel), "MatSystemTopPanel")) {
-
+        Esp_render();
     }
 
     CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID, UINT, BOOLEAN, BOOLEAN), interfaces.panel, hooks.panel.oldVmt, 41, panel, forceRepaint, allowForce);
