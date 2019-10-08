@@ -58,7 +58,22 @@ static VOID renderEspforWeapon(PVOID entity)
         if (boundingBox(entity, &bbox)) {
             if (config.esp.weapon.box) {
                 Surface_setDrawColor2(config.esp.weapon.boxColor, 255);
-                Surface_drawOutlinedRect(bbox.x0, bbox.y0, bbox.x1, bbox.y1);
+
+                switch (config.esp.weapon.boxType) {
+                case 0:
+                    Surface_drawOutlinedRect(bbox.x0, bbox.y0, bbox.x1, bbox.y1);
+                    break;
+                case 1:
+                    for (int i = 0; i < 8; i++) {
+                        if (!(i & 1))
+                            Surface_drawLine(bbox.vertices[i].x, bbox.vertices[i].y, bbox.vertices[i + 1].x, bbox.vertices[i + 1].y);
+                        if (!(i & 2))
+                            Surface_drawLine(bbox.vertices[i].x, bbox.vertices[i].y, bbox.vertices[i + 2].x, bbox.vertices[i + 2].y);
+                        if (!(i & 4))
+                            Surface_drawLine(bbox.vertices[i].x, bbox.vertices[i].y, bbox.vertices[i + 4].x, bbox.vertices[i + 4].y);
+                    }
+                    break;
+                }
             }
         }
     }
