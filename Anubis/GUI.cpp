@@ -1,4 +1,5 @@
 #include <d3d9.h>
+#include <string>
 #include <Windows.h>
 
 #include "imgui/imgui.h"
@@ -50,6 +51,7 @@ void GUI_init(IDirect3DDevice9* device)
 static struct {
     bool triggerbot{ false };
     bool glow{ false };
+    bool esp{ false };
     bool misc{ false };
     bool config{ false };
 } window;
@@ -59,6 +61,7 @@ static void renderMenuBar() noexcept
     if (ImGui::BeginMainMenuBar()) {
         ImGui::MenuItem("Triggerbot", nullptr, &window.triggerbot);
         ImGui::MenuItem("Glow", nullptr, &window.glow);
+        ImGui::MenuItem("Esp", nullptr, &window.esp);
         ImGui::MenuItem("Misc", nullptr, &window.misc);
         ImGui::MenuItem("Config", nullptr, &window.config);
         ImGui::EndMainMenuBar();
@@ -82,6 +85,27 @@ static void keybind(int& key) noexcept
             if (ImGui::IsMouseDown(i))
                 key = i + (i > 1 ? 2 : 1);
     }
+}
+
+static void checkboxedColorPicker(const std::string& name, bool* enable, float* color) noexcept
+{
+    ImGui::Checkbox(("##" + name).c_str(), enable);
+    ImGui::SameLine(0.0f, 5.0f);
+    ImGui::PushID(0);
+    bool openPopup = ImGui::ColorButton(("##" + name).c_str(), ImColor{ color[0], color[1], color[2] }, ImGuiColorEditFlags_NoTooltip);
+    ImGui::PopID();
+    ImGui::SameLine(0.0f, 5.0f);
+    ImGui::TextUnformatted(name.c_str());
+    ImGui::PushID(1);
+    if (openPopup)
+        ImGui::OpenPopup(("##" + name).c_str());
+    if (ImGui::BeginPopup(("##" + name).c_str())) {
+        ImGui::PushID(2);
+        ImGui::ColorPicker3(("##" + name).c_str(), color, ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_NoSidePreview);
+        ImGui::PopID();
+        ImGui::EndPopup();
+    }
+    ImGui::PopID();
 }
 
 static void renderTriggerbotWindow() noexcept
@@ -202,6 +226,40 @@ static void renderGlowWindow() noexcept
     }
 }
 
+static void renderEspWindow() noexcept
+{
+    if (window.esp) {
+        ImGui::SetNextWindowSize({ 0.0f, 0.0f });
+        ImGui::Begin("Esp", &window.esp, windowFlags);
+        
+        static int currentCategory{ 0 };
+        ImGui::PushItemWidth(110.0f);
+        ImGui::PushID(0);
+        ImGui::Combo("", &currentCategory, "Allies\0Enemies\0Weapons");
+        ImGui::PopID();
+
+        if (currentCategory < 2) {
+            ImGui::SameLine();
+            static int currentType{ 0 };
+            ImGui::PushID(1);
+            ImGui::Combo("", &currentType, "All\0Visible\0Occluded\0");
+            ImGui::PopID();
+            int currentItem = currentCategory * 3 + currentType;
+            ImGui::SameLine();
+            ImGui::Checkbox("Enabled", &config.esp.players[currentItem].enabled);
+            ImGui::Separator();
+
+            checkboxedColorPicker("Box", &config.esp.players[currentItem].box, config.esp.players[currentItem].boxColor);
+        } else {
+            ImGui::Checkbox("Enabled", &config.esp.weapon.enabled);
+            ImGui::Separator();
+
+            checkboxedColorPicker("Box", &config.esp.weapon.box, config.esp.weapon.boxColor);
+        }
+        ImGui::End();
+    }
+}
+
 static void renderMiscWindow() noexcept
 {
     if (window.misc) {
@@ -278,6 +336,7 @@ void GUI_render()
     renderMenuBar();
     renderTriggerbotWindow();
     renderGlowWindow();
+    renderEspWindow();
     renderMiscWindow();
     renderConfigWindow();
 
