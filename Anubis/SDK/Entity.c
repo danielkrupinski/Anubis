@@ -119,6 +119,7 @@ CONST struct Matrix3x4* Entity_coordinateFrame(PVOID entity)
 }
 
 NETVAR_OFFSET_IMPL(moveType, "CBaseEntity", "m_nRenderMode", 1, enum MoveType);
+NETVAR_IMPL(ownerEntity, "CBaseEntity", "m_hOwnerEntity", int);
 
 NETVAR_IMPL(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 

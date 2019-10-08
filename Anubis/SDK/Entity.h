@@ -32,6 +32,7 @@ enum MoveType {
 };
 
 NETVAR_OFFSET(moveType, "CBaseEntity", "m_nRenderMode", 1, enum MoveType);
+NETVAR(ownerEntity, "CBaseEntity", "m_hOwnerEntity", int);
 
 NETVAR(nextAttack, "CBaseCombatCharacter", "m_flNextAttack", FLOAT);
 
