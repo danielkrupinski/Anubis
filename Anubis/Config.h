@@ -27,18 +27,21 @@ struct GlowConfig {
     FLOAT color[3];
 };
 
-struct Esp {
-    struct {
-        bool enabled;
-        bool box;
-        FLOAT boxColor[3];
-    } players[6];
+struct PlayerEsp {
+    bool enabled;
+    bool box;
+    FLOAT boxColor[3];
+};
 
-    struct {
-        bool enabled;
-        bool box;
-        FLOAT boxColor[3];
-    } weapon;
+struct WeaponEsp {
+    bool enabled;
+    bool box;
+    FLOAT boxColor[3];
+};
+
+struct Esp {
+    struct PlayerEsp players[6];
+    struct WeaponEsp weapon;
 };
 
 struct Config {
@@ -70,6 +73,7 @@ VOID Config_save(UINT);
 VOID Config_reset(VOID);
 VOID Config_resetTriggerbot(VOID);
 VOID Config_resetGlow(VOID);
+VOID Config_resetEsp(VOID);
 VOID Config_remove(UINT);
 
 #ifdef __cplusplus

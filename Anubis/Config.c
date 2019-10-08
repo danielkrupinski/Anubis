@@ -272,6 +272,22 @@ VOID Config_resetGlow(VOID)
     }
 }
 
+VOID Config_resetEsp(VOID)
+{
+    for (INT i = 0; i < sizeof(config.esp.players) / sizeof(config.esp.players[0]); i++) {
+        config.esp.players[i].enabled = false;
+        config.esp.players[i].box = false;
+        config.esp.players[i].boxColor[0] = 1.0f;
+        config.esp.players[i].boxColor[1] = 1.0f;
+        config.esp.players[i].boxColor[2] = 1.0f;
+    }
+    config.esp.weapon.enabled = false;
+    config.esp.weapon.box = false;
+    config.esp.weapon.boxColor[0] = 1.0f;
+    config.esp.weapon.boxColor[1] = 1.0f;
+    config.esp.weapon.boxColor[2] = 1.0f;
+}
+
 VOID Config_remove(UINT id)
 {
     CHAR fileName[MAX_PATH];
