@@ -10,6 +10,7 @@ typedef struct {
     uintptr_t** engineTrace;
     uintptr_t** entityList;
     uintptr_t** gameUI;
+    uintptr_t** localize;
     uintptr_t** panel;
     uintptr_t** surface;
 } Interfaces;
