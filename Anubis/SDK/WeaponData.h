@@ -2,10 +2,12 @@
 
 #include <Windows.h>
 
-typedef struct WeaponData {
+struct WeaponData {
     BYTE pad[20];
     INT maxClip;
-    BYTE pad1[176];
+    BYTE pad1[112];
+    PSTR name;
+    BYTE pad1_[60];
     INT type;
     BYTE pad2[32];
     BOOLEAN fullAuto;
@@ -19,4 +21,4 @@ typedef struct WeaponData {
     FLOAT rangeModifier;
     BYTE pad5[16];
     BOOLEAN hasSilencer;
-} WeaponData;
+};

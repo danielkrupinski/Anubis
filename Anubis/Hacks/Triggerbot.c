@@ -50,7 +50,7 @@ VOID Triggerbot_run(UserCmd* cmd)
             aimPunch.y *= ConVar_getFloat(weaponRecoilScale);
             aimPunch.z *= ConVar_getFloat(weaponRecoilScale);
 
-            CONST WeaponData* weaponData = Entity_getWeaponData(activeWeapon);
+            CONST struct WeaponData* weaponData = Entity_getWeaponData(activeWeapon);
 
             Vector viewAngles = { cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * cosf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * weaponData->range,
                                   cosf(DEG2RAD(cmd->viewangles.x + aimPunch.x)) * sinf(DEG2RAD(cmd->viewangles.y + aimPunch.y)) * weaponData->range,
