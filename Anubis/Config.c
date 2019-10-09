@@ -233,7 +233,7 @@ VOID Config_reset(VOID)
 {
     Config_resetTriggerbot();
     Config_resetGlow();
-
+    Config_resetEsp();
 
     config.misc.autostrafe = false;
     config.misc.bunnyhop = false;
@@ -287,6 +287,10 @@ VOID Config_resetEsp(VOID)
     config.esp.weapon.boxColor[1] = 1.0f;
     config.esp.weapon.boxColor[2] = 1.0f;
     config.esp.weapon.boxType = 0;
+    config.esp.weapon.snapLine = false;
+    config.esp.weapon.snapLineColor[0] = 1.0f;
+    config.esp.weapon.snapLineColor[1] = 1.0f;
+    config.esp.weapon.snapLineColor[2] = 1.0f;
 }
 
 VOID Config_remove(UINT id)
