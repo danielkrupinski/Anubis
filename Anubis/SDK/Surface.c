@@ -22,6 +22,11 @@ VOID Surface_drawLine(FLOAT x0, FLOAT y0, FLOAT x1, FLOAT y1)
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, INT, INT, INT, INT), interfaces.surface, 19, (INT)x0, (INT)y0, (INT)x1, (INT)y1);
 }
 
+VOID Surface_setTextFont(UINT font)
+{
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, UINT), interfaces.surface, 23, font);
+}
+
 VOID Surface_printText(PCWSTR text)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, PCWSTR, INT, INT), interfaces.surface, 28, text, wcslen(text), 0);
