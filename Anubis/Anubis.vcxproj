@@ -206,6 +206,7 @@
     <ClCompile Include="SDK\GlobalVars.c" />
     <ClCompile Include="SDK\GlowObjectDefinition.c" />
     <ClCompile Include="SDK\ItemDefinitionIndex.c" />
+    <ClCompile Include="SDK\Localize.c" />
     <ClCompile Include="SDK\Panel.c" />
     <ClCompile Include="SDK\Surface.c" />
     <ClCompile Include="SDK\Utils.c" />
