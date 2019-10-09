@@ -64,7 +64,7 @@ static VOID renderEspforWeapon(PVOID entity)
                     Surface_drawOutlinedRect(bbox.x0, bbox.y0, bbox.x1, bbox.y1);
                     break;
                 case 1:
-                    for (int i = 0; i < 8; i++) {
+                    for (INT i = 0; i < 8; i++) {
                         if (!(i & 1))
                             Surface_drawLine(bbox.vertices[i].x, bbox.vertices[i].y, bbox.vertices[i + 1].x, bbox.vertices[i + 1].y);
                         if (!(i & 2))
@@ -74,6 +74,17 @@ static VOID renderEspforWeapon(PVOID entity)
                     }
                     break;
                 }
+            }
+        }
+
+        if (config.esp.weapon.snapLine) {
+            struct Vector absOrigin = Entity_getAbsOrigin(entity);
+            struct Vector position;
+            if (!DebugOverlay_screenPosition(&absOrigin, &position)) {
+                INT width, height;
+                Surface_getScreenSize(&width, &height);
+                Surface_setDrawColor2(config.esp.weapon.snapLineColor, 255);
+                Surface_drawLine((FLOAT)(width / 2), (FLOAT)height, position.x, position.y);
             }
         }
     }
