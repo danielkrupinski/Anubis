@@ -12,3 +12,4 @@ VOID Surface_setTextPosition(FLOAT, FLOAT);
 VOID Surface_printText(PCWSTR);
 VOID Surface_getScreenSize(INT*, INT*);
 VOID Surface_unlockCursor(VOID);
+VOID Surface_getTextSize(UINT, PCWSTR, INT*, INT*);

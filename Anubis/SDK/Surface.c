@@ -51,3 +51,8 @@ VOID Surface_unlockCursor(VOID)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID), interfaces.surface, 66);
 }
+
+VOID Surface_getTextSize(UINT font, PCWSTR text, INT* width, INT* height)
+{
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, UINT, PCWSTR, INT*, INT*), interfaces.surface, 79, font, text, width, height);
+}
