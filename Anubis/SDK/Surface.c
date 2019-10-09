@@ -32,6 +32,11 @@ VOID Surface_setTextColor(FLOAT color[3], INT a)
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, INT, INT, INT, INT), interfaces.surface, 25, (INT)(color[0] * 255), (INT)(color[1] * 255), (INT)(color[2] * 255), a);
 }
 
+VOID Surface_setTextPosition(FLOAT x, FLOAT y)
+{
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, INT, INT), interfaces.surface, 26, (INT)x, (INT)y);
+}
+
 VOID Surface_printText(PCWSTR text)
 {
     CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, PCWSTR, INT, INT), interfaces.surface, 28, text, wcslen(text), 0);
