@@ -237,9 +237,9 @@ static void renderEspWindow() noexcept
         ImGui::PushID(0);
         ImGui::Combo("", &currentCategory, "Allies\0Enemies\0Weapons");
         ImGui::PopID();
+        ImGui::SameLine();
 
         if (currentCategory < 2) {
-            ImGui::SameLine();
             static int currentType{ 0 };
             ImGui::PushID(1);
             ImGui::Combo("", &currentType, "All\0Visible\0Occluded\0");
