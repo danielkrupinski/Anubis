@@ -36,6 +36,11 @@ CONST struct Vector* Entity_obbMaxs(PVOID entity)
     return CALL_VIRTUAL_METHOD(CONST struct Vector* (__fastcall*)(PVOID, PVOID), collideable, 2);
 }
 
+struct Vector Entity_getAbsOrigin(PVOID entity) 
+{
+    return *CALL_VIRTUAL_METHOD(struct Vector*(__fastcall*)(PVOID, PVOID), entity, 10);
+}
+
 BOOLEAN Entity_isAlive(PVOID entity)
 {
     return Entity_health(entity) && CALL_VIRTUAL_METHOD(BOOLEAN(__fastcall*)(PVOID, PVOID), entity, 155);
