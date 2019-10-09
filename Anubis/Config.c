@@ -282,6 +282,7 @@ VOID Config_resetEsp(VOID)
         config.esp.players[i].boxColor[2] = 1.0f;
     }
     config.esp.weapon.enabled = false;
+    config.esp.weapon.font = 0x1d;
     config.esp.weapon.box = false;
     config.esp.weapon.boxColor[0] = 1.0f;
     config.esp.weapon.boxColor[1] = 1.0f;
