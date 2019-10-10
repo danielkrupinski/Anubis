@@ -258,6 +258,7 @@ static void renderEspWindow() noexcept
             ImGui::SameLine();
             ImGui::Combo("", &config.esp.weapon.boxType, "2D\0""3D\0");
             checkboxedColorPicker("Snap line", &config.esp.weapon.snapLine, config.esp.weapon.snapLineColor);
+            checkboxedColorPicker("Name", &config.esp.weapon.name, config.esp.weapon.nameColor);
         }
         ImGui::End();
     }
