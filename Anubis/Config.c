@@ -292,6 +292,10 @@ VOID Config_resetEsp(VOID)
     config.esp.weapon.snapLineColor[0] = 1.0f;
     config.esp.weapon.snapLineColor[1] = 1.0f;
     config.esp.weapon.snapLineColor[2] = 1.0f;
+    config.esp.weapon.name = false;
+    config.esp.weapon.nameColor[0] = 1.0f;
+    config.esp.weapon.nameColor[1] = 1.0f;
+    config.esp.weapon.nameColor[2] = 1.0f;
 }
 
 VOID Config_remove(UINT id)
