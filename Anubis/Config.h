@@ -41,6 +41,8 @@ struct WeaponEsp {
     INT boxType;
     bool snapLine;
     FLOAT snapLineColor[3];
+    bool name;
+    FLOAT nameColor[3];
 };
 
 struct Esp {
