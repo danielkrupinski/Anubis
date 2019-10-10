@@ -4,8 +4,10 @@
 #include "../SDK/Engine.h"
 #include "../SDK/Entity.h"
 #include "../SDK/EntityList.h"
+#include "../SDK/Localize.h"
 #include "../SDK/Surface.h"
 #include "../SDK/Vector.h"
+#include "../SDK/WeaponData.h"
 
 struct BoundingBox {
     FLOAT x0, y0;
@@ -74,6 +76,17 @@ static VOID renderEspforWeapon(PVOID entity)
                     }
                     break;
                 }
+            }
+
+            if (config.esp.weapon.name) {
+                PCWSTR name = Localize_find(Entity_getWeaponData(entity)->name);
+                INT width, height;
+                Surface_getTextSize(0x1D, name, &width, &height);
+
+                Surface_setTextFont(0x1D);
+                Surface_setTextColor(config.esp.weapon.nameColor, 255);
+                Surface_setTextPosition(bbox.x0 + (bbox.x1 - bbox.x0 - width) / 2, bbox.y1 + 5);
+                Surface_printText(name);
             }
         }
 
