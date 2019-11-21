@@ -58,12 +58,12 @@ PVOID Entity_getActiveWeapon(PVOID entity)
 
 VOID Entity_getEyePosition(PVOID entity, Vector* out)
 {
-    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), entity, 283, out);
+    CALL_VIRTUAL_METHOD(VOID(__fastcall*)(PVOID, PVOID, Vector*), entity, 284, out);
 }
 
 struct WeaponData* Entity_getWeaponData(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(struct WeaponData*(__fastcall*)(PVOID, PVOID), entity, 456);
+    return CALL_VIRTUAL_METHOD(struct WeaponData*(__fastcall*)(PVOID, PVOID), entity, 457);
 }
 
 bool Entity_isEnemy(PVOID entity)
