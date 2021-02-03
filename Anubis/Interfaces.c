@@ -28,13 +28,13 @@ static uintptr_t** find(const wchar_t* module, const char* name)
 
 void Interfaces_init(void)
 {
-    interfaces.client = find(L"client_panorama", "VClient018");
+    interfaces.client = find(L"client", "VClient018");
     interfaces.cvar = find(L"vstdlib", "VEngineCvar007");
     interfaces.debugOverlay = find(L"engine", "VDebugOverlay004");
     interfaces.engine = find(L"engine", "VEngineClient014");
     interfaces.engineTrace = find(L"engine", "EngineTraceClient004");
-    interfaces.entityList = find(L"client_panorama", "VClientEntityList003");
-    interfaces.gameUI = find(L"client_panorama", "GameUI011");
+    interfaces.entityList = find(L"client", "VClientEntityList003");
+    interfaces.gameUI = find(L"client", "GameUI011");
     interfaces.localize = find(L"localize", "Localize_001");
     interfaces.panel = find(L"vgui2", "VGUI_Panel009");
     interfaces.surface = find(L"vguimatsurface", "VGUI_Surface031");
