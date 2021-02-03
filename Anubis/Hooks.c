@@ -87,7 +87,7 @@ static void hookMethod(struct VmtHook* vmtHook, SIZE_T index, PVOID function)
 
 static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 {
-    bool result = CALL_ORIGINAL(bool(__fastcall*)(PVOID, PVOID, FLOAT, UserCmd*), memory.clientMode, hooks.clientMode.oldVmt, 24, inputSampleTime, cmd);
+    bool result = CALL_ORIGINAL(bool(__fastcall*)(PVOID, PVOID, FLOAT, UserCmd*), Memory()->clientMode, hooks.clientMode.oldVmt, 24, inputSampleTime, cmd);
 
     if (!cmd->commandNumber)
         return result;
@@ -112,7 +112,7 @@ static bool __stdcall createMove(FLOAT inputSampleTime, UserCmd* cmd)
 static INT __stdcall doPostScreenEffects(INT param)
 {
     Glow_render();
-    return CALL_ORIGINAL(INT(__fastcall*)(PVOID, PVOID, INT), memory.clientMode, hooks.clientMode.oldVmt, 44, param);
+    return CALL_ORIGINAL(INT(__fastcall*)(PVOID, PVOID, INT), Memory()->clientMode, hooks.clientMode.oldVmt, 44, param);
 }
 
 static VOID __stdcall lockCursor(VOID)
@@ -135,7 +135,7 @@ static VOID __stdcall paintTraverse(UINT panel, BOOLEAN forceRepaint, BOOLEAN al
 
 VOID Hooks_init(VOID)
 {
-    hookVmt(memory.clientMode, &hooks.clientMode);
+    hookVmt(Memory()->clientMode, &hooks.clientMode);
     hookMethod(&hooks.clientMode, 24, createMove);
     hookMethod(&hooks.clientMode, 44, doPostScreenEffects);
 
@@ -148,11 +148,11 @@ VOID Hooks_init(VOID)
     HWND window = FindWindowA("Valve001", NULL);
     hooks.originalWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hookedWndProc);
 
-    hooks.originalPresent = **memory.present;
-    **memory.present = hookedPresent;
+    hooks.originalPresent = **Memory()->present;
+    **Memory()->present = hookedPresent;
 
-    hooks.originalReset = **memory.reset;
-    **memory.reset = hookedReset;
+    hooks.originalReset = **Memory()->reset;
+    **Memory()->reset = hookedReset;
 }
 
 VOID Hooks_restore(VOID)
@@ -163,6 +163,6 @@ VOID Hooks_restore(VOID)
 
     SetWindowLongPtr(FindWindowW(L"Valve001", NULL), GWLP_WNDPROC, (LONG_PTR)hooks.originalWndProc);
 
-    **memory.present = hooks.originalPresent;
-    **memory.reset = hooks.originalReset;
+    **Memory()->present = hooks.originalPresent;
+    **Memory()->reset = hooks.originalReset;
 }

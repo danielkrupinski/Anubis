@@ -18,5 +18,5 @@ FLOAT GlobalVars_serverTime(struct UserCmd* cmd)
             tick++;
         lastCmd = cmd;
     }
-   return tick * memory.globalVars->intervalPerTick;
+   return tick * Memory()->globalVars->intervalPerTick;
 }

@@ -7,7 +7,7 @@
 #include "Interfaces.h"
 #include "Memory.h"
 
-Memory memory;
+static struct Memory memory;
 
 static void* findPattern(PCWSTR module, PCSTR pattern, SIZE_T offset)
 {
@@ -54,4 +54,9 @@ VOID Memory_init(VOID)
     memory.globalVars = **((PVOID**)(interfaces.client[0][11] + 10));
     memory.isOtherEnemy = relativeToAbsolute(findPattern(L"client", "\xE8????\x02\xC0", 1));
     memory.lineGoesThroughSmoke = relativeToAbsolute(findPattern(L"client", "\xE8????\x8B\x4C\x24\x30\x33\xD2", 1));
+}
+
+const struct Memory* Memory(void)
+{
+    return &memory;
 }

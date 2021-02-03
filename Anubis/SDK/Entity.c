@@ -68,7 +68,7 @@ struct WeaponData* Entity_getWeaponData(PVOID entity)
 
 bool Entity_isEnemy(PVOID entity)
 {
-    return memory.isOtherEnemy(entity, NULL, EntityList_getEntity(Engine_getLocalPlayer()));
+    return Memory()->isOtherEnemy(entity, NULL, EntityList_getEntity(Engine_getLocalPlayer()));
 }
 
 Vector Entity_getBonePosition(PVOID entity, INT bone)

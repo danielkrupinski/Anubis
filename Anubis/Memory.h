@@ -8,7 +8,7 @@ typedef struct GlowObjectManager GlowObjectManager;
 typedef struct GlobalVars GlobalVars;
 typedef struct Vector Vector;
 
-typedef struct Memory {
+struct Memory {
     PVOID* clientMode;
     VOID(__fastcall* loadSky)(PCSTR);
     PVOID** present;
@@ -18,8 +18,7 @@ typedef struct Memory {
     bool(__fastcall* isOtherEnemy)(PVOID, PVOID, PVOID);
     bool(__cdecl* lineGoesThroughSmoke)(Vector, Vector, SHORT);
     void(__cdecl* debugMsg)(const char* msg, ...);
-} Memory;
+};
 
 VOID Memory_init(VOID);
-
-extern Memory memory;
+const struct Memory* Memory(void);

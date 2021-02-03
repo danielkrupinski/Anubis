@@ -38,7 +38,7 @@ VOID Triggerbot_run(UserCmd* cmd)
     static FLOAT lastTime = 0.0f;
 
     if (config.triggerbot[weaponIndex].enabled) {
-        const FLOAT now = memory.globalVars->realTime;
+        const FLOAT now = Memory()->globalVars->realTime;
 
         if ((GetAsyncKeyState(config.triggerbot[weaponIndex].key) || !config.triggerbot[weaponIndex].onKey)
             && now - lastTime >= config.triggerbot[weaponIndex].shotDelay / 1000.0f) {
@@ -76,7 +76,7 @@ VOID Triggerbot_run(UserCmd* cmd)
                 && (!config.triggerbot[weaponIndex].hitgroup
                     || trace.hitgroup == config.triggerbot[weaponIndex].hitgroup)
                 && (config.triggerbot[weaponIndex].ignoreSmoke
-                    || !memory.lineGoesThroughSmoke(ray.start, Vector_add(&ray.start, &viewAngles), 1))
+                    || !Memory()->lineGoesThroughSmoke(ray.start, Vector_add(&ray.start, &viewAngles), 1))
                 && (config.triggerbot[weaponIndex].ignoreFlash
                     || !*Entity_flashDuration(localPlayer))
                 && (!config.triggerbot[weaponIndex].scopedOnly

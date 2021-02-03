@@ -25,9 +25,9 @@ static VOID applyGlow(struct GlowObjectDefinition* glowObject, struct GlowConfig
             glowObject->glowColor.y = health / 100.0f;
             glowObject->glowColor.z = 0.0f;
         } else if (glowConfig->rainbow) {
-            glowObject->glowColor.x = sinf(0.6f * memory.globalVars->currentTime) * 0.5f + 0.5f;
-            glowObject->glowColor.y = sinf(0.6f * memory.globalVars->currentTime + 2.0f) * 0.5f + 0.5f;
-            glowObject->glowColor.z = sinf(0.6f * memory.globalVars->currentTime + 4.0f) * 0.5f + 0.5f;
+            glowObject->glowColor.x = sinf(0.6f * Memory()->globalVars->currentTime) * 0.5f + 0.5f;
+            glowObject->glowColor.y = sinf(0.6f * Memory()->globalVars->currentTime + 2.0f) * 0.5f + 0.5f;
+            glowObject->glowColor.z = sinf(0.6f * Memory()->globalVars->currentTime + 4.0f) * 0.5f + 0.5f;
         } else {
             glowObject->glowColor.x = glowConfig->color[0];
             glowObject->glowColor.y = glowConfig->color[1];
@@ -41,15 +41,15 @@ static VOID applyPlayerGlow(struct GlowObjectDefinition* glowObject, struct Glow
     Vector localPlayerEyePosition;
     Entity_getEyePosition(EntityList_getEntity(Engine_getLocalPlayer()), &localPlayerEyePosition);
     if (glowConfigAll->enabled) applyGlow(glowObject, glowConfigAll, *Entity_health(entity));
-    else if ((glowConfigVisible->style || Entity_isVisible(entity, NULL)) && !memory.lineGoesThroughSmoke(localPlayerEyePosition, Entity_getBonePosition(entity, 8), 1)) applyGlow(glowObject, glowConfigVisible, *Entity_health(entity));
+    else if ((glowConfigVisible->style || Entity_isVisible(entity, NULL)) && !Memory()->lineGoesThroughSmoke(localPlayerEyePosition, Entity_getBonePosition(entity, 8), 1)) applyGlow(glowObject, glowConfigVisible, *Entity_health(entity));
     else applyGlow(glowObject, glowConfigOccluded, *Entity_health(entity));
 
 }
 
 VOID Glow_render(VOID)
 {
-    for (int i = 0; i < memory.glowObjectManager->glowObjectDefinitions.size; i++) {
-        struct GlowObjectDefinition* glowObject = (struct GlowObjectDefinition*)memory.glowObjectManager->glowObjectDefinitions.memory + i;
+    for (int i = 0; i < Memory()->glowObjectManager->glowObjectDefinitions.size; i++) {
+        struct GlowObjectDefinition* glowObject = (struct GlowObjectDefinition*)Memory()->glowObjectManager->glowObjectDefinitions.memory + i;
         PVOID entity = glowObject->entity;
 
         if (glowObject->nextFreeSlot != -2 || !entity || Entity_isDormant(entity))
