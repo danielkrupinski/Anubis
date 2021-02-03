@@ -17,6 +17,7 @@ typedef struct Memory {
     GlobalVars* globalVars;
     bool(__fastcall* isOtherEnemy)(PVOID, PVOID, PVOID);
     bool(__cdecl* lineGoesThroughSmoke)(Vector, Vector, SHORT);
+    void(__cdecl* debugMsg)(const char* msg, ...);
 } Memory;
 
 VOID Memory_init(VOID);
