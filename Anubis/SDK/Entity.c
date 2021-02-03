@@ -73,7 +73,7 @@ bool Entity_isEnemy(PVOID entity)
 
 Vector Entity_getBonePosition(PVOID entity, INT bone)
 {
-    static struct Matrix3x4 boneMatrices[128];
+    struct Matrix3x4 boneMatrices[128];
 
      if (Entity_setupBones(entity, boneMatrices, 128, 256, 0.0f)) {
          Vector result = { boneMatrices[bone].m[0][3], boneMatrices[bone].m[1][3], boneMatrices[bone].m[2][3] };
