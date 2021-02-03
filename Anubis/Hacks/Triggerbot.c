@@ -44,11 +44,12 @@ VOID Triggerbot_run(UserCmd* cmd)
             && now - lastTime >= config.triggerbot[weaponIndex].shotDelay / 1000.0f) {
 
             UTILS_STATIC_VAR(ConVar*, weaponRecoilScale, Cvar_findVar("weapon_recoil_scale"));
+            const float recoilScale = ConVar_getFloat(weaponRecoilScale);
 
             Vector aimPunch = *Entity_aimPunchAngle(localPlayer);
-            aimPunch.x *= ConVar_getFloat(weaponRecoilScale);
-            aimPunch.y *= ConVar_getFloat(weaponRecoilScale);
-            aimPunch.z *= ConVar_getFloat(weaponRecoilScale);
+            aimPunch.x *= recoilScale;
+            aimPunch.y *= recoilScale;
+            aimPunch.z *= recoilScale;
 
             CONST struct WeaponData* weaponData = Entity_getWeaponData(activeWeapon);
 
