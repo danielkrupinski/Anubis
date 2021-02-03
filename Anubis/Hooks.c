@@ -121,7 +121,7 @@ static VOID __stdcall lockCursor(VOID)
         Surface_unlockCursor();
         return;
     }
-    CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID), interfaces.surface, hooks.surface.oldVmt, 67);
+    CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID), Interfaces()->surface, hooks.surface.oldVmt, 67);
 }
 
 static VOID __stdcall paintTraverse(UINT panel, BOOLEAN forceRepaint, BOOLEAN allowForce)
@@ -130,7 +130,7 @@ static VOID __stdcall paintTraverse(UINT panel, BOOLEAN forceRepaint, BOOLEAN al
         Esp_render();
     }
 
-    CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID, UINT, BOOLEAN, BOOLEAN), interfaces.panel, hooks.panel.oldVmt, 41, panel, forceRepaint, allowForce);
+    CALL_ORIGINAL(VOID(__fastcall*)(PVOID, PVOID, UINT, BOOLEAN, BOOLEAN), Interfaces()->panel, hooks.panel.oldVmt, 41, panel, forceRepaint, allowForce);
 }
 
 VOID Hooks_init(VOID)
@@ -139,10 +139,10 @@ VOID Hooks_init(VOID)
     hookMethod(&hooks.clientMode, 24, createMove);
     hookMethod(&hooks.clientMode, 44, doPostScreenEffects);
 
-    hookVmt(interfaces.panel, &hooks.panel);
+    hookVmt(Interfaces()->panel, &hooks.panel);
     hookMethod(&hooks.panel, 41, paintTraverse);
 
-    hookVmt(interfaces.surface, &hooks.surface);
+    hookVmt(Interfaces()->surface, &hooks.surface);
     hookMethod(&hooks.surface, 67, lockCursor);
 
     HWND window = FindWindowA("Valve001", NULL);

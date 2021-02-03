@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-typedef struct {
+struct Interfaces {
     uintptr_t** client;
     uintptr_t** cvar;
     uintptr_t** debugOverlay;
@@ -13,8 +13,7 @@ typedef struct {
     uintptr_t** localize;
     uintptr_t** panel;
     uintptr_t** surface;
-} Interfaces;
+};
 
 void Interfaces_init(void);
-
-extern Interfaces interfaces;
+const struct Interfaces* Interfaces(void);

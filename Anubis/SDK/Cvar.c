@@ -4,5 +4,5 @@
 
 ConVar* Cvar_findVar(PCSTR name)
 {
-    return CALL_VIRTUAL_METHOD(ConVar* (__fastcall*)(PVOID, PVOID, PCSTR), interfaces.cvar, 15, name);
+    return CALL_VIRTUAL_METHOD(ConVar* (__fastcall*)(PVOID, PVOID, PCSTR), Interfaces()->cvar, 15, name);
 }

@@ -3,5 +3,5 @@
 
 PCWSTR Localize_find(PCSTR tokenName)
 {
-    return CALL_VIRTUAL_METHOD(PCWSTR(__fastcall*)(PVOID, PVOID, PCSTR), interfaces.localize, 12, tokenName);
+    return CALL_VIRTUAL_METHOD(PCWSTR(__fastcall*)(PVOID, PVOID, PCSTR), Interfaces()->localize, 12, tokenName);
 }

@@ -4,7 +4,7 @@
 #include "Interfaces.h"
 #include "SDK/GameUI.h"
 
-Interfaces interfaces;
+static struct Interfaces interfaces;
 
 static uintptr_t** find(const wchar_t* module, const char* name)
 {
@@ -40,4 +40,9 @@ void Interfaces_init(void)
     interfaces.surface = find(L"vguimatsurface", "VGUI_Surface031");
 
     GameUI_messageBox("Huge success!", "Anubis has been succesfully loaded.");
+}
+
+const struct Interfaces* Interfaces(void)
+{
+    return &interfaces;
 }
