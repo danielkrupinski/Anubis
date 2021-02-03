@@ -63,7 +63,7 @@ VOID Entity_getEyePosition(PVOID entity, Vector* out)
 
 struct WeaponData* Entity_getWeaponData(PVOID entity)
 {
-    return CALL_VIRTUAL_METHOD(struct WeaponData*(__fastcall*)(PVOID, PVOID), entity, 457);
+    return CALL_VIRTUAL_METHOD(struct WeaponData*(__fastcall*)(PVOID, PVOID), entity, 460);
 }
 
 bool Entity_isEnemy(PVOID entity)
