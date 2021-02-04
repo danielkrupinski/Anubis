@@ -20,7 +20,7 @@
 #include "SDK/UserCmd.h"
 #include "SDK/Utils.h"
 
-struct Hooks hooks;
+static struct Hooks hooks;
 
 static LRESULT WINAPI hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 {
