@@ -179,7 +179,7 @@
     <ClCompile Include="cJSON\cJSON.c" />
     <ClCompile Include="Config.c" />
     <ClCompile Include="dllmain.c" />
-    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="GUI.c" />
     <ClCompile Include="Hacks\Esp.c" />
     <ClCompile Include="Hacks\Glow.c" />
     <ClCompile Include="Hacks\Misc.c" />
