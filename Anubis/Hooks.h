@@ -27,8 +27,6 @@ extern "C"
 VOID Hooks_init(VOID);
 VOID Hooks_restore(VOID);
 
-extern struct Hooks hooks;
-
 #ifdef __cplusplus
 }
 #endif
