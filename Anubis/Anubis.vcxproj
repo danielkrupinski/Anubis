@@ -91,7 +91,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CJSON_HIDE_SYMBOLS;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;ANUBIS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CIMGUI_NO_EXPORT;CJSON_HIDE_SYMBOLS;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;ANUBIS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
@@ -126,7 +126,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>CJSON_HIDE_SYMBOLS;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;ANUBIS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CIMGUI_NO_EXPORT;CJSON_HIDE_SYMBOLS;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;ANUBIS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>Default</CompileAs>
