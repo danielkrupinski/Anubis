@@ -20,6 +20,22 @@
 #include "SDK/UserCmd.h"
 #include "SDK/Utils.h"
 
+struct VmtHook {
+    PVOID base;
+    PUINT_PTR oldVmt;
+    PUINT_PTR newVmt;
+    SIZE_T length;
+};
+
+struct Hooks {
+    HRESULT(WINAPI* originalPresent)(IDirect3DDevice9*, const RECT*, const RECT*, HWND, const RGNDATA*);
+    HRESULT(WINAPI* originalReset)(IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
+    WNDPROC originalWndProc;
+    struct VmtHook clientMode;
+    struct VmtHook panel;
+    struct VmtHook surface;
+};
+
 static struct Hooks hooks;
 
 static LRESULT WINAPI hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
