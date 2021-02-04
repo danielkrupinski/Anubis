@@ -59,9 +59,6 @@
     <ClCompile Include="imgui\imgui_draw.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_dx9.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
       <Filter>imgui</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui_impl_win32.c">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_dx9.c">
       <Filter>imgui</Filter>
     </ClCompile>
   </ItemGroup>

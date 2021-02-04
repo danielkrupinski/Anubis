@@ -13,11 +13,20 @@
 
 struct IDirect3DDevice9;
 
-IMGUI_IMPL_API bool     ImGui_ImplDX9_Init(IDirect3DDevice9* device);
-IMGUI_IMPL_API void     ImGui_ImplDX9_Shutdown();
-IMGUI_IMPL_API void     ImGui_ImplDX9_NewFrame();
-IMGUI_IMPL_API void     ImGui_ImplDX9_RenderDrawData(ImDrawData* draw_data);
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+bool     ImGui_ImplDX9_Init(struct IDirect3DDevice9* device);
+void     ImGui_ImplDX9_Shutdown();
+void     ImGui_ImplDX9_NewFrame();
+void     ImGui_ImplDX9_RenderDrawData(ImDrawData* draw_data);
 
 // Use if you want to reset your rendering device without losing ImGui state.
-IMGUI_IMPL_API bool     ImGui_ImplDX9_CreateDeviceObjects();
-IMGUI_IMPL_API void     ImGui_ImplDX9_InvalidateDeviceObjects();
+bool     ImGui_ImplDX9_CreateDeviceObjects();
+void     ImGui_ImplDX9_InvalidateDeviceObjects();
+
+#ifdef __cplusplus
+}
+#endif
