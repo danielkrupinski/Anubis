@@ -185,11 +185,13 @@
     <ClCompile Include="Hacks\Misc.c" />
     <ClCompile Include="Hacks\Triggerbot.c" />
     <ClCompile Include="Hooks.c" />
+    <ClCompile Include="imgui\cimgui.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_impl_dx9.cpp" />
     <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Interfaces.c" />
     <ClCompile Include="Memory.c" />
@@ -221,6 +223,7 @@
     <ClInclude Include="Hacks\Misc.h" />
     <ClInclude Include="Hacks\Triggerbot.h" />
     <ClInclude Include="Hooks.h" />
+    <ClInclude Include="imgui\cimgui.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_dx9.h" />

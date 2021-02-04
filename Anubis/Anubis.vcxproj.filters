@@ -128,6 +128,12 @@
     <ClCompile Include="SDK\Localize.c">
       <Filter>SDK</Filter>
     </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\cimgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDK\GameUI.h">
@@ -261,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="SDK\Localize.h">
       <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\cimgui.h">
+      <Filter>imgui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
