@@ -65,11 +65,6 @@ struct Config {
     PSTR* names;
 };
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 extern struct Config config;
 VOID Config_init(PCSTR);
 VOID Config_add(PCSTR);
@@ -81,7 +76,3 @@ VOID Config_resetTriggerbot(VOID);
 VOID Config_resetGlow(VOID);
 VOID Config_resetEsp(VOID);
 VOID Config_remove(UINT);
-
-#ifdef __cplusplus
-}
-#endif
