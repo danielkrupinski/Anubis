@@ -66,7 +66,7 @@ struct Config {
 };
 
 extern struct Config config;
-VOID Config_init(PCSTR);
+VOID Config_init(VOID);
 VOID Config_add(PCSTR);
 VOID Config_rename(size_t, PCSTR);
 VOID Config_load(UINT);

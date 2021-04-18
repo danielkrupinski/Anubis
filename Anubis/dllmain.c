@@ -11,7 +11,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
                       LPVOID lpReserved)
 {
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
-        Config_init("Anubis");
+        Config_init();
         Interfaces_init();
         Memory_init();
         Hooks_init();

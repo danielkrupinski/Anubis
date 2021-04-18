@@ -8,13 +8,13 @@ struct Config config;
 
 static CHAR path[MAX_PATH];
 
-VOID Config_init(PCSTR name)
+VOID Config_init()
 {
     Config_reset();
 
     PWSTR pathToDocuments;
     if (SUCCEEDED(SHGetKnownFolderPath(&FOLDERID_Documents, 0, NULL, &pathToDocuments))) {
-        sprintf(path, "%ws/%s/", pathToDocuments, name);
+        sprintf(path, "%ws/%s/", pathToDocuments, "Anubis");
         if (PathFileExistsA(path)) {
             strcat(path, "*");
             WIN32_FIND_DATA foundData;
