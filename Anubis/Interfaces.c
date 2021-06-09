@@ -22,7 +22,7 @@ static uintptr_t** find(const wchar_t* module, const char* name)
 
     char buf[100];
     sprintf_s(buf, sizeof(buf), "Failed to find %s interface!", name);
-    MessageBox(NULL, buf, "Error", MB_OK | MB_ICONERROR);
+    MessageBoxA(NULL, buf, "Error", MB_OK | MB_ICONERROR);
     exit(EXIT_FAILURE);
 }
 

@@ -17,7 +17,7 @@ VOID Config_init()
         sprintf(path, "%ws/%s/", pathToDocuments, "Anubis");
         if (PathFileExistsA(path)) {
             strcat(path, "*");
-            WIN32_FIND_DATA foundData;
+            WIN32_FIND_DATAA foundData;
             HANDLE found = FindFirstFileA(path, &foundData);
 
             if (found != INVALID_HANDLE_VALUE) {
