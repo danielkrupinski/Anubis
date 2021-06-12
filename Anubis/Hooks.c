@@ -42,7 +42,7 @@ static LRESULT WINAPI hookedWndProc(HWND window, UINT msg, WPARAM wParam, LPARAM
 {
     if (GUI_handleInput(window, msg, wParam, lParam))
         return true;
-    return CallWindowProc(hooks.originalWndProc, window, msg, wParam, lParam);
+    return CallWindowProcW(hooks.originalWndProc, window, msg, wParam, lParam);
 }
 
 static HRESULT WINAPI hookedPresent(IDirect3DDevice9* device, const RECT* src, const RECT* dest, HWND windowOverride, const RGNDATA* dirtyRegion)
@@ -162,7 +162,7 @@ VOID Hooks_init(VOID)
     hookMethod(&hooks.surface, 67, lockCursor);
 
     HWND window = FindWindowA("Valve001", NULL);
-    hooks.originalWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hookedWndProc);
+    hooks.originalWndProc = (WNDPROC)SetWindowLongPtrW(window, GWLP_WNDPROC, (LONG_PTR)hookedWndProc);
 
     hooks.originalPresent = **Memory()->present;
     **Memory()->present = hookedPresent;
@@ -177,7 +177,7 @@ VOID Hooks_restore(VOID)
     restoreVmt(&hooks.panel);
     restoreVmt(&hooks.surface);
 
-    SetWindowLongPtr(FindWindowW(L"Valve001", NULL), GWLP_WNDPROC, (LONG_PTR)hooks.originalWndProc);
+    SetWindowLongPtrW(FindWindowW(L"Valve001", NULL), GWLP_WNDPROC, (LONG_PTR)hooks.originalWndProc);
 
     **Memory()->present = hooks.originalPresent;
     **Memory()->reset = hooks.originalReset;
