@@ -48,7 +48,7 @@ VOID Memory_init(VOID)
 
     memory.clientMode = **((PVOID**)(Interfaces()->client[0][10] + 5));
     memory.loadSky = findPattern(L"engine", "\x55\x8B\xEC\x81\xEC????\x56\x57\x8B\xF9\xC7\x45", 0);
-    memory.present = findPattern(L"gameoverlayrenderer", "\xFF\x15????\x8B\xF8\x85\xDB", 2);
+    memory.present = findPattern(L"gameoverlayrenderer", "\xFF\x15????\x8B\xF0\x85\xFF", 2);
     memory.reset = findPattern(L"gameoverlayrenderer", "\xC7\x45?????\xFF\x15????\x8B\xF8", 9);
     memory.glowObjectManager = *(GlowObjectManager**)findPattern(L"client", "\x0F\x11\x05????\x83\xC8\x01", 3);
     memory.globalVars = **((PVOID**)(Interfaces()->client[0][11] + 10));
