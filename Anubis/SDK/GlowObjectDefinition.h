@@ -7,6 +7,7 @@
 #include "Vector.h"
 
 struct GlowObjectDefinition {
+    int nextFreeSlot;
     PVOID entity;
     struct Vector glowColor;
     float   alpha;
@@ -21,7 +22,6 @@ struct GlowObjectDefinition {
     int fullBloomStencilTestValue;
     int glowStyle;
     int splitScreenSlot;
-    int nextFreeSlot;
 };
 
 struct GlowObjectManager {
